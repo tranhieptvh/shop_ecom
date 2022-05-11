@@ -6,7 +6,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
-    return redirect()->route('index');
+    return redirect()->route('/admin');
 })->name('/');
 
 //Language Change
@@ -24,16 +24,22 @@ Route::prefix('admin')->group(function () {
         return redirect()->route('admin.dashboard.index');
     })->name('/admin');
 
-    Route::prefix('dashboard')->group(function () {
-        Route::view('/', 'admin.dashboard.index')->name('admin.dashboard.index');
-    });
+    Route::get('login', 'Admin\AuthController@index');
+    Route::post('login', 'Admin\AuthController@login');
+    Route::get('logout', 'Admin\AuthController@logout');
 
-    Route::prefix('categories')->group(function () {
-        Route::view('/', 'admin.categories.index')->name('admin.categories.index');
-    });
+    Route::group(['middleware' => ['auth.admin']], function() {
+        Route::prefix('dashboard')->group(function () {
+            Route::view('/', 'admin.dashboard.index')->name('admin.dashboard.index');
+        });
 
-    Route::prefix('products')->group(function () {
-        Route::view('/', 'admin.products.index')->name('admin.products.index');
+        Route::prefix('category')->group(function () {
+            Route::view('/', 'admin.category.index')->name('admin.category.index');
+        });
+
+        Route::prefix('product')->group(function () {
+            Route::view('/', 'admin.product.index')->name('admin.product.index');
+        });
     });
 });
 
@@ -179,198 +185,6 @@ Route::prefix('icons')->group(function () {
     Route::view('ionic-icon', 'icons.ionic-icon')->name('ionic-icon');
 });
 
-Route::prefix('buttons')->group(function () {
-    Route::view('buttons', 'buttons.buttons')->name('buttons');
-    Route::view('buttons-flat', 'buttons.buttons-flat')->name('buttons-flat');
-    Route::view('buttons-edge', 'buttons.buttons-edge')->name('buttons-edge');
-    Route::view('raised-button', 'buttons.raised-button')->name('raised-button');
-    Route::view('button-group', 'buttons.button-group')->name('button-group');
-});
+Auth::routes();
 
-Route::prefix('forms')->group(function () {
-    Route::view('form-validation', 'forms.form-validation')->name('form-validation');
-    Route::view('base-input', 'forms.base-input')->name('base-input');
-    Route::view('radio-checkbox-control', 'forms.radio-checkbox-control')->name('radio-checkbox-control');
-    Route::view('input-group', 'forms.input-group')->name('input-group');
-    Route::view('megaoptions', 'forms.megaoptions')->name('megaoptions');
-    Route::view('datepicker', 'forms.datepicker')->name('datepicker');
-    Route::view('time-picker', 'forms.time-picker')->name('time-picker');
-    Route::view('datetimepicker', 'forms.datetimepicker')->name('datetimepicker');
-    Route::view('daterangepicker', 'forms.daterangepicker')->name('daterangepicker');
-    Route::view('touchspin', 'forms.touchspin')->name('touchspin');
-    Route::view('select2', 'forms.select2')->name('select2');
-    Route::view('switch', 'forms.switch')->name('switch');
-    Route::view('typeahead', 'forms.typeahead')->name('typeahead');
-    Route::view('clipboard', 'forms.clipboard')->name('clipboard');
-    Route::view('default-form', 'forms.default-form')->name('default-form');
-    Route::view('form-wizard', 'forms.form-wizard')->name('form-wizard');
-    Route::view('form-wizard-two', 'forms.form-wizard-two')->name('form-wizard-two');
-    Route::view('form-wizard-three', 'forms.form-wizard-three')->name('form-wizard-three');
-    Route::post('form-wizard-three', function () {
-        return redirect()->route('form-wizard-three');
-    })->name('form-wizard-three-post');
-});
-
-Route::prefix('tables')->group(function () {
-    Route::view('bootstrap-basic-table', 'tables.bootstrap-basic-table')->name('bootstrap-basic-table');
-    Route::view('bootstrap-sizing-table', 'tables.bootstrap-sizing-table')->name('bootstrap-sizing-table');
-    Route::view('bootstrap-border-table', 'tables.bootstrap-border-table')->name('bootstrap-border-table');
-    Route::view('bootstrap-styling-table', 'tables.bootstrap-styling-table')->name('bootstrap-styling-table');
-    Route::view('table-components', 'tables.table-components')->name('table-components');
-    Route::view('datatable-basic-init', 'tables.datatable-basic-init')->name('datatable-basic-init');
-    Route::view('datatable-advance', 'tables.datatable-advance')->name('datatable-advance');
-    Route::view('datatable-styling', 'tables.datatable-styling')->name('datatable-styling');
-    Route::view('datatable-ajax', 'tables.datatable-ajax')->name('datatable-ajax');
-    Route::view('datatable-server-side', 'tables.datatable-server-side')->name('datatable-server-side');
-    Route::view('datatable-plugin', 'tables.datatable-plugin')->name('datatable-plugin');
-    Route::view('datatable-api', 'tables.datatable-api')->name('datatable-api');
-    Route::view('datatable-data-source', 'tables.datatable-data-source')->name('datatable-data-source');
-    Route::view('datatable-ext-autofill', 'tables.datatable-ext-autofill')->name('datatable-ext-autofill');
-    Route::view('datatable-ext-basic-button', 'tables.datatable-ext-basic-button')->name('datatable-ext-basic-button');
-    Route::view('datatable-ext-col-reorder', 'tables.datatable-ext-col-reorder')->name('datatable-ext-col-reorder');
-    Route::view('datatable-ext-fixed-header', 'tables.datatable-ext-fixed-header')->name('datatable-ext-fixed-header');
-    Route::view('datatable-ext-html-5-data-export', 'tables.datatable-ext-html-5-data-export')->name('datatable-ext-html-5-data-export');
-    Route::view('datatable-ext-key-table', 'tables.datatable-ext-key-table')->name('datatable-ext-key-table');
-    Route::view('datatable-ext-responsive', 'tables.datatable-ext-responsive')->name('datatable-ext-responsive');
-    Route::view('datatable-ext-row-reorder', 'tables.datatable-ext-row-reorder')->name('datatable-ext-row-reorder');
-    Route::view('datatable-ext-scroller', 'tables.datatable-ext-scroller')->name('datatable-ext-scroller');
-    Route::view('jsgrid-table', 'tables.jsgrid-table')->name('jsgrid-table');
-});
-
-Route::prefix('charts')->group(function () {
-    Route::view('echarts', 'charts.echarts')->name('echarts');
-    Route::view('chart-apex', 'charts.chart-apex')->name('chart-apex');
-    Route::view('chart-google', 'charts.chart-google')->name('chart-google');
-    Route::view('chart-sparkline', 'charts.chart-sparkline')->name('chart-sparkline');
-    Route::view('chart-flot', 'charts.chart-flot')->name('chart-flot');
-    Route::view('chart-knob', 'charts.chart-knob')->name('chart-knob');
-    Route::view('chart-morris', 'charts.chart-morris')->name('chart-morris');
-    Route::view('chartjs', 'charts.chartjs')->name('chartjs');
-    Route::view('chartist', 'charts.chartist')->name('chartist');
-    Route::view('chart-peity', 'charts.chart-peity')->name('chart-peity');
-});
-
-Route::view('sample-page', 'pages.sample-page')->name('sample-page');
-Route::view('internationalization', 'pages.internationalization')->name('internationalization');
-
-Route::prefix('starter-kit')->group(function () {
-});
-
-Route::prefix('others')->group(function () {
-    Route::view('400', 'errors.400')->name('error-400');
-    Route::view('401', 'errors.401')->name('error-401');
-    Route::view('403', 'errors.403')->name('error-403');
-    Route::view('404', 'errors.404')->name('error-404');
-    Route::view('500', 'errors.500')->name('error-500');
-    Route::view('503', 'errors.503')->name('error-503');
-});
-
-Route::prefix('authentication')->group(function () {
-    Route::view('login', 'authentication.login')->name('login');
-    Route::view('login-one', 'authentication.login-one')->name('login-one');
-    Route::view('login-two', 'authentication.login-two')->name('login-two');
-    Route::view('login-bs-validation', 'authentication.login-bs-validation')->name('login-bs-validation');
-    Route::view('login-bs-tt-validation', 'authentication.login-bs-tt-validation')->name('login-bs-tt-validation');
-    Route::view('login-sa-validation', 'authentication.login-sa-validation')->name('login-sa-validation');
-    Route::view('sign-up', 'authentication.sign-up')->name('sign-up');
-    Route::view('sign-up-one', 'authentication.sign-up-one')->name('sign-up-one');
-    Route::view('sign-up-two', 'authentication.sign-up-two')->name('sign-up-two');
-    Route::view('sign-up-wizard', 'authentication.sign-up-wizard')->name('sign-up-wizard');
-    Route::view('unlock', 'authentication.unlock')->name('unlock');
-    Route::view('forget-password', 'authentication.forget-password')->name('forget-password');
-    Route::view('reset-password', 'authentication.reset-password')->name('reset-password');
-    Route::view('maintenance', 'authentication.maintenance')->name('maintenance');
-});
-
-Route::view('comingsoon', 'comingsoon.comingsoon')->name('comingsoon');
-Route::view('comingsoon-bg-video', 'comingsoon.comingsoon-bg-video')->name('comingsoon-bg-video');
-Route::view('comingsoon-bg-img', 'comingsoon.comingsoon-bg-img')->name('comingsoon-bg-img');
-
-Route::view('basic-template', 'email-templates.basic-template')->name('basic-template');
-Route::view('email-header', 'email-templates.email-header')->name('email-header');
-Route::view('template-email', 'email-templates.template-email')->name('template-email');
-Route::view('template-email-2', 'email-templates.template-email-2')->name('template-email-2');
-Route::view('ecommerce-templates', 'email-templates.ecommerce-templates')->name('ecommerce-templates');
-Route::view('email-order-success', 'email-templates.email-order-success')->name('email-order-success');
-
-
-Route::prefix('gallery')->group(function () {
-    Route::view('/', 'apps.gallery')->name('gallery');
-    Route::view('gallery-with-description', 'apps.gallery-with-description')->name('gallery-with-description');
-    Route::view('gallery-masonry', 'apps.gallery-masonry')->name('gallery-masonry');
-    Route::view('masonry-gallery-with-disc', 'apps.masonry-gallery-with-disc')->name('masonry-gallery-with-disc');
-    Route::view('gallery-hover', 'apps.gallery-hover')->name('gallery-hover');
-});
-
-Route::prefix('blog')->group(function () {
-    Route::view('/', 'apps.blog')->name('blog');
-    Route::view('blog-single', 'apps.blog-single')->name('blog-single');
-    Route::view('add-post', 'apps.add-post')->name('add-post');
-});
-
-
-Route::view('faq', 'apps.faq')->name('faq');
-
-Route::prefix('job-search')->group(function () {
-    Route::view('job-cards-view', 'apps.job-cards-view')->name('job-cards-view');
-    Route::view('job-list-view', 'apps.job-list-view')->name('job-list-view');
-    Route::view('job-details', 'apps.job-details')->name('job-details');
-    Route::view('job-apply', 'apps.job-apply')->name('job-apply');
-});
-
-Route::prefix('learning')->group(function () {
-    Route::view('learning-list-view', 'apps.learning-list-view')->name('learning-list-view');
-    Route::view('learning-detailed', 'apps.learning-detailed')->name('learning-detailed');
-});
-
-Route::prefix('maps')->group(function () {
-    Route::view('map-js', 'apps.map-js')->name('map-js');
-    Route::view('vector-map', 'apps.vector-map')->name('vector-map');
-});
-
-Route::prefix('editors')->group(function () {
-    Route::view('summernote', 'apps.summernote')->name('summernote');
-    Route::view('ckeditor', 'apps.ckeditor')->name('ckeditor');
-    Route::view('simple-mde', 'apps.simple-mde')->name('simple-mde');
-    Route::view('ace-code-editor', 'apps.ace-code-editor')->name('ace-code-editor');
-});
-
-Route::view('knowledgebase', 'apps.knowledgebase')->name('knowledgebase');
-Route::view('support-ticket', 'apps.support-ticket')->name('support-ticket');
-Route::view('landing-page', 'pages.landing-page')->name('landing-page');
-
-Route::prefix('layouts')->group(function () {
-    Route::view('compact-sidebar', 'admin_unique_layouts.compact-sidebar'); //default //Dubai
-    Route::view('box-layout', 'admin_unique_layouts.box-layout');    //default //New York //
-    Route::view('dark-sidebar', 'admin_unique_layouts.dark-sidebar');
-
-    Route::view('default-body', 'admin_unique_layouts.default-body');
-    Route::view('compact-wrap', 'admin_unique_layouts.compact-wrap');
-    Route::view('enterprice-type', 'admin_unique_layouts.enterprice-type');
-
-    Route::view('compact-small', 'admin_unique_layouts.compact-small');
-    Route::view('advance-type', 'admin_unique_layouts.advance-type');
-    Route::view('material-layout', 'admin_unique_layouts.material-layout');
-
-    Route::view('color-sidebar', 'admin_unique_layouts.color-sidebar');
-    Route::view('material-icon', 'admin_unique_layouts.material-icon');
-    Route::view('modern-layout', 'admin_unique_layouts.modern-layout');
-});
-
-Route::get('layout-{light}', function ($light) {
-    session()->put('layout', $light);
-    session()->get('layout');
-    if ($light == 'vertical-layout') {
-        return redirect()->route('pages-vertical-layout');
-    }
-    return redirect()->route('index');
-    return 1;
-});
-Route::get('/clear-cache', function () {
-    Artisan::call('config:cache');
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('view:clear');
-    Artisan::call('route:clear');
-    return "Cache is cleared";
-})->name('clear.cache');
+Route::get('/home', 'HomeController@index')->name('home');

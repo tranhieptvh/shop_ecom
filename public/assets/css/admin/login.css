@@ -1,0 +1,14 @@
+html, body {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.no-border {
+    border: none !important;
+}
+.container-fluid {
+    height: 100vh;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
