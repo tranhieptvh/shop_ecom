@@ -16,23 +16,31 @@
                         <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                     </li>
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title {{request()->route()->getPrefix() == 'admin/dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard.index') }}">
+                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard.index') }}">
                             <i data-feather="home"></i>
                             <span class="lan-3">Dashboards</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title {{request()->route()->getPrefix() == 'admin/category' ? 'active' : '' }}" href="{{ route('admin.category.index') }}">
-                            <i data-feather="home"></i>
+                        <?php $a = 1; ?>
+                        <a class="sidebar-link sidebar-title {{request()->route()->getPrefix() == 'admin/user' ? 'active' : '' }}" href="{{ route('admin.user.index') }}">
+                            <i class="fa fa-users"></i>
+                            <span class="lan-3">Quản lý User</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/category' ? 'active' : '' }}" href="{{ route('admin.category.index') }}">
+                            <i data-feather="list"></i>
                             <span class="lan-3">Quản lý danh mục sản phẩm</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
                     <li class="sidebar-list">
                         <?php $a = 1; ?>
-                        <a class="sidebar-link sidebar-title {{request()->route()->getPrefix() == 'admin/product' ? 'active' : '' }}" href="{{ route('admin.product.index') }}">
-                            <i data-feather="home"></i>
+                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/product' ? 'active' : '' }}" href="{{ route('admin.product.index') }}">
+                            <i class="fa fa-product-hunt"></i>
                             <span class="lan-3">Quản lý sản phẩm</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>

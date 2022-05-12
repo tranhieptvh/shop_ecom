@@ -6,3 +6,6 @@ html, body {
     width: 97px;
     height: 28px;
 }
+.validated {
+    display: block !important;
+}

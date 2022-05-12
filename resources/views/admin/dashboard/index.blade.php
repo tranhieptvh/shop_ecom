@@ -21,13 +21,7 @@
     <div class="container-fluid">
         Home
     </div>
-    <script type="text/javascript">
-        var session_layout = '{{ session()->get('layout') }}';
-    </script>
 @endsection
 
 @section('script')
-    <script>
-        console.log(123);
-    </script>
 @endsection

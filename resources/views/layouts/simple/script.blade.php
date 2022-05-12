@@ -26,3 +26,7 @@
 {{-- @if(Route::current()->getName() == 'index')
 	<script src="{{asset('assets/js/layout-change.js')}}"></script>
 @endif --}}
+
+<!-- Datepicker-->
+<script src="{{ asset('assets/js/datepicker/daterange-picker/moment.min.js') }}"></script>
+<script src="{{ asset('assets/js/datepicker/daterange-picker/daterangepicker.js') }}"></script>

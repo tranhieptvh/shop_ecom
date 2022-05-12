@@ -30,15 +30,21 @@ Route::prefix('admin')->group(function () {
 
     Route::group(['middleware' => ['auth.admin']], function() {
         Route::prefix('dashboard')->group(function () {
-            Route::view('/', 'admin.dashboard.index')->name('admin.dashboard.index');
+            Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
         });
 
         Route::prefix('category')->group(function () {
-            Route::view('/', 'admin.category.index')->name('admin.category.index');
+            Route::get('/', 'Admin\CategoryController@index')->name('admin.category.index');
         });
 
         Route::prefix('product')->group(function () {
-            Route::view('/', 'admin.product.index')->name('admin.product.index');
+            Route::get('/', 'Admin\ProductController@index')->name('admin.product.index');
+        });
+
+        Route::prefix('user')->group(function () {
+            Route::get('/', 'Admin\UserController@index')->name('admin.user.index');
+            Route::get('/create', 'Admin\UserController@create')->name('admin.user.create');
+            Route::post('/store', 'Admin\UserController@store')->name('admin.user.store');
         });
     });
 });

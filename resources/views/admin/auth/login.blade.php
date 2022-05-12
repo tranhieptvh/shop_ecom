@@ -14,12 +14,21 @@
 
                             <div class="mb-3">
                                 <label class="col-form-label pt-0" for="email">Email</label>
-                                <input class="form-control" id="email" name="email" type="email" aria-describedby="emailHelp" placeholder="Nhập email">
+                                <input class="form-control" id="email" name="email" type="text" placeholder="Nhập email" value="{{ old('email') }}">
+                                @if ($errors->has('email'))
+                                    <div class="invalid-feedback validated">{{ $errors->first('email') }}</div>
+                                @endif
                             </div>
                             <div class="mb-3">
                                 <label class="col-form-label pt-0" for="password">Mật khẩu</label>
-                                <input class="form-control" id="password" name="password" type="password" placeholder="Nhập mật khẩu">
+                                <input class="form-control" id="password" name="password" type="password" placeholder="Nhập mật khẩu" value="{{ old('password') }}">
+                                @if ($errors->has('password'))
+                                    <div class="invalid-feedback validated">{{ $errors->first('password') }}</div>
+                                @endif
                             </div>
+                            @if (!empty($error_validate))
+                                <div class="invalid-feedback validated">Email hoặc Mật khẩu không đúng</div>
+                            @endif
                             <div class="checkbox p-0">
                                 <input id="dafault-checkbox" type="checkbox" name="remember_me">
                                 <label class="mb-0" for="dafault-checkbox">Lưu đăng nhập</label>

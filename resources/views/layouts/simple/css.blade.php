@@ -20,3 +20,4 @@
 
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/admin/common.css')}}">
 
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/daterange-picker.css')}}">

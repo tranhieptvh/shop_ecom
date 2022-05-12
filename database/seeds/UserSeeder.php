@@ -17,9 +17,10 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Trần Văn Hiệp',
                 'email' => 'tranhieptvh@gmail.com',
+                'password' => Hash::make(123456),
+                'date_of_birth' => '30-07-1997',
                 'phone' => '0985250657',
                 'address' => 'Vĩnh Phúc',
-                'password' => Hash::make(123456),
                 'role_id' => '1',
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
