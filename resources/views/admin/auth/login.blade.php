@@ -26,8 +26,8 @@
                                     <div class="invalid-feedback validated">{{ $errors->first('password') }}</div>
                                 @endif
                             </div>
-                            @if (!empty($error_validate))
-                                <div class="invalid-feedback validated">Email hoặc Mật khẩu không đúng</div>
+                            @if (!empty($error))
+                                <div class="invalid-feedback validated">{{ $error }}</div>
                             @endif
                             <div class="checkbox p-0">
                                 <input id="dafault-checkbox" type="checkbox" name="remember_me">

@@ -33,18 +33,21 @@ Route::prefix('admin')->group(function () {
             Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
         });
 
+        Route::prefix('user')->group(function () {
+            Route::get('/', 'Admin\UserController@index')->name('admin.user.index');
+            Route::get('/create', 'Admin\UserController@create')->name('admin.user.create');
+            Route::post('/store', 'Admin\UserController@store')->name('admin.user.store');
+            Route::get('/edit/{id}', 'Admin\UserController@edit')->name('admin.user.edit');
+            Route::put('/update/{id}', 'Admin\UserController@update')->name('admin.user.update');
+            Route::delete('/destroy/{id}', 'Admin\UserController@destroy')->name('admin.user.destroy');
+        });
+
         Route::prefix('category')->group(function () {
             Route::get('/', 'Admin\CategoryController@index')->name('admin.category.index');
         });
 
         Route::prefix('product')->group(function () {
             Route::get('/', 'Admin\ProductController@index')->name('admin.product.index');
-        });
-
-        Route::prefix('user')->group(function () {
-            Route::get('/', 'Admin\UserController@index')->name('admin.user.index');
-            Route::get('/create', 'Admin\UserController@create')->name('admin.user.create');
-            Route::post('/store', 'Admin\UserController@store')->name('admin.user.store');
         });
     });
 });
@@ -190,7 +193,3 @@ Route::prefix('icons')->group(function () {
     Route::view('typicons-icon', 'icons.typicons-icon')->name('typicons-icon');
     Route::view('ionic-icon', 'icons.ionic-icon')->name('ionic-icon');
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

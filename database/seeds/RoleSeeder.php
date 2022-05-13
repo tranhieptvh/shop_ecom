@@ -14,6 +14,11 @@ class RoleSeeder extends Seeder
     {
         DB::table('roles')->insert([
             [
+                'name' => 'Root',
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
+            ],
+            [
                 'name' => 'Admin',
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),

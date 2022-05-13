@@ -17,8 +17,19 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="col-sm-12 mb-3">
+        <div class="col-sm-12 mb-2">
             <a href="{{ route('admin.user.create') }}" class="btn btn-success btn-add">Thêm mới &nbsp;&nbsp; <i class="fa fa-plus"></i></a>
+        </div>
+        @if (session('success'))
+            <div class="alert alert-success dark alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+            </div>
+        @endif
+        <div class="col-sm-12 mb-2">
+            @foreach($roles as $role)
+                <a href="/admin/user?role={{ $role->id }}" class="btn btn-outline-light-2x txt-dark {{ $role->id == $target_role ? 'active' : '' }}">{{ $role->name }}</a>
+            @endforeach
         </div>
         <div class="col-sm-12">
             <div class="card">
@@ -31,7 +42,8 @@
                             <th scope="col">Ngày sinh</th>
                             <th scope="col">Số điện thoại</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Quê quán</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -43,6 +55,15 @@
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->address }}</td>
+                                <td>
+                                    <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning m-r-3">Sửa</a>
+                                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" style="display: inline-block" id="delete_user"
+                                          onSubmit="return confirm('Xóa User này? \n\n Họ tên: {{ $user->name }}')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit">Xóa</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -54,4 +75,9 @@
 @endsection
 
 @section('script')
+    <script>
+        $(document).ready(function(){
+            console.log(123);
+        });
+    </script>
 @endsection

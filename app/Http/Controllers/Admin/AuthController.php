@@ -18,15 +18,14 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request) {
         $remember = $request->has('remember_me') ? true : false;
-        if (auth()->attempt([
+        if (Auth::attempt([
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => 1,
+            'role_id' => [config('constants.ROLE_ROOT'), config('constants.ROLE_ADMIN')],
         ], $remember)) {
             return redirect()->to('/admin');
-        } else {
-            return view('admin.auth.login')->with('error_validate', true);
         }
+        return view('admin.auth.login')->with('error', 'Đăng nhập không thành công, vui lòng thử lại!');
     }
 
     public function logout() {

@@ -12,6 +12,12 @@ class Role extends Model
         'name',
     ];
 
+    const ROLE = [
+        'ROOT' => 1,
+        'ADMIN' => 2,
+        'MEMBER' => 3,
+    ];
+
     public function users() {
         return $this->hasMany('App\User');
     }
