@@ -19,3 +19,9 @@ form .required {
 .hidden {
     display: none;
 }
+.page-wrapper.compact-wrapper .page-header .header-wrapper .nav-right {
+    -webkit-box-flex: unset;
+    -ms-flex: unset;
+    flex: unset;
+    max-width: 100%;
+}

@@ -1,47 +1,50 @@
 @extends('layouts.authentication.master')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="col-sm-12 col-xl-6">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Đăng nhập</h5>
-                    </div>
-                    <div class="card-body">
-                        <form class="theme-form" method="POST" action="{{ '/admin/login' }}">
-                            @csrf
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                <div class="login-card">
+                    <div>
+                        <div><a class="logo" href="{{ route('index') }}"><img class="img-fluid for-light" src="{{asset('assets/images/logo/main-logo.png')}}"></a></div>
+                        <div class="login-main">
+                            <form class="theme-form" method="POST" action="{{ '/admin/login' }}">
+                                @csrf
 
-                            <div class="mb-3">
-                                <label class="col-form-label pt-0" for="email">Email</label>
-                                <input class="form-control" id="email" name="email" type="text" placeholder="Nhập email" value="{{ old('email') }}">
-                                @if ($errors->has('email'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('email') }}</div>
+                                <h4>Đăng nhập</h4>
+                                <p>Nhập Email và Password để đăng nhập</p>
+                                <div class="form-group">
+                                    <label class="col-form-label">Email</label>
+                                    <input class="form-control" id="email" name="email" type="text" value="{{ old('email') }}" placeholder="Test@gmail.com">
+                                    @if ($errors->has('email'))
+                                        <div class="invalid-feedback validated">{{ $errors->first('email') }}</div>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">Password</label>
+                                    <input class="form-control" id="password" name="password" type="password" value="{{ old('password') }}" placeholder="*********">
+                                    @if ($errors->has('password'))
+                                        <div class="invalid-feedback validated">{{ $errors->first('password') }}</div>
+                                    @endif
+                                </div>
+                                @if (!empty($error))
+                                    <div class="invalid-feedback validated">{{ $error }}</div>
                                 @endif
-                            </div>
-                            <div class="mb-3">
-                                <label class="col-form-label pt-0" for="password">Mật khẩu</label>
-                                <input class="form-control" id="password" name="password" type="password" placeholder="Nhập mật khẩu" value="{{ old('password') }}">
-                                @if ($errors->has('password'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('password') }}</div>
-                                @endif
-                            </div>
-                            @if (!empty($error))
-                                <div class="invalid-feedback validated">{{ $error }}</div>
-                            @endif
-                            <div class="checkbox p-0">
-                                <input id="dafault-checkbox" type="checkbox" name="remember_me">
-                                <label class="mb-0" for="dafault-checkbox">Lưu đăng nhập</label>
-                            </div>
-
-                            <div class="card-footer text-center no-border">
-                                <button class="btn btn-primary" type="submit">Đăng nhập</button>
-                            </div>
-                        </form>
+                                <div class="form-group mb-0">
+                                    <div class="checkbox p-0">
+                                        <input id="checkbox1" type="checkbox" name="remember_me">
+                                        <label class="text-muted" for="checkbox1">Remember password</label>
+                                    </div>
+                                    <button class="btn btn-primary btn-block" type="submit">Đăng nhập</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
 @endsection
