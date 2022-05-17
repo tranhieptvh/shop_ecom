@@ -27,7 +27,7 @@
             </div>
         @endif
         <div class="card">
-            <form class="form theme-form" method="POST" action="{{ route('admin.user.store') }}">
+            <form class="form theme-form" method="POST" action="{{ route('admin.user.store') }}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="card-body">
@@ -71,6 +71,15 @@
                                     <input class="form-control" type="text" name="address" value="{{ old('address') }}">
                                     @if ($errors->has('address'))
                                         <div class="invalid-feedback validated">{{ $errors->first('address') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Ảnh đại diện</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="file" name="avatar" value="{{ old('avatar') }}">
+                                    @if ($errors->has('avatar'))
+                                        <div class="invalid-feedback validated">{{ $errors->first('avatar') }}</div>
                                     @endif
                                 </div>
                             </div>

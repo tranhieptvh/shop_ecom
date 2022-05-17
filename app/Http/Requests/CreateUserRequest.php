@@ -28,7 +28,7 @@ class CreateUserRequest extends FormRequest
             'date_of_birth' => 'bail|required',
             'phone' => 'bail|required|numeric',
             'address' => 'bail|required',
-            'email' => 'bail|required|email',
+            'email' => 'bail|required|email|unique:users',
             'password' => 'bail|required|min:6',
             'role_id' => 'bail|required',
         ];
@@ -44,6 +44,7 @@ class CreateUserRequest extends FormRequest
             'email' => 'Email',
             'password' => 'Password',
             'role_id' => 'Phân quyền',
+            'avatar' => 'Ảnh đại diện',
         ];
     }
 }

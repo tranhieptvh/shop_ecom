@@ -56,12 +56,12 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->address }}</td>
                                 <td style="display: flex;">
-                                    <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning m-r-5">Sửa</a>
+                                    <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-pencil"></i></a>
                                     <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" style="display: inline-block" id="delete_user"
                                           onSubmit="return confirm('Xóa User này? \n\n Họ tên: {{ $user->name }}')">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger" type="submit">Xóa</button>
+                                        <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

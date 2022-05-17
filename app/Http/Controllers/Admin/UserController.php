@@ -7,8 +7,11 @@ use App\Http\Requests\CreateUserRequest;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\UserRepository;
+use App\Repositories\ImageRepository;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -17,11 +20,16 @@ class UserController extends Controller
      */
     protected $userRepository;
     protected $roleRepository;
+    protected $imageRepository;
 
-    public function __construct(UserRepository $userRepository, RoleRepository $roleRepository)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        RoleRepository $roleRepository,
+        ImageRepository $imageRepository
+    ) {
         $this->userRepository = $userRepository;
         $this->roleRepository = $roleRepository;
+        $this->imageRepository = $imageRepository;
     }
 
     public function index($role = \App\Role::ROLE['MEMBER'])
@@ -50,9 +58,33 @@ class UserController extends Controller
     {
         $user_data = $request->input();
         $user_data['password'] = Hash::make($user_data['password']);
-        $result = $this->userRepository->create($user_data);
 
-        return back()->with('success', 'Thêm mới thành công!');
+        DB::beginTransaction();
+        try {
+            if ($request->hasFile('avatar')) {
+                $file = $request->avatar;
+                $ext = $request->avatar->extension();
+                $file_name = time() . '_' . 'user.' . $ext;
+                $file->move(public_path('uploads/images/user'), $file_name);
+
+                $img_data = [];
+                $img_data['name'] = $file_name;
+                $img_data['model'] = 'user';
+
+                $img = $this->imageRepository->create($img_data);
+
+                $user_data['avatar'] = $img->id;
+            }
+            $result = $this->userRepository->create($user_data);
+
+            DB::commit();
+
+            return back()->with('success', 'Thêm mới thành công!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Message: ' . $e->getMessage() . ' Line: ' . $e->getLine());
+            return back();
+        }
     }
 
     public function edit($id)

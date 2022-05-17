@@ -33,7 +33,7 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-sm-6">
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Họ tên <span class="required">*</span></label>
                                 <div class="col-sm-9">
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-center">
+                <div class="card-footer text-center col-sm-6">
                     <button class="btn btn-success btn-lg" type="submit">Submit</button>
                     <a href="{{ route('admin.user.index') }}" class="btn btn-light btn-lg">Cancel</a>
                 </div>
