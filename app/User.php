@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role', 'role_id');
     }
+
+    public function image() {
+        return $this->hasOne('App\Image', 'id', 'avatar');
+    }
 }

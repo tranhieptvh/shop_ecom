@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,6 @@ use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
-    /**
-     * @var UserRepository
-     */
     protected $userRepository;
     protected $roleRepository;
     protected $imageRepository;
@@ -38,7 +36,7 @@ class UserController extends Controller
         if (isset($_GET['role'])) {
             $role = $_GET['role'];
         }
-        $users = $this->userRepository->findAllBy('role_id', $role);
+        $users = $this->userRepository->getBuilder()->where('role_id', $role)->paginate(10);
 
         return view('admin.user.index')->with([
             'users' => $users,
@@ -65,11 +63,11 @@ class UserController extends Controller
                 $file = $request->avatar;
                 $ext = $request->avatar->extension();
                 $file_name = time() . '_' . 'user.' . $ext;
-                $file->move(public_path('uploads/images/user'), $file_name);
+                $path = 'uploads/images/user';
+                $file->move(public_path($path), $file_name);
 
                 $img_data = [];
-                $img_data['name'] = $file_name;
-                $img_data['model'] = 'user';
+                $img_data['path'] = $path . '/' . $file_name;
 
                 $img = $this->imageRepository->create($img_data);
 
@@ -98,14 +96,38 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(CreateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $user_data = $request->input();
         unset($user_data['password']);
-        $user = $this->userRepository->find($id);
-        $result = $this->userRepository->update($user, $user_data);
 
-        return back()->with('success', 'Cập nhật thành công!');
+        DB::beginTransaction();
+        try {
+            if ($request->hasFile('avatar')) {
+                $file = $request->avatar;
+                $ext = $request->avatar->extension();
+                $file_name = time() . '_' . 'user.' . $ext;
+                $path = 'uploads/images/user';
+                $file->move(public_path($path), $file_name);
+
+                $img_data = [];
+                $img_data['path'] = $path . '/' . $file_name;
+
+                $img = $this->imageRepository->create($img_data);
+
+                $user_data['avatar'] = $img->id;
+            }
+            $user = $this->userRepository->find($id);
+            $result = $this->userRepository->update($user, $user_data);
+
+            DB::commit();
+
+            return back()->with('success', 'Cập nhật thành công!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Message: ' . $e->getMessage() . ' Line: ' . $e->getLine());
+            return back();
+        }
     }
 
     public function destroy($id)

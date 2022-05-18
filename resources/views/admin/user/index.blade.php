@@ -37,37 +37,43 @@
                     <table class="table">
                         <thead>
                         <tr class="table-primary">
-                            <th scope="col">#</th>
+                            <th scope="col">STT</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Họ tên</th>
-                            <th scope="col">Ngày sinh</th>
+                            <th scope="col">Ảnh đại diện</th>
                             <th scope="col">Số điện thoại</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Địa chỉ</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($users as $key => $user)
                             <tr>
-                                <th scope="row">{{ $key + 1 }}</th>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>{{ $user->date_of_birth }}</td>
+                                <td><img src="{{ isset($user->image) ? asset($user->image->path) : '' }}" style="height: 50px; max-width: 100px"></td>
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->address }}</td>
-                                <td style="display: flex;">
-                                    <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-pencil"></i></a>
-                                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" style="display: inline-block" id="delete_user"
-                                          onSubmit="return confirm('Xóa User này? \n\n Họ tên: {{ $user->name }}')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i></button>
-                                    </form>
+                                <td>
+                                    <div style="display: flex;">
+                                        <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-pencil"></i></a>
+                                        <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" style="display: inline-block"
+                                              onSubmit="return confirm('Xóa User này? \n\n Họ tên: {{ $user->name }}')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+
+                    <div class="m-t-30 m-b-20 m-l-10">
+                        {!! $users->links() !!}
+                    </div>
                 </div>
             </div>
         </div>

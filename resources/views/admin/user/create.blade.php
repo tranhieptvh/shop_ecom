@@ -37,7 +37,7 @@
                                 <label class="col-sm-3 col-form-label">Họ tên <span class="required">*</span></label>
                                 <div class="col-sm-9">
                                     <input class="form-control" type="text" name="name" value="{{ old('name') }}">
-                                    @if ($errors->has('email'))
+                                    @if ($errors->has('name'))
                                         <div class="invalid-feedback validated">{{ $errors->first('name') }}</div>
                                     @endif
                                 </div>
@@ -77,10 +77,11 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Ảnh đại diện</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" type="file" name="avatar" value="{{ old('avatar') }}">
+                                    <input class="form-control" type="file" name="avatar" value="{{ old('avatar') }}" onchange="preview()">
                                     @if ($errors->has('avatar'))
                                         <div class="invalid-feedback validated">{{ $errors->first('avatar') }}</div>
                                     @endif
+                                    <img id="frame" src="" height="100px" class="hidden"/>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -121,7 +122,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center col-sm-6">
-                    <button class="btn btn-success btn-lg" type="submit">Submit</button>
+                    <button class="btn btn-success btn-lg" type="submit">Save</button>
                 </div>
             </form>
         </div>
@@ -139,5 +140,12 @@
                 }
             })
         });
+
+        function preview() {
+            frame.src=URL.createObjectURL(event.target.files[0]);
+            if ($('#frame').hasClass('hidden')) {
+                $('#frame').removeClass('hidden');
+            }
+        }
     </script>
 @endsection

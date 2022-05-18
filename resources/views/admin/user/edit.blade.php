@@ -27,7 +27,7 @@
             </div>
         @endif
         <div class="card">
-            <form class="form theme-form" method="POST" action="{{ route('admin.user.update', $user->id) }}">
+            <form class="form theme-form" method="POST" action="{{ route('admin.user.update', $user->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -76,6 +76,17 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Ảnh đại diện</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="file" name="avatar" value="{{ old('avatar') }}" onchange="preview()">
+                                    @if ($errors->has('avatar'))
+                                        <div class="invalid-feedback validated">{{ $errors->first('avatar') }}</div>
+                                    @endif
+                                    <img id="frame" src="{{ isset($user->image) ? asset($user->image->path) : '' }}" height="100px"
+                                         class="{{ isset($user->image) ? '' : 'hidden' }}"/>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Email <span class="required">*</span></label>
                                 <div class="col-sm-9">
                                     <input class="form-control" type="text" name="email" value="{{ old('email', $user->email) }}">
@@ -114,7 +125,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center col-sm-6">
-                    <button class="btn btn-success btn-lg" type="submit">Submit</button>
+                    <button class="btn btn-success btn-lg" type="submit">Save</button>
                     <a href="{{ route('admin.user.index') }}" class="btn btn-light btn-lg">Cancel</a>
                 </div>
             </form>
@@ -133,5 +144,12 @@
                 }
             })
         });
+
+        function preview() {
+            frame.src=URL.createObjectURL(event.target.files[0]);
+            if ($('#frame').hasClass('hidden')) {
+                $('#frame').removeClass('hidden');
+            }
+        }
     </script>
 @endsection

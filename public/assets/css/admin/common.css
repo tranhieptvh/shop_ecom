@@ -25,3 +25,10 @@ form .required {
     flex: unset;
     max-width: 100%;
 }
+.profile-media .avatar {
+    width: 37px;
+    height: 37px;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center center;
+}

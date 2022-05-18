@@ -17,8 +17,7 @@ class RoleRepository extends AbstractRepository
         if ($role == \App\Role::ROLE['ROOT']) {
             return $this->all();
         } else {
-            $this->newQuery();
-            return $this->query->where('id', '<>', \App\Role::ROLE['ROOT'])->get();
+            return $this->getBuilder()->where('id', '<>', \App\Role::ROLE['ROOT'])->get();
         }
     }
 }
