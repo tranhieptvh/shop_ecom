@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCategoryRequest extends FormRequest
+class UpdateBrandRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,19 +23,16 @@ class CreateCategoryRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->id;
         return [
-            'name' => 'bail|required|unique:categories,name',
-            'slug' => 'bail|required|unique:categories,slug',
-            'ordering' => 'bail|required|numeric',
+            'name' => 'bail|required|unique:brands,name,'.$id,
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'Tên danh  mục',
-            'slug' => 'Slug',
-            'ordering' => 'Thứ tự',
+            'name' => 'Tên nhãn hiệu',
         ];
     }
 }

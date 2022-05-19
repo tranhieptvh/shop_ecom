@@ -7,17 +7,17 @@
 @endsection
 
 @section('breadcrumb-title')
-    <h3>Quản lý danh mục sản phẩm</h3>
+    <h3>Quản lý nhãn hiệu</h3>
 @endsection
 
 @section('breadcrumb-items')
-    <li class="breadcrumb-item">Quản lý danh mục sản phẩm</li>
+    <li class="breadcrumb-item">Quản lý nhãn hiệu</li>
 @endsection
 
 @section('content')
     <div class="container-fluid">
         <div class="col-sm-12 mb-2">
-            <a href="{{ route('admin.category.create') }}" class="btn btn-success btn-add">Thêm mới &nbsp;&nbsp; <i class="fa fa-plus"></i></a>
+            <a href="{{ route('admin.brand.create') }}" class="btn btn-success btn-add">Thêm mới &nbsp;&nbsp; <i class="fa fa-plus"></i></a>
         </div>
         @if (session('success'))
             <div class="alert alert-success dark alert-dismissible fade show" role="alert">
@@ -33,23 +33,21 @@
                         <tr class="table-primary">
                             <th scope="col">STT</th>
                             <th scope="col">Tên</th>
-                            <th scope="col">Thứ tự</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($categories as $key => $category)
+                        @foreach ($brands as $key => $brand)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ str_repeat('|--- ', $category->level) . $category->name }}</td>
-                                <td class="{{ $category->parent_id == 0 ? 'bold' : '' }}">{{ str_repeat('|--- ', $category->level) . $category->ordering }}</td>
-                                <td>{{ $category->created_at->format('d-m-y') }}</td>
+                                <td>{{ $brand->name }}</td>
+                                <td>{{ $brand->created_at->format('d-m-y') }}</td>
                                 <td>
                                     <div style="display: flex;">
-                                        <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-pencil"></i></a>
-                                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST" style="display: inline-block"
-                                              onSubmit="return confirm('Xóa danh mục sản phẩm này? \n\n Tên: {{ $category->name }}')">
+                                        <a href="{{ route('admin.brand.edit', $brand->id) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-pencil"></i></a>
+                                        <form action="{{ route('admin.brand.destroy', $brand->id) }}" method="POST" style="display: inline-block"
+                                              onSubmit="return confirm('Xóa danh mục sản phẩm này? \n\n Tên: {{ $brand->name }}')">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash"></i></button>
@@ -61,9 +59,9 @@
                         </tbody>
                     </table>
 
-{{--                    <div class="m-t-30 m-b-20 m-l-10">--}}
-{{--                        {!! $categories->links() !!}--}}
-{{--                    </div>--}}
+                    <div class="m-t-30 m-b-20 m-l-10">
+                        {!! $brands->links() !!}
+                    </div>
                 </div>
             </div>
         </div>

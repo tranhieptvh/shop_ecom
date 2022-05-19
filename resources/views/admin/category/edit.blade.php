@@ -58,12 +58,21 @@
                                     <option value="0">--- Chọn danh mục cha</option>
                                     @foreach($categories as $item)
                                         <option value="{{ $item->id }}" {{ $category->parent_id == $item->id ? 'selected' : ''}}>
-                                            {{ str_repeat('--- ', $item->level) . $item->name }}
+                                            {{ str_repeat('|--- ', $item->level) . $item->name }}
                                         </option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('parent_id'))
                                     <div class="invalid-feedback validated">{{ $errors->first('parent_id') }}</div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Thứ tự</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="number" name="ordering" value="{{ old('slug', $category->ordering) }}">
+                                @if ($errors->has('ordering'))
+                                    <div class="invalid-feedback validated">{{ $errors->first('ordering') }}</div>
                                 @endif
                             </div>
                         </div>

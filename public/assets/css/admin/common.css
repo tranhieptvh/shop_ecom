@@ -32,3 +32,6 @@ form .required {
     background-size: cover;
     background-position: center center;
 }
+.bold {
+    font-weight: bold;
+}

@@ -36,6 +36,13 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/brand' ? 'active' : '' }}" href="{{ route('admin.brand.index') }}">
+                            <i data-feather="list"></i>
+                            <span class="lan-3">Nhãn hiệu</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
                         <?php $a = 1; ?>
                         <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/product' ? 'active' : '' }}" href="{{ route('admin.product.index') }}">
                             <i class="fa fa-product-hunt"></i>

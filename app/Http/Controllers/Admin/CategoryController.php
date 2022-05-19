@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
     public function index() {
 //        $categories = $this->categoryRepository->getBuilder()->paginate(5);
-        $categories = recursive($this->categoryRepository->all());
+        $categories = recursive($this->categoryRepository->getBuilder()->orderBy('ordering')->get());
 
         return view('admin.category.index')->with('categories', $categories);
     }

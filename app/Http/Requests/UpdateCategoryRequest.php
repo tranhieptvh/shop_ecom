@@ -27,6 +27,7 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'name' => 'bail|required|unique:categories,name,'.$id,
             'slug' => 'bail|required|unique:categories,slug,'.$id,
+            'ordering' => 'bail|required|numeric',
         ];
     }
 
@@ -35,6 +36,7 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'name' => 'Tên danh  mục',
             'slug' => 'Slug',
+            'ordering' => 'Thứ tự',
         ];
     }
 }
