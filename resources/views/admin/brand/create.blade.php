@@ -1,10 +1,9 @@
-@extends('layouts.admin.admin')
+@extends('layouts.admin.master')
 
 @section('css')
 @endsection
 
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/admin/user.css')}}">
 @endsection
 
 @section('breadcrumb-title')

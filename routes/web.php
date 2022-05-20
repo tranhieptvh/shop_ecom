@@ -6,7 +6,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
-    return redirect()->route('/admin');
+    return redirect()->route('admin');
 })->name('/');
 
 //Language Change
@@ -22,7 +22,7 @@ Route::get('lang/{locale}', function ($locale) {
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return redirect()->route('admin.dashboard.index');
-    })->name('/admin');
+    })->name('admin');
 
     Route::get('login', 'Admin\AuthController@index');
     Route::post('login', 'Admin\AuthController@login');

@@ -3,7 +3,6 @@ html, body {
 }
 
 .main-logo {
-    width: 97px;
     height: 28px;
 }
 .validated {
@@ -34,4 +33,14 @@ form .required {
 }
 .bold {
     font-weight: bold;
+}
+.btn-add {
+    font-size: 15px;
+    font-weight: bold;
+}
+#preview-avt {
+    height: 100px;
+}
+.login-card .login-main {
+     width: unset;
 }

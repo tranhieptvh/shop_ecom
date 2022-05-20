@@ -10,7 +10,7 @@
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
-    @include('layouts.simple.css')
+    @include('layouts.admin.css')
     @yield('style')
 </head>
 <body @if(Route::current()->getName() == 'index') onload="startTime()" @endif>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-6">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ route('/admin') }}"> <i data-feather="home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('admin') }}"> <i data-feather="home"></i></a></li>
                                 @yield('breadcrumb-items')
                             </ol>
                         </div>
@@ -65,7 +65,7 @@
     </div>
 </div>
 <!-- latest jquery-->
-@include('layouts.simple.script')
+@include('layouts.admin.script')
 <!-- Plugin used-->
 
 <script type="text/javascript">

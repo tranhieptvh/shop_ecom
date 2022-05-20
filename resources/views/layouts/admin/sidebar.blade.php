@@ -1,8 +1,8 @@
 <div class="sidebar-wrapper">
     <div>
-        <div class="logo-wrapper">
-            <a href="{{route('/admin')}}">
-                <img class="img-fluid for-light main-logo" src="{{asset('assets/images/logo/main-logo.png')}}" alt="">
+        <div class="logo-wrapper text-center">
+            <a href="{{route('admin')}}">
+                <img class="img-fluid for-light main-logo" src="{{asset('assets/images/logo/logo-dark.png')}}" alt="">
             </a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
         </div>
@@ -21,7 +21,6 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
-                        <?php $a = 1; ?>
                         <a class="sidebar-link sidebar-title {{request()->route()->getPrefix() == 'admin/user' ? 'active' : '' }}" href="{{ route('admin.user.index') }}">
                             <i class="fa fa-users"></i>
                             <span class="lan-3">User</span>
@@ -43,9 +42,8 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
-                        <?php $a = 1; ?>
                         <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/product' ? 'active' : '' }}" href="{{ route('admin.product.index') }}">
-                            <i class="fa fa-product-hunt"></i>
+                            <i data-feather="list"></i>
                             <span class="lan-3">Sản phẩm</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>

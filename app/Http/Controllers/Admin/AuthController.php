@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function index() {
         if(auth()->check()) {
-            return redirect()->to('/admin');
+            return redirect()->to('admin');
         }
         return view('admin.auth.login');
     }
@@ -23,7 +23,7 @@ class AuthController extends Controller
             'password' => $request->password,
             'role_id' => [config('constants.ROLE_ROOT'), config('constants.ROLE_ADMIN')],
         ], $remember)) {
-            return redirect()->to('/admin');
+            return redirect()->to('admin');
         }
         return view('admin.auth.login')->with('error', 'Đăng nhập không thành công, vui lòng thử lại!');
     }

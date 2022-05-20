@@ -1,4 +1,4 @@
-@extends('layouts.admin.admin')
+@extends('layouts.admin.master')
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/animate.css')}}">
