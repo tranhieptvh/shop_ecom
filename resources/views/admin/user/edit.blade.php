@@ -81,8 +81,8 @@
                                     @if ($errors->has('avatar'))
                                         <div class="invalid-feedback validated">{{ $errors->first('avatar') }}</div>
                                     @endif
-                                    <img id="frame" src="{{ isset($user->image) ? asset($user->image->path) : '' }}" height="100px"
-                                         class="{{ isset($user->image) ? '' : 'hidden' }}"/>
+                                    <img id="frame" src="{{ isset($user->avatar) ? asset($user->avatar) : '' }}" height="100px"
+                                         class="{{ isset($user->avatar) ? '' : 'hidden' }}"/>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -124,7 +124,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center col-sm-6">
-                    <button class="btn btn-success btn-lg" type="submit">Save</button>
+                    <button class="btn btn-success btn-lg" type="submit">Lưu</button>
                     <a href="{{ route('admin.user.index') }}" class="btn btn-light btn-lg">Cancel</a>
                 </div>
             </form>

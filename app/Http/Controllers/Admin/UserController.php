@@ -18,16 +18,13 @@ class UserController extends Controller
 {
     protected $userRepository;
     protected $roleRepository;
-    protected $imageRepository;
 
     public function __construct(
         UserRepository $userRepository,
-        RoleRepository $roleRepository,
-        ImageRepository $imageRepository
+        RoleRepository $roleRepository
     ) {
         $this->userRepository = $userRepository;
         $this->roleRepository = $roleRepository;
-        $this->imageRepository = $imageRepository;
     }
 
     public function index($role = \App\Role::ROLE['MEMBER'])
@@ -57,32 +54,18 @@ class UserController extends Controller
         $user_data = $request->input();
         $user_data['password'] = Hash::make($user_data['password']);
 
-        DB::beginTransaction();
-        try {
-            if ($request->hasFile('avatar')) {
-                $file = $request->avatar;
-                $ext = $request->avatar->extension();
-                $file_name = time() . '_' . 'user.' . $ext;
-                $path = 'uploads/images/user';
-                $file->move(public_path($path), $file_name);
+        if ($request->hasFile('avatar')) {
+            $file = $request->avatar;
+            $ext = $request->avatar->extension();
+            $file_name = time() . '_' . 'user.' . $ext;
+            $path = 'uploads/images/user';
+            $file->move(public_path($path), $file_name);
 
-                $img_data = [];
-                $img_data['path'] = $path . '/' . $file_name;
-
-                $img = $this->imageRepository->create($img_data);
-
-                $user_data['avatar'] = $img->id;
-            }
-            $result = $this->userRepository->create($user_data);
-
-            DB::commit();
-
-            return back()->with('success', 'Thêm mới thành công!');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            Log::error('Message: ' . $e->getMessage() . ' Line: ' . $e->getLine());
-            return back();
+            $user_data['avatar'] = $path . '/' . $file_name;
         }
+        $result = $this->userRepository->create($user_data);
+
+        return back()->with('success', 'Thêm mới thành công!');
     }
 
     public function edit($id)
@@ -103,6 +86,7 @@ class UserController extends Controller
 
         DB::beginTransaction();
         try {
+            $user = $this->userRepository->find($id);
             if ($request->hasFile('avatar')) {
                 $file = $request->avatar;
                 $ext = $request->avatar->extension();
@@ -110,14 +94,11 @@ class UserController extends Controller
                 $path = 'uploads/images/user';
                 $file->move(public_path($path), $file_name);
 
-                $img_data = [];
-                $img_data['path'] = $path . '/' . $file_name;
-
-                $img = $this->imageRepository->create($img_data);
-
-                $user_data['avatar'] = $img->id;
+                $user_data['avatar'] = $path . '/' . $file_name;
+                if (isset($user->avatar)) {
+                    unlink($user->avatar);
+                }
             }
-            $user = $this->userRepository->find($id);
             $result = $this->userRepository->update($user, $user_data);
 
             DB::commit();

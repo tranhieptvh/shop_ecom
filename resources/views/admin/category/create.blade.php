@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button class="btn btn-success btn-lg" type="submit">Save</button>
+                    <button class="btn btn-success btn-lg" type="submit">Lưu</button>
                 </div>
             </form>
         </div>
@@ -83,5 +83,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/js/slug.js') }}"></script>
+    <script src="{{ asset('assets/js/common.js') }}"></script>
 @endsection

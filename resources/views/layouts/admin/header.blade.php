@@ -8,7 +8,7 @@
             <ul class="nav-menus">
                 <li class="profile-nav onhover-dropdown p-0 me-0">
                     <div class="media profile-media">
-                        <div class="avatar" style="background-image: url({{ isset(Auth::user()->image) ? asset(Auth::user()->image->path) : asset('assets/images/dashboard/profile.jpg') }})">
+                        <div class="avatar" style="background-image: url({{ isset(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('assets/images/dashboard/profile.jpg') }})">
                         </div>
                         <div class="media-body">
                             <span>{{ Auth::user()->name }}</span>

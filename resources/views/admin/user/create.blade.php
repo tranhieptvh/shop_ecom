@@ -121,7 +121,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center col-sm-6">
-                    <button class="btn btn-success btn-lg" type="submit">Save</button>
+                    <button class="btn btn-success btn-lg" type="submit">Lưu</button>
                 </div>
             </form>
         </div>

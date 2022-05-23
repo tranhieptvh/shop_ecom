@@ -51,7 +51,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td><img src="{{ isset($user->image) ? asset($user->image->path) : '' }}" style="height: 50px; max-width: 100px"></td>
+                                <td><img src="{{ isset($user->avatar) ? asset($user->avatar) : '' }}" style="height: 50px; max-width: 100px"></td>
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>

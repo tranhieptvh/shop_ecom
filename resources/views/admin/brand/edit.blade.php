@@ -7,12 +7,12 @@
 @endsection
 
 @section('breadcrumb-title')
-    <h3>Chỉnh sửa nhãn hiệu</h3>
+    <h3>Chỉnh sửa thương hiệu</h3>
 @endsection
 
 @section('breadcrumb-items')
     <li class="breadcrumb-item">
-        <a href="{{ route('admin.brand.index') }}">Nhãn hiệu</a>
+        <a href="{{ route('admin.brand.index') }}">Thương hiệu</a>
     </li>
     <li class="breadcrumb-item active">Chỉnh sửa</li>
 @endsection
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button class="btn btn-success btn-lg" type="submit">Save</button>
+                    <button class="btn btn-success btn-lg" type="submit">Lưu</button>
                 </div>
             </form>
         </div>

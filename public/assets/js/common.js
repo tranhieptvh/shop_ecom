@@ -1,3 +1,4 @@
+// add slug
 $('input#name').keyup(function () {
     var title, slug;
 
@@ -30,4 +31,29 @@ $('input#name').keyup(function () {
     slug = slug.replace(/\@\-|\-\@|\@/gi, '');
     //In slug ra textbox có id “slug”
     $('input#slug').val(slug);
+});
+
+// convert format price
+$("input[name='price']").keyup(function (e) {
+    // When user select text in the document, also abort.
+    var selection = window.getSelection().toString();
+    if ( selection !== '' ) {
+        return;
+    }
+
+    // When the arrow keys are pressed, abort.
+    if ( $.inArray( e.keyCode, [38,40,37,39] ) !== -1 ) {
+        return;
+    }
+
+    // Get the value.
+    var input = $(this).val();
+    console.log(input)
+
+    var input = input.replace(/[\D\s\._\-]+/g, "");
+    input = input ? parseInt( input, 10 ) : 0;
+
+    $(this).val( function() {
+        return ( input === 0 ) ? "" : input.toLocaleString( "en-US" );
+    } );
 });
