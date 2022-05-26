@@ -13,3 +13,12 @@ function recursive($data, $parent_id = 0, $level = 0) {
     }
     return $result;
 }
+
+function handleImage($file, $model) {
+    $ext = $file->extension();
+    $file_name = $model . '_' . time() . '.' . $ext;
+    $path = 'uploads/images/' . $model;
+    $file->move(public_path($path), $file_name);
+
+    return $path . '/' . $file_name;
+}

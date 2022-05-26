@@ -66,6 +66,7 @@
 </div>
 <!-- latest jquery-->
 @include('layouts.admin.script')
+@yield('script')
 <!-- Plugin used-->
 
 <script type="text/javascript">

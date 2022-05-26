@@ -44,9 +44,3 @@ form .required {
 .login-card .login-main {
      width: unset;
 }
-#cke_editor1 {
-    border: 1px solid #ced4da;
-}
-#cke_1_top {
-    border-bottom: 1px solid #ced4da;
-}

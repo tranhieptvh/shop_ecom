@@ -1,0 +1,18 @@
+#cke_content {
+    border: 1px solid #ced4da;
+}
+#cke_1_top {
+    border-bottom: 1px solid #ced4da;
+}
+.image_container i {
+    right: 0;
+    color: red;
+    font-weight: bold;
+    font-size: 1rem;
+    background: white;
+    opacity: 0.9;
+    cursor: pointer;
+}
+#form img {
+    height: 100px;
+}

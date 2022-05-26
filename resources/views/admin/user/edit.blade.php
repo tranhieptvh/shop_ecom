@@ -77,10 +77,11 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Ảnh đại diện</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" type="file" name="avatar" value="{{ old('avatar') }}" onchange="preview()">
+                                    <input class="" type="file" name="avatar" value="{{ old('avatar') }}" onchange="preview()">
                                     @if ($errors->has('avatar'))
                                         <div class="invalid-feedback validated">{{ $errors->first('avatar') }}</div>
                                     @endif
+                                    <br>
                                     <img id="frame" src="{{ isset($user->avatar) ? asset($user->avatar) : '' }}" height="100px"
                                          class="{{ isset($user->avatar) ? '' : 'hidden' }}"/>
                                 </div>

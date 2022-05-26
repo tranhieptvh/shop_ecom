@@ -83,5 +83,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/js/common.js') }}"></script>
+    <script src="{{ asset('assets/js/backend/common.js') }}"></script>
 @endsection

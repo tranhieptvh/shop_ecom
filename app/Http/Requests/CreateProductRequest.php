@@ -28,6 +28,8 @@ class CreateProductRequest extends FormRequest
             'slug' => 'bail|required|unique:products,slug',
             'price' => 'bail|required|numeric',
             'category_id' => 'bail|required|numeric',
+            'main' => 'bail|required',
+            'thumbnail' => 'bail|required',
         ];
     }
 
@@ -38,6 +40,8 @@ class CreateProductRequest extends FormRequest
             'slug' => 'Slug',
             'price' => 'Giá',
             'category_id' => 'Danh mục',
+            'main' => 'Hình ảnh',
+            'thumbnail' => 'Ảnh thumbnail',
         ];
     }
 

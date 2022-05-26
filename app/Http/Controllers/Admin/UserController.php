@@ -56,12 +56,7 @@ class UserController extends Controller
 
         if ($request->hasFile('avatar')) {
             $file = $request->avatar;
-            $ext = $request->avatar->extension();
-            $file_name = time() . '_' . 'user.' . $ext;
-            $path = 'uploads/images/user';
-            $file->move(public_path($path), $file_name);
-
-            $user_data['avatar'] = $path . '/' . $file_name;
+            $user_data['avatar'] = handleImage($file, 'user');
         }
         $result = $this->userRepository->create($user_data);
 
@@ -89,12 +84,8 @@ class UserController extends Controller
             $user = $this->userRepository->find($id);
             if ($request->hasFile('avatar')) {
                 $file = $request->avatar;
-                $ext = $request->avatar->extension();
-                $file_name = time() . '_' . 'user.' . $ext;
-                $path = 'uploads/images/user';
-                $file->move(public_path($path), $file_name);
+                $user_data['avatar'] = handleImage($file, 'user');
 
-                $user_data['avatar'] = $path . '/' . $file_name;
                 if (isset($user->avatar)) {
                     unlink($user->avatar);
                 }

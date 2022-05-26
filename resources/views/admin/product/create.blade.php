@@ -1,9 +1,7 @@
 @extends('layouts.admin.master')
 
-@section('css')
-@endsection
-
 @section('style')
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/backend/product.css')}}">
 @endsection
 
 @section('breadcrumb-title')
@@ -26,7 +24,7 @@
             </div>
         @endif
         <div class="card">
-            <form class="form theme-form" method="POST" action="{{ route('admin.product.store') }}">
+            <form class="form theme-form" method="POST" action="{{ route('admin.product.store') }}" enctype="multipart/form-data" id="form">
                 @csrf
 
                 <div class="card-body">
@@ -87,9 +85,33 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Hình ảnh <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input class="" type="file" name="main" onchange="preview()">
+                                @if ($errors->has('main'))
+                                    <div class="invalid-feedback validated">{{ $errors->first('main') }}</div>
+                                @endif
+                                <br>
+                                <img id="main_frame" src="" height="100px" class="hidden"/>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Ảnh thumbnail <span class="required">*</span></label>
+                            <div class="col-sm-9">
+                                <input class="" type="file" name="thumbnail[]" id="thumbnail" multiple onchange="image_select()">
+                                @if ($errors->has('thumbnail'))
+                                    <div class="invalid-feedback validated">{{ $errors->first('thumbnail') }}</div>
+                                @endif
+                                <br>
+                                <div class="d-flex flex-wrap justify-content-start" id="thumbnail_container">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Mô tả</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="description" value="{{ old('description') }}" rows="5" cols="5"></textarea>
+                                <textarea class="form-control" name="description" value="{{ old('description') }}" rows="5" cols="5">{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))
                                     <div class="invalid-feedback validated">{{ $errors->first('description') }}</div>
                                 @endif
@@ -98,16 +120,7 @@
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Nội dung</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="content" value="{{ old('content') }}" rows="5" cols="5"></textarea>
-                                @if ($errors->has('content'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('content') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Nội dung</label>
-                            <div class="col-sm-9">
-                                <textarea id="editor1" name="content" cols="30" rows="10"></textarea>
+                                <textarea id="content" name="content" cols="30" rows="10">{{ old('content') }}</textarea>
                                 @if ($errors->has('content'))
                                     <div class="invalid-feedback validated">{{ $errors->first('content') }}</div>
                                 @endif
@@ -124,11 +137,29 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/js/common.js') }}"></script>
+    <script src="{{ asset('assets/js/backend/common.js') }}"></script>
+    <script src="{{ asset('assets/js/backend/product.js') }}"></script>
 
-    <!-- CK Editer-->
-    <script src="{{asset('assets/js/editor/ckeditor/ckeditor.js')}}"></script>
-    <script src="{{asset('assets/js/editor/ckeditor/adapters/jquery.js')}}"></script>
-    <script src="{{asset('assets/js/editor/ckeditor/styles.js')}}"></script>
-    <script src="{{asset('assets/js/editor/ckeditor/ckeditor.custom.js')}}"></script>
+    <script>
+        CKEDITOR.replace( 'content', {
+            on: {
+                contentDom: function( evt ) {
+                    // Allow custom context menu only with table elemnts.
+                    evt.editor.editable().on( 'contextmenu', function( contextEvent ) {
+                        var path = evt.editor.elementPath();
+
+                        if ( !path.contains( 'table' ) ) {
+                            contextEvent.cancel();
+                        }
+                    }, null, null, 5 );
+                }
+            },
+            language: 'vi',
+            height: 500,
+            filebrowserImageUploadUrl: "{{ url('admin/product/upload-ckeditor?_token='.csrf_token()) }}",
+            filebrowserBrowseUrl: "{{ url('admin/product/file-browser?_token='.csrf_token()) }}",
+            filebrowserUploadMethod: 'form'
+        });
+
+    </script>
 @endsection

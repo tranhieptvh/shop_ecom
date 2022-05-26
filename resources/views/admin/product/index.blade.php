@@ -40,11 +40,10 @@
                         </thead>
                         <tbody>
                         @foreach ($products as $key => $product)
-                            <?php $a = $product; ?>
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td><img src="{{ isset($product->getMainImage) ? asset($product->getMainImage->toArray()[0]['path']) : '' }}" style="height: 50px; max-width: 100px"></td>
+                                <td><img src="{{ !empty($product->getMainImage->toArray()[0]) ? asset($product->getMainImage->toArray()[0]['path']) : '' }}" style="height: 50px; max-width: 100px"></td>
                                 <td>{{ $product->price }}</td>
                                 <td>
                                     <div style="display: flex;">

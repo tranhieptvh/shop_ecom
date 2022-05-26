@@ -76,10 +76,11 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Ảnh đại diện</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" type="file" name="avatar" value="{{ old('avatar') }}" onchange="preview()">
+                                    <input class="" type="file" name="avatar" value="{{ old('avatar') }}" onchange="preview()">
                                     @if ($errors->has('avatar'))
                                         <div class="invalid-feedback validated">{{ $errors->first('avatar') }}</div>
                                     @endif
+                                    <br>
                                     <img id="frame" src="" height="100px" class="hidden"/>
                                 </div>
                             </div>

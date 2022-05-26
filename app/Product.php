@@ -36,4 +36,8 @@ class Product extends Model
     public function getMainImage() {
         return $this->productImages()->where('type', 0);
     }
+
+    public function getThumbnailImage() {
+        return $this->productImages()->where('type', 1);
+    }
 }
