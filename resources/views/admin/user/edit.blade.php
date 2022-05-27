@@ -32,7 +32,7 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Họ tên <span class="required">*</span></label>
                                 <div class="col-sm-9">
@@ -77,13 +77,15 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Ảnh đại diện</label>
                                 <div class="col-sm-9">
-                                    <input class="" type="file" name="avatar" value="{{ old('avatar') }}" onchange="preview()">
+                                    <input class="d-none" type="file" name="avatar" id="avatar" value="{{ old('avatar') }}" onchange="preview()">
+                                    <button class="btn btn-primary m-b-5" type="button" onclick=" document.getElementById('avatar').click()">Chọn ảnh</button>
                                     @if ($errors->has('avatar'))
                                         <div class="invalid-feedback validated">{{ $errors->first('avatar') }}</div>
                                     @endif
-                                    <br>
-                                    <img id="frame" src="{{ isset($user->avatar) ? asset($user->avatar) : '' }}" height="100px"
-                                         class="{{ isset($user->avatar) ? '' : 'hidden' }}"/>
+                                    <div>
+                                        <img id="frame" src="{{ isset($user->avatar) ? asset($user->avatar) : '' }}" height="100px"
+                                             class="{{ isset($user->avatar) ? '' : 'hidden' }}"/>
+                                    </div>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -124,7 +126,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-center col-sm-6">
+                <div class="card-footer text-center col-sm-12">
                     <button class="btn btn-success btn-lg" type="submit">Lưu</button>
                     <a href="{{ route('admin.user.index') }}" class="btn btn-light btn-lg">Cancel</a>
                 </div>
@@ -144,12 +146,5 @@
                 }
             })
         });
-
-        function preview() {
-            frame.src=URL.createObjectURL(event.target.files[0]);
-            if ($('#frame').hasClass('hidden')) {
-                $('#frame').removeClass('hidden');
-            }
-        }
     </script>
 @endsection

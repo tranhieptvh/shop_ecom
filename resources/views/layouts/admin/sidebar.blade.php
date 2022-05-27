@@ -22,7 +22,7 @@
                     </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title {{request()->route()->getPrefix() == 'admin/user' ? 'active' : '' }}" href="{{ route('admin.user.index') }}">
-                            <i class="fa fa-users"></i>
+                            <i data-feather="users"></i>
                             <span class="lan-3">User</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>

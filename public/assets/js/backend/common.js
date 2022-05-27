@@ -48,7 +48,6 @@ $("input[name='price']").keyup(function (e) {
 
     // Get the value.
     var input = $(this).val();
-    console.log(input)
 
     var input = input.replace(/[\D\s\._\-]+/g, "");
     input = input ? parseInt( input, 10 ) : 0;
@@ -57,3 +56,10 @@ $("input[name='price']").keyup(function (e) {
         return ( input === 0 ) ? "" : input.toLocaleString( "en-US" );
     } );
 });
+
+function preview() {
+    frame.src=URL.createObjectURL(event.target.files[0]);
+    if ($('#frame').hasClass('hidden')) {
+        $('#frame').removeClass('hidden');
+    }
+}

@@ -15,10 +15,12 @@ function recursive($data, $parent_id = 0, $level = 0) {
 }
 
 function handleImage($file, $model) {
-    $ext = $file->extension();
-    $file_name = $model . '_' . time() . '.' . $ext;
+    $originName = $file->getClientOriginalName();
+    $fileName = pathInfo($originName, PATHINFO_FILENAME);
+    $extension = $file->getClientOriginalExtension();
+    $fileName = $fileName . '_' . time() . '.' . $extension;
     $path = 'uploads/images/' . $model;
-    $file->move(public_path($path), $file_name);
+    $file->move(public_path($path), $fileName);
 
-    return $path . '/' . $file_name;
+    return $path . '/' . $fileName;
 }

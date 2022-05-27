@@ -86,7 +86,7 @@ class UserController extends Controller
                 $file = $request->avatar;
                 $user_data['avatar'] = handleImage($file, 'user');
 
-                if (isset($user->avatar)) {
+                if (isset($user->avatar) && file_exists($user->avatar)) {
                     unlink($user->avatar);
                 }
             }
@@ -105,8 +105,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = $this->userRepository->find($id);
-        $result = $this->userRepository->delete($user);
+        DB::beginTransaction();
+        try {
 
-        return back()->with('success', 'Xóa thành công!');
+            if (isset($user->avatar) && file_exists($user->avatar)) {
+                unlink($user->avatar);
+            }
+            $result = $this->userRepository->delete($user);
+
+            DB::commit();
+
+            return back()->with('success', 'Xóa thành công!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Message: ' . $e->getMessage() . ' Line: ' . $e->getLine());
+            return back();
+        }
     }
 }

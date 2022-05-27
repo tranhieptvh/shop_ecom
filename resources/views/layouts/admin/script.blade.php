@@ -36,3 +36,5 @@
 <script src="{{asset('assets/js/editor/ckeditor/adapters/jquery.js')}}"></script>
 <script src="{{asset('assets/js/editor/ckeditor/styles.js')}}"></script>
 <script src="{{asset('assets/js/editor/ckeditor/ckeditor.custom.js')}}"></script>
+
+<script src="{{ asset('assets/js/backend/common.js') }}"></script>

@@ -16,8 +16,45 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="col-sm-12 mb-2">
-            <a href="{{ route('admin.product.create') }}" class="btn btn-success btn-add">Thêm mới &nbsp;&nbsp; <i class="fa fa-plus"></i></a>
+        <div class="col-sm-12 mb-2 d-flex justify-content-center align-items-baseline">
+            <div class="col-sm-3">
+                <a href="{{ route('admin.product.create') }}" class="btn btn-success btn-add">Thêm mới &nbsp;&nbsp; <i class="fa fa-plus"></i></a>
+            </div>
+            <div class="col-sm-9">
+                <form action="">
+                    <label>
+                        Danh mục
+                        <select class="form-select" name="category_id" id="">
+                            <option value="">--- Chọn danh mục</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}"
+                                        class="{{ $category->parent_id == 0 ? 'bold' : '' }}" >
+                                    {{ str_repeat('|--- ', $category->level) . $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </label>
+                    <label>
+                        Thuơng hiệu
+                        <select class="form-select" name="brand_id" id="">
+                            <option value="">--- Chọn thương hiệu</option>
+                            @foreach($brands as $brand)
+                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                            @endforeach
+                        </select>
+                    </label>
+                    <label>
+                        Tên sản phẩm
+                        <input type="text" name="name" class="form-control">
+                    </label>
+
+                    <label>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </label>
+                </form>
+            </div>
         </div>
         @if (session('success'))
             <div class="alert alert-success dark alert-dismissible fade show" role="alert">
@@ -43,8 +80,8 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td><img src="{{ !empty($product->getMainImage->toArray()[0]) ? asset($product->getMainImage->toArray()[0]['path']) : '' }}" style="height: 50px; max-width: 100px"></td>
-                                <td>{{ $product->price }}</td>
+                                <td><img src="{{ !empty($product->getMainImage->first()) ? asset($product->getMainImage->first()->path) : '' }}" style="height: 50px; max-width: 100px"></td>
+                                <td>{{ number_format($product->price) }}</td>
                                 <td>
                                     <div style="display: flex;">
                                         <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-pencil"></i></a>

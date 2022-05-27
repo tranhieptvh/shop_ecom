@@ -76,7 +76,7 @@
                                 <select class="form-select" name="category_id" id="">
                                     <option value="0">--- Chọn danh mục</option>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ str_repeat('|--- ', $category->level) . $category->name }}</option>
+                                        <option value="{{ $category->id }}" class="{{ $category->parent_id == 0 ? 'bold' : '' }}">{{ str_repeat('|--- ', $category->level) . $category->name }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('category_id'))
@@ -87,31 +87,33 @@
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Hình ảnh <span class="required">*</span></label>
                             <div class="col-sm-9">
-                                <input class="" type="file" name="main" onchange="preview()">
+                                <input class="d-none" type="file" name="main" id="main_img" onchange="preview()">
+                                <button class="btn btn-primary m-b-5" type="button" onclick=" document.getElementById('main_img').click()">Chọn ảnh</button>
                                 @if ($errors->has('main'))
                                     <div class="invalid-feedback validated">{{ $errors->first('main') }}</div>
                                 @endif
-                                <br>
-                                <img id="main_frame" src="" height="100px" class="hidden"/>
+                                <div>
+                                    <img id="frame" src="" height="100px" class="hidden"/>
+                                </div>
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Ảnh thumbnail <span class="required">*</span></label>
+                            <label class="col-sm-3 col-form-label">Ảnh thumbnail</label>
                             <div class="col-sm-9">
-                                <input class="" type="file" name="thumbnail[]" id="thumbnail" multiple onchange="image_select()">
+                                <input class="d-none" type="file" name="thumbnail[]" id="thumbnail" multiple onchange="image_select()">
+                                <button class="btn btn-primary m-b-5" type="button" onclick="document.getElementById('thumbnail').click()">Chọn ảnh</button>
                                 @if ($errors->has('thumbnail'))
                                     <div class="invalid-feedback validated">{{ $errors->first('thumbnail') }}</div>
                                 @endif
-                                <br>
-                                <div class="d-flex flex-wrap justify-content-start" id="thumbnail_container">
-
+                                <div class="d-flex flex-wrap justify-content-start">
+                                    <div class="d-flex flex-wrap justify-content-start" id="thumbnail_container"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Mô tả</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="description" value="{{ old('description') }}" rows="5" cols="5">{{ old('description') }}</textarea>
+                                <textarea class="form-control" name="description" rows="5" cols="5">{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))
                                     <div class="invalid-feedback validated">{{ $errors->first('description') }}</div>
                                 @endif
@@ -137,7 +139,6 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/js/backend/common.js') }}"></script>
     <script src="{{ asset('assets/js/backend/product.js') }}"></script>
 
     <script>

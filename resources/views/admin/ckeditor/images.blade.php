@@ -13,7 +13,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
            var funcNum = <?php echo $_GET['CKEditorFuncNum'] . ';'; ?>
-            $('#fileExplorer').on('click', function() {
+            $('#image_list img').on('click', function() {
                 var fileUrl = $(this).attr('title');
                 window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl);
                 window.close();
@@ -46,7 +46,7 @@
     </style>
 </head>
 <body>
-    <div id="fileExplorer">
+    <div id="image_list">
         @foreach($fileNames as $file)
             <div class="thumbnail">
                 <ul class="file-list">
