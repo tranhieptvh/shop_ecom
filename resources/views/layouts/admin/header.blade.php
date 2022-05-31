@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
-                        <li><a href="#"><i data-feather="user"></i><span>Account </span></a></li>
+                        <li><a href="{{ route('admin.user.edit', Auth::user()->id) }}"><i data-feather="user"></i><span>Profile </span></a></li>
                         <li><a href="{{ url('/admin/logout') }}"><i data-feather="log-in"> </i><span>Đăng xuất</span></a></li>
                     </ul>
                 </li>

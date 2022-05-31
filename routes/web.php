@@ -1,24 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Session;
 
-Route::get('/', function () {
-    return redirect()->route('admin');
-})->name('/');
+Route::get('/', 'Client\HomeController@index')->name('/');
 
-//Language Change
-Route::get('lang/{locale}', function ($locale) {
-    if (!in_array($locale, ['en', 'de', 'es', 'fr', 'pt', 'cn', 'ae'])) {
-        abort(400);
-    }
-    Session()->put('locale', $locale);
-    Session::get('locale');
-    return redirect()->back();
-})->name('lang');
 
+
+
+
+
+// ADMIN
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return redirect()->route('admin.dashboard.index');
