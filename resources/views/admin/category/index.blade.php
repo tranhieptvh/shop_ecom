@@ -42,8 +42,12 @@
                         @foreach ($categories as $key => $category)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td class="{{ $category->parent_id == 0 ? 'bold' : '' }}">{{ str_repeat('|--- ', $category->level) . $category->name }}</td>
-                                <td class="{{ $category->parent_id == 0 ? 'bold' : '' }}">{{ str_repeat('|--- ', $category->level) . $category->ordering }}</td>
+                                <td class="{{ $category->parent_id == 0 ? 'red bold' : '' }} {{ $category->parent_id == 1 ? 'bold' : '' }}">
+                                    {{ str_repeat('|--- ', $category->level) . $category->name }}
+                                </td>
+                                <td class="{{ $category->parent_id == 0 ? 'red bold' : '' }} {{ $category->parent_id == 1 ? 'bold' : '' }}">
+                                    {{ str_repeat('|--- ', $category->level) . $category->ordering }}
+                                </td>
                                 <td>{{ $category->created_at->format('d-m-y') }}</td>
                                 <td>
                                     <div style="display: flex;">

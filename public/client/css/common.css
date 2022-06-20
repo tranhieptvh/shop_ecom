@@ -1,0 +1,23 @@
+.header-inner .navbar .dropdown {
+    display: flex;
+}
+.header-inner .navbar .dropdown .sub-menu {
+    width: 20%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.header-inner .navbar .dropdown .sub-menu:not(:first-child) {
+    border-left: 1px solid #a95b2b;
+}
+.header-inner .navbar .dropdown .sub-menu .sub-menu-head {
+    border-bottom: 1px solid #0e1d42;
+}
+.header-inner .navbar .dropdown .sub-menu .sub-menu-head a {
+    color: #666 !important;
+}
+.header-inner .navbar .dropdown .sub-menu .sub-menu-head a:hover {
+    color: #fff !important;
+}
+.nav {
+    flex-wrap: unset !important;
+}

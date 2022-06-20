@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Client\HomeController@index')->name('/');
 
+Route::get('/danh-muc/{slug}', 'Client\ProductController@category')->name('danh-muc');
 
+Route::get('/san-pham/{slug}', 'Client\ProductController@category')->name('danh-muc');
 
 
 

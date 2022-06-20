@@ -76,7 +76,9 @@
                                 <select class="form-select" name="category_id" id="">
                                     <option value="0">--- Chọn danh mục</option>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" class="{{ $category->parent_id == 0 ? 'bold' : '' }}">{{ str_repeat('|--- ', $category->level) . $category->name }}</option>
+                                        <option value="{{ $category->id }}" class="{{ $category->parent_id == 0 ? 'red bold' : '' }} {{ $category->parent_id == 1 ? 'bold' : '' }}">
+                                            {{ str_repeat('|--- ', $category->level) . $category->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('category_id'))

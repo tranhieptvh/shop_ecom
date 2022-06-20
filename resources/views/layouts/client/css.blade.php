@@ -23,3 +23,6 @@
 <link rel="stylesheet" type="text/css" href="{{asset('client/css/reset.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('client/css/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('client/css/responsive.css')}}">
+
+<!-- Custom css -->
+<link rel="stylesheet" type="text/css" href="{{asset('client/css/common.css')}}">

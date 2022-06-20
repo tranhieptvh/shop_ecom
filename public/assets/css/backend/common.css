@@ -44,3 +44,6 @@ form .required {
 .login-card .login-main {
      width: unset;
 }
+.red {
+    color: red !important;
+}

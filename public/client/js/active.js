@@ -49,7 +49,7 @@ Version:1.0
 		03. Sticky Header JS
 		======================================*/
 		jQuery(window).on('scroll', function() {
-			if ($(this).scrollTop() > 200) {
+			if ($(this).scrollTop() > 100) {
 				$('.header').addClass("sticky");
 			} else {
 				$('.header').removeClass("sticky");

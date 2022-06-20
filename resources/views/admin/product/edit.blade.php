@@ -78,7 +78,7 @@
                                     <option value="0">--- Chọn danh mục</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}"
-                                                class="{{ $category->parent_id == 0 ? 'bold' : '' }}"
+                                                class="{{ $category->parent_id == 0 ? 'red bold' : '' }} {{ $category->parent_id == 1 ? 'bold' : '' }}"
                                                 {{ $category->id == $product->category_id ? 'selected' : '' }}>
                                             {{ str_repeat('|--- ', $category->level) . $category->name }}
                                         </option>
