@@ -100,10 +100,13 @@
                                                         <div class="dropdown">
                                                             @foreach($category->child as $child_category)
                                                                 <div class="sub-menu">
-                                                                    <ul class="sub-menu-head"><li><a href="">{{ $child_category->name }}</a></li></ul>
+                                                                    <ul class="sub-menu-head"><li>
+                                                                            <a href="{{ route('danh-muc', $child_category->slug) }}">
+                                                                                {{ $child_category->name }}</a></li></ul>
                                                                     <ul>
                                                                         @foreach($child_category->child as $item)
-                                                                            <li><a href="">{{ $item->name }}</a></li>
+                                                                            <li><a href="{{ route('danh-muc', $item->slug) }}">
+                                                                                    {{ $item->name }}</a></li>
                                                                         @endforeach
                                                                     </ul>
                                                                 </div>
