@@ -90,7 +90,7 @@
                                         <ul class="nav main-menu menu navbar-nav">
                                             <li class="active"><a href="{{ route('/') }}">Trang chủ</a></li>
                                             @foreach($categories_menu as $category)
-                                                <li><a href="{{ route('danh-muc', $category->slug) }}">
+                                                <li><a href="{{ route('client.product.category', $category->slug) }}">
                                                         {{ $category->name }}
                                                         @if(!empty( $category->child->toArray()))
                                                             <i class="ti-angle-down"></i>
@@ -101,11 +101,11 @@
                                                             @foreach($category->child as $child_category)
                                                                 <div class="sub-menu">
                                                                     <ul class="sub-menu-head"><li>
-                                                                            <a href="{{ route('danh-muc', $child_category->slug) }}">
+                                                                            <a href="{{ route('client.product.category', $child_category->slug) }}">
                                                                                 {{ $child_category->name }}</a></li></ul>
                                                                     <ul>
                                                                         @foreach($child_category->child as $item)
-                                                                            <li><a href="{{ route('danh-muc', $item->slug) }}">
+                                                                            <li><a href="{{ route('client.product.category', $item->slug) }}">
                                                                                     {{ $item->name }}</a></li>
                                                                         @endforeach
                                                                     </ul>

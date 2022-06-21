@@ -24,3 +24,10 @@ function handleImage($file, $model) {
 
     return $path . '/' . $fileName;
 }
+
+function getDateDiffWithNow($datetime) {
+    $now = new DateTime(date('Y-m-d H:i:s', time()));
+    $datetime = new DateTime($datetime);
+
+    return $now->diff($datetime)->format("%a");
+}

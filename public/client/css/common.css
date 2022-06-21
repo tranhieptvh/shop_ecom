@@ -21,3 +21,12 @@
 .nav {
     flex-wrap: unset !important;
 }
+
+.single-product .product-img .stock {
+    height: 26px;
+    width: 100%;
+    position: absolute;
+    top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
