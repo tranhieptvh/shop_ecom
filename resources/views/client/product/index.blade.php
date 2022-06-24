@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    category
+    list product
 @endsection
 
 @section('script')

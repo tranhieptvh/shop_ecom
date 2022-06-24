@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Client\HomeController@index')->name('/');
 
 Route::get('/danh-muc/{slug}', 'Client\ProductController@category')->name('client.product.category');
-
+Route::get('/san-pham', 'Client\ProductController@index')->name('client.product.index');
 Route::get('/san-pham/{slug}', 'Client\ProductController@detail')->name('client.product.detail');
 
 

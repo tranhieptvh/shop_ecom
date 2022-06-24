@@ -74,7 +74,7 @@
                             <label class="col-sm-3 col-form-label">Danh mục <span class="required">*</span></label>
                             <div class="col-sm-9">
                                 <select class="form-select" name="category_id" id="">
-                                    <option value="0">--- Chọn danh mục</option>
+                                    <option value="">--- Chọn danh mục</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}" class="{{ $category->parent_id == 0 ? 'red bold' : '' }} {{ $category->parent_id == 1 ? 'bold' : '' }}">
                                             {{ str_repeat('|--- ', $category->level) . $category->name }}
@@ -113,6 +113,15 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Chất lượng</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="text" name="quality" value="{{ old('quality') }}">
+                                @if ($errors->has('quality'))
+                                    <div class="invalid-feedback validated">{{ $errors->first('quality') }}</div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Mô tả</label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" name="description" rows="5" cols="5">{{ old('description') }}</textarea>
@@ -128,6 +137,15 @@
                                 @if ($errors->has('content'))
                                     <div class="invalid-feedback validated">{{ $errors->first('content') }}</div>
                                 @endif
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Nổi bật</label>
+                            <div class="col-sm-9">
+                                <div class="form-check form-check-inline checkbox checkbox-primary">
+                                    <input class="form-check-input" id="is_feature" name="is_feature" type="checkbox" data-bs-original-title="" title="">
+                                    <label class="form-check-label" for="is_feature"></label>
+                                </div>
                             </div>
                         </div>
                     </div>

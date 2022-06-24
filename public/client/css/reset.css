@@ -170,7 +170,7 @@ input,
 select,
 optgroup,
 textarea {
-	color: #424646;
+	color: #0e1d42;
     font-family: 'Arial', sans-serif;
 	font-weight:400;
 	font-size: 14px;
@@ -236,28 +236,35 @@ big {
 }
 .section-title {
 	text-align: center;
-	margin-bottom: 50px;
-	padding: 0 215px;
 }
 .section-title h2 {
 	font-size: 30px;
-	margin-bottom: 0;
-	text-transform: capitalize;
-	position: relative;
-	color: #2c2d3f;
-	font-weight: 700;
-	margin-bottom: 10px;
-	padding-bottom: 15px;
+    display: inline-block;
+    padding: 10px 20px;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    color: #cb3f2d;
 }
-.section-title h2::before {
-	position: absolute;
-	content: "";
-	height: 2px;
-	width: 50px;
-	background: #F7941D;
-	left: 50%;
-	bottom: 0;
-	margin-left: -25px;
+/*.section-title h2::before {*/
+/*	position: absolute;*/
+/*	content: "";*/
+/*	height: 2px;*/
+/*	width: 50px;*/
+/*	background: #F7941D;*/
+/*	left: 50%;*/
+/*	bottom: 0;*/
+/*	margin-left: -25px;*/
+/*}*/
+.section-title::after {
+    content: "";
+    height: 1px;
+    width: 100%;
+    background: #cb3f2d;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
 }
 .section-title p {
 	font-size: 14px;

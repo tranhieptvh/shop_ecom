@@ -10,4 +10,8 @@ class ProductController extends Controller
     public function category($slug) {
         return view('client.product.index');
     }
+
+    public function index() {
+        return view('client.product.index');
+    }
 }

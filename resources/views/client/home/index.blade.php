@@ -11,15 +11,25 @@
     <section class="banner-wrap mt-4">
         <div class="container d-flex">
             <div class="left-col col-3 d-flex flex-column justify-content-between">
-                <img src="{{ asset('client/images/banner/SCOTCH-WHISKY-1.jpg') }}" alt="SCOTCH-WHISKY">
-                <img src="{{ asset('client/images/banner/COGNAC..jpg') }}" alt="COGNAC">
+                <a href="{{ route('client.product.category', 'scotch-whisky') }}">
+                    <img src="{{ asset('client/images/banner/SCOTCH-WHISKY-1.jpg') }}" alt="SCOTCH-WHISKY">
+                </a>
+                <a href="{{ route('client.product.category', 'cognac') }}">
+                    <img src="{{ asset('client/images/banner/COGNAC..jpg') }}" alt="COGNAC">
+                </a>
             </div>
             <div class="mid-col col-6">
-                <img src="{{ asset('client/images/banner/Malt_banner1.png') }}" alt="Malt">
+                <a href="">
+                    <img src="{{ asset('client/images/banner/Malt_banner1.png') }}" alt="Malt">
+                </a>
             </div>
             <div class="right-col col-3 d-flex flex-column justify-content-between">
-                <img src="{{ asset('client/images/banner/JAPANESE-WHISKY.-1.jpg') }}" alt="JAPANESE-WHISKY">
-                <img src="{{ asset('client/images/banner/VANG-CHAMPAGNE-2.jpg') }}" alt="VANG-CHAMPAGNE">
+                <a href="route('client.product.category', 'japanese-whisky')">
+                    <img src="{{ asset('client/images/banner/JAPANESE-WHISKY.-1.jpg') }}" alt="JAPANESE-WHISKY">
+                </a>
+                <a href="route('client.product.category', 'vang-champagne')">
+                    <img src="{{ asset('client/images/banner/VANG-CHAMPAGNE-2.jpg') }}" alt="VANG-CHAMPAGNE">
+                </a>
             </div>
         </div>
     </section>
@@ -59,6 +69,7 @@
                                 </div>
                                 <div class="product-content">
                                     <h3><a href="{{ route('client.product.detail', $item->slug) }}">{{ $item->name }}</a></h3>
+                                    <p>{{ $item->quality }}</p>
                                     <div class="product-price">
 {{--                                        <span class="old">$60.00</span>--}}
                                         <span>{{ number_format($item->price) }} VNĐ</span>
@@ -72,6 +83,41 @@
         </div>
     </div>
     <!-- End Most Popular Area -->
+
+    <section class="midium-banner">
+        <div class="container">
+            <div class="row">
+                <!-- Single Banner  -->
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="single-banner">
+                        <a href="{{ route('client.product.detail', 'macallan-a-night-on-earth-in-scotland') }}">
+                            <img src="{{ asset('client/images/banner/banner_1.jpg') }}" alt="banner">
+                        </a>
+{{--                        <div class="content">--}}
+{{--                            <p>Man's Collectons</p>--}}
+{{--                            <h3>Man's items <br>Up to<span> 50%</span></h3>--}}
+{{--                            <a href="#">Shop Now</a>--}}
+{{--                        </div>--}}
+                    </div>
+                </div>
+                <!-- /End Single Banner  -->
+                <!-- Single Banner  -->
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="single-banner">
+                        <a href="{{ route('client.product.detail', 'macallan-harmony-collection-rich-cacao') }}">
+                            <img src="{{ asset('client/images/banner/banner_2.jpg') }}" alt="banner">
+                        </a>
+{{--                        <div class="content">--}}
+{{--                            <p>shoes women</p>--}}
+{{--                            <h3>Macallan A Night On <br> Earth In Scotland</h3>--}}
+{{--                            <a href="#" class="btn">Shop Now</a>--}}
+{{--                        </div>--}}
+                    </div>
+                </div>
+                <!-- /End Single Banner  -->
+            </div>
+        </div>
+    </section>
 
     <!-- Start Product Area -->
     <div class="product-area section">
@@ -111,6 +157,7 @@
                                                     </div>
                                                     <div class="product-content">
                                                         <h3><a href="{{ route('client.product.detail', $item->slug) }}">{{ $item->name }}</a></h3>
+                                                        <p class="quality">{{ $item->quality }}</p>
                                                         <div class="product-price">
 {{--                                                            <span class="old">$60.00</span>--}}
                                                             <span>{{ number_format($item->price) }} VNĐ</span>
@@ -126,6 +173,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="{{ route('client.product.index') }}" class="btn show-more">Xem thêm <i class="ti-angle-right"></i></a>
             </div>
         </div>
     </div>

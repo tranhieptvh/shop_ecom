@@ -181,17 +181,10 @@ Version:1.0
 	position: relative;
 	font-weight: 500;
 	font-size:14px;
-	color: #fff;
-	background: #0e1d42;
 	display: inline-block;
-	-webkit-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	transition: all 0.4s ease;
 	z-index: 5;
-	display: inline-block;
-	padding: 13px 32px;
+    padding: 13px 32px;
 	border-radius: 0px;
-	text-transform:uppercase;
 }
 .btn:hover{
 	color:#fff;
@@ -1577,28 +1570,28 @@ Version:1.0
 	margin-bottom: 5px;
 	text-transform: uppercase;
 }
-.midium-banner .single-banner a {
-	display: inline-block;
-	font-weight: 600;
-	text-align: center;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	padding: .375rem .75rem;
-	font-size: 13px;
-	border-radius: .25rem;
-	background: #0e1d42;
-	color: #fff !important;
-	padding: 10px 27px;
-	border-radius: 30px;
-	margin-top: 25px;
-	text-transform: uppercase;
-}
-.midium-banner .single-banner a:hover{
-	background:#F7941D;
-	color:#fff;
-}
+/*.midium-banner .single-banner a {*/
+/*	display: inline-block;*/
+/*	font-weight: 600;*/
+/*	text-align: center;*/
+/*	-webkit-user-select: none;*/
+/*	-moz-user-select: none;*/
+/*	-ms-user-select: none;*/
+/*	user-select: none;*/
+/*	padding: .375rem .75rem;*/
+/*	font-size: 13px;*/
+/*	border-radius: .25rem;*/
+/*	background: #0e1d42;*/
+/*	color: #fff !important;*/
+/*	padding: 10px 27px;*/
+/*	border-radius: 30px;*/
+/*	margin-top: 25px;*/
+/*	text-transform: uppercase;*/
+/*}*/
+/*.midium-banner .single-banner a:hover{*/
+/*	background:#F7941D;*/
+/*	color:#fff;*/
+/*}*/
 /*======================================
    End Mid Banner CSS
 ========================================*/
@@ -1611,7 +1604,7 @@ Version:1.0
 	text-align: center;
 }
 .most-popular .section-title{
-	margin-bottom:40px;
+	/*margin-bottom:40px;*/
 }
 .pro-tab-viewmore-wrap .pro-viewmore {
   position: absolute;
@@ -1923,9 +1916,9 @@ Version:1.0
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100px;
+    height: 130px;
     text-align: center;
-    background: #0e1d42;
+    /*background: #0e1d42;*/
     padding: 10px 10px;
 }
 .single-product .product-img:hover.default-overlay::before {
@@ -1954,9 +1947,15 @@ Version:1.0
     font-size: 1.2em;
 }
 .single-product .product-content h3 a {
-    color: #fff;
+    color: #0e1d42;
 	font-weight: 700;
 	margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .single-product .product-content h3 a:hover{
 	color:#F7941D;

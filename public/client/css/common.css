@@ -30,3 +30,7 @@
     display: flex;
     justify-content: flex-end;
 }
+.show-more {
+    border: 1px solid #0e1d42;
+    font-size: 1.2em;
+}

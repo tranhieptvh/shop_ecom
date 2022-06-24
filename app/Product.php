@@ -19,6 +19,8 @@ class Product extends Model
         'content',
         'category_id',
         'brand_id',
+        'is_feature',
+        'quality',
     ];
 
     public function category() {

@@ -53,6 +53,11 @@ class ProductController extends Controller
 
     public function store(CreateProductRequest $request) {
         $product_data = $request->input();
+        if (isset($product_data['is_feature'])) {
+            $product_data['is_feature'] = 1;
+        } else {
+            $product_data['is_feature'] = 0;
+        }
 
         DB::beginTransaction();
         try {
@@ -99,6 +104,11 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, $id)
     {
         $product_data = $request->input();
+        if (isset($product_data['is_feature'])) {
+            $product_data['is_feature'] = 1;
+        } else {
+            $product_data['is_feature'] = 0;
+        }
 
         DB::beginTransaction();
         try {
