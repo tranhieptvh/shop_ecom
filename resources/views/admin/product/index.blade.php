@@ -28,7 +28,7 @@
                             <option value="">--- Chọn danh mục</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}"
-                                        class="{{ $category->parent_id == 0 ? 'red bold' : '' }} {{ $category->parent_id == 1 ? 'bold' : '' }}">
+                                        class="{{ $category->level == 0 ? 'red bold' : '' }} {{ $category->level == 1 ? 'bold' : '' }}">
                                     {{ str_repeat('|--- ', $category->level) . $category->name }}
                                 </option>
                             @endforeach

@@ -34,3 +34,8 @@
     border: 1px solid #0e1d42;
     font-size: 1.2em;
 }
+
+.single-banner:hover {
+    opacity: 0.8;
+    top: 2px;
+}
