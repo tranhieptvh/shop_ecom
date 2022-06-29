@@ -20,8 +20,6 @@
 <script src="{{asset('client/js/waypoints.min.js')}}"></script>
 <!-- Countdown JS -->
 <script src="{{asset('client/js/finalcountdown.min.js')}}"></script>
-<!-- Nice Select JS -->
-<script src="{{asset('client/js/nicesellect.js')}}"></script>
 <!-- Ytplayer JS -->
 <script src="{{asset('client/js/ytplayer.min.js')}}"></script>
 <!-- Flex Slider JS -->

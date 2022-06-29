@@ -88,7 +88,7 @@
                                 <div class="navbar-collapse">
                                     <div class="nav-inner">
                                         <ul class="nav main-menu menu navbar-nav">
-                                            <li class="active"><a href="{{ route('/') }}">Trang chủ</a></li>
+                                            <li class="{{ request()->route()->getName() == '/' ? 'active' : '' }}"><a href="{{ route('/') }}">Trang chủ</a></li>
                                             @foreach($categories_menu as $category)
                                                 <li><a href="{{ route('client.product.category', $category->slug) }}">
                                                         {{ $category->name }}

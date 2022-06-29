@@ -10,7 +10,7 @@
     <!-- Slider Area -->
     <section class="banner-wrap mt-4">
         <div class="container d-flex">
-            <div class="left-col col-3 d-flex flex-column justify-content-between">
+            <div class="left-col col-3 d-flex flex-column justify-content-between p-2">
                 <a href="{{ route('client.product.category', 'scotch-whisky') }}">
                     <img src="{{ asset('client/images/banner/SCOTCH-WHISKY-1.jpg') }}" alt="SCOTCH-WHISKY">
                 </a>
@@ -18,12 +18,12 @@
                     <img src="{{ asset('client/images/banner/COGNAC..jpg') }}" alt="COGNAC">
                 </a>
             </div>
-            <div class="mid-col col-6">
+            <div class="mid-col col-6 p-2">
                 <a href="">
                     <img src="{{ asset('client/images/banner/Malt_banner1.png') }}" alt="Malt">
                 </a>
             </div>
-            <div class="right-col col-3 d-flex flex-column justify-content-between">
+            <div class="right-col col-3 d-flex flex-column justify-content-between p-2">
                 <a href="route('client.product.category', 'japanese-whisky')">
                     <img src="{{ asset('client/images/banner/JAPANESE-WHISKY.-1.jpg') }}" alt="JAPANESE-WHISKY">
                 </a>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="product-content">
                                     <h3><a href="{{ route('client.product.detail', $item->slug) }}">{{ $item->name }}</a></h3>
-                                    <p>{{ $item->quality }}</p>
+                                    <p class="quality">{{ $item->volume && $item->concentration ? $item->volume . 'ml ' . $item->concentration . '%' : '' }}</p>
                                     <div class="product-price">
 {{--                                        <span class="old">$60.00</span>--}}
                                         <span>{{ number_format($item->price) }} VNĐ</span>
@@ -157,7 +157,7 @@
                                                     </div>
                                                     <div class="product-content">
                                                         <h3><a href="{{ route('client.product.detail', $item->slug) }}">{{ $item->name }}</a></h3>
-                                                        <p class="quality">{{ $item->quality }}</p>
+                                                        <p class="quality">{{ $item->volume && $item->concentration ? $item->volume . 'ml ' . $item->concentration . '%' : '' }}</p>
                                                         <div class="product-price">
 {{--                                                            <span class="old">$60.00</span>--}}
                                                             <span>{{ number_format($item->price) }} VNĐ</span>

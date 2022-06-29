@@ -19,13 +19,13 @@ class CategoryController extends Controller
 
     public function index() {
 //        $categories = $this->categoryRepository->getBuilder()->paginate(5);
-        $categories = recursive($this->categoryRepository->getBuilder()->orderBy('ordering')->get());
+        $categories = $this->categoryRepository->getAllCategoriesAndRecursive();
 
         return view('admin.category.index')->with('categories', $categories);
     }
 
     public function create() {
-        $categories = recursive($this->categoryRepository->all());
+        $categories = $this->categoryRepository->getAllCategoriesAndRecursive();
 
         return view('admin.category.create')->with('categories', $categories);
     }
@@ -40,7 +40,7 @@ class CategoryController extends Controller
 
     public function edit($id) {
         $category = $this->categoryRepository->find($id);
-        $categories = recursive($this->categoryRepository->all());
+        $categories = $this->categoryRepository->getAllCategoriesAndRecursive();
 
         return view('admin.category.edit')->with([
             'category' => $category,

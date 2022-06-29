@@ -39,3 +39,34 @@
     opacity: 0.8;
     top: 2px;
 }
+
+.filter {
+    padding: 20px 0;
+}
+.filter .filter-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.filter .filter-item {
+    margin-right: 2rem;
+}
+.filter .filter-item p {
+    color: #cb3f2d;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.filter .filter-item option {
+    padding: 5px 0;
+}
+.filter .filter-item .btn-submit {
+    font-size: 1rem;
+    padding: .375rem 2rem;
+    border-radius: 3px;
+    background: #0e1d42;
+    color: #fff;
+}
+.filter .filter-item .btn-submit:hover {
+    color: #fff;
+    background: #F7941D;
+}

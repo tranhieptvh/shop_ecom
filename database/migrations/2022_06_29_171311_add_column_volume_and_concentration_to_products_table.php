@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnQualityToProductsTable extends Migration
+class AddColumnVolumeAndConcentrationToProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddColumnQualityToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('quality')->after('price')->nullable();
+            $table->string('volume')->after('price')->nullable();
+            $table->string('concentration')->after('volume')->nullable();
         });
     }
 

@@ -28,6 +28,8 @@ class UpdateProductRequest extends FormRequest
             'slug' => 'bail|required|unique:products,slug,'.$this->id,
             'price' => 'bail|required|numeric',
             'category_id' => 'bail|required|numeric',
+            'volume' => 'bail|numeric',
+            'concentration' => 'bail|numeric',
         ];
     }
 
@@ -38,6 +40,8 @@ class UpdateProductRequest extends FormRequest
             'slug' => 'Slug',
             'price' => 'Giá',
             'category_id' => 'Danh mục',
+            'volume' => 'Thể tích',
+            'concentration' => 'Nồng độ',
         ];
     }
 

@@ -181,9 +181,12 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 }
 p {
-	color:#757575;
+	color:#0e1d42;
 	margin: 0;
 	line-height:24px;
+}
+.form-select {
+    color: #0e1d42;
 }
 a,button,input{
 	font-weight:400;
@@ -236,6 +239,7 @@ big {
 }
 .section-title {
 	text-align: center;
+    position: relative;
 }
 .section-title h2 {
 	font-size: 30px;
@@ -293,7 +297,7 @@ big {
 .breadcrumbs {
 	background-color: #F6F7FB;
 	position: relative;
-	padding: 30px 0px;
+	padding: 10px 0px;
 }
 .breadcrumbs .bread-inner {
 	z-index: 22;
@@ -310,16 +314,16 @@ big {
 	margin: 0px 10px;
 	font-size: 9px;
 	font-weight: 600;
-	color: #333;
+	color: #0e1d42;
 }
 .breadcrumbs ul li a {
-	color: #333;
+	color: #0e1d42;
 	font-size: 14px;
 	font-weight: 400;
 	text-transform: capitalize;
 }
 .breadcrumbs ul li.active a {
-	color: #333;
+	color: #0e1d42;
 	display: inline-block;
 }
 .breadcrumbs ul li a:hover{
@@ -358,7 +362,7 @@ big {
 	color:#666;
 }
 .demo-section .demo-content p {
-	color: #333;
+	color: #0e1d42;
 	font-weight: 400;
 	font-size: 14px;
 	margin-top: 5px;
@@ -410,7 +414,7 @@ big {
 	width:150px;
 	background:#fff;
 	text-align:center;
-	color:#333;
+	color:#0e1d42;
 	line-height:44px;
 	position:absolute;
 	left:50%;
@@ -1266,7 +1270,7 @@ object {
 	font-size: 14px;
 	line-height: 24px;
 	font-weight: 400;
-	color: #333;
+	color: #0e1d42;
 }
 .quickview-content .size{
 	margin-top:20px;
@@ -1425,7 +1429,7 @@ object {
 
 .quickview-content .quickview-action-wrap .quickview-cart a:hover {
   background-color: #F7941D;
-  color:#333;
+  color:#0e1d42;
 }
 
 .quickview-content .quickview-action-wrap .quickview-cart.quickview-cart-mrg-none {
@@ -1654,7 +1658,7 @@ object {
 	width: 30px;
 	line-height: 58px;
 	background: #fff;
-	color: #333;
+	color: #0e1d42;
 	position: absolute;
 	margin: 0;
 	border-radius: 0;
@@ -1663,7 +1667,7 @@ object {
 	-webkit-transition:all 0.4s ease;
 	-moz-transition:all 0.4s ease;
 	transition:all 0.4s ease;
-	box-shadow: 0px 0px 10px #3333331c;
+	box-shadow: 0px 0px 10px #0e1d423331c;
 }
 .modal .owl-carousel .owl-nav div:hover{
 	color:#fff;
@@ -1733,7 +1737,7 @@ object {
 	text-transform: capitalize;
 	margin-right: 5px;
 	border-radius: 0px;
-	background: #333;
+	background: #0e1d42;
 	color: #fff;
 	display: inline-block;
 	font-weight: 500;

@@ -20,7 +20,8 @@ class Product extends Model
         'category_id',
         'brand_id',
         'is_feature',
-        'quality',
+        'volume',
+        'concentration',
     ];
 
     public function category() {

@@ -1,5 +1,5 @@
 <!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="{{asset('client/css/bootstrap.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/bootstrap.css')}}">
 <!-- Magnific Popup -->
 <link rel="stylesheet" type="text/css" href="{{asset('client/css/magnific-popup.min.css')}}">
 <!-- Font Awesome -->
@@ -8,8 +8,6 @@
 <link rel="stylesheet" type="text/css" href="{{asset('client/css/jquery.fancybox.min.css')}}">
 <!-- Themify Icons -->
 <link rel="stylesheet" type="text/css" href="{{asset('client/css/themify-icons.css')}}">
-<!-- Nice Select CSS -->
-<link rel="stylesheet" type="text/css" href="{{asset('client/css/niceselect.css')}}">
 <!-- Animate CSS -->
 <link rel="stylesheet" type="text/css" href="{{asset('client/css/css/animate.css')}}">
 <!-- Flex Slider CSS -->

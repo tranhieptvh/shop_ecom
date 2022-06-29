@@ -125,11 +125,20 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Chất lượng</label>
+                            <label class="col-sm-3 col-form-label">Thể tích (ml)</label>
                             <div class="col-sm-9">
-                                <input class="form-control" type="text" name="quality" value="{{ old('quality', $product->quality) }}">
-                                @if ($errors->has('quality'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('quality') }}</div>
+                                <input class="form-control" type="text" name="volume" value="{{ old('volume', $product->volume) }}">
+                                @if ($errors->has('volume'))
+                                    <div class="invalid-feedback validated">{{ $errors->first('volume') }}</div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Nồng độ (%)</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" type="text" name="concentration" value="{{ old('concentration', $product->concentration) }}">
+                                @if ($errors->has('concentration'))
+                                    <div class="invalid-feedback validated">{{ $errors->first('concentration') }}</div>
                                 @endif
                             </div>
                         </div>

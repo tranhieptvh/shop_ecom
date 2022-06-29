@@ -29,6 +29,8 @@ class CreateProductRequest extends FormRequest
             'price' => 'bail|required|numeric',
             'category_id' => 'bail|required|numeric',
             'main' => 'bail|required',
+            'volume' => 'bail|numeric',
+            'concentration' => 'bail|numeric',
         ];
     }
 
@@ -40,6 +42,8 @@ class CreateProductRequest extends FormRequest
             'price' => 'Giá',
             'category_id' => 'Danh mục',
             'main' => 'Hình ảnh',
+            'volume' => 'Thể tích',
+            'concentration' => 'Nồng độ',
         ];
     }
 

@@ -30,9 +30,9 @@ class ProductController extends Controller
     }
 
     public function index() {
-        $products = $this->productRepository->getBuilder()->orderByDesc('id')->paginate(10);
+        $products = $this->productRepository->getAllProducts(10);
         $brands = $this->brandRepository->getBuilder()->get();
-        $categories = recursive($this->categoryRepository->getBuilder()->orderBy('ordering')->get());
+        $categories = $this->categoryRepository->getAllCategoriesAndRecursive();
 
         return view('admin.product.index')->with([
             'products' => $products,
@@ -43,7 +43,7 @@ class ProductController extends Controller
 
     public function create() {
         $brands = $this->brandRepository->getBuilder()->get();
-        $categories = recursive($this->categoryRepository->getBuilder()->orderBy('ordering')->get());
+        $categories = $this->categoryRepository->getAllCategoriesAndRecursive();
 
         return view('admin.product.create')->with([
             'brands' => $brands,
@@ -92,7 +92,7 @@ class ProductController extends Controller
     public function edit($id) {
         $product = $this->productRepository->find($id);
         $brands = $this->brandRepository->getBuilder()->get();
-        $categories = recursive($this->categoryRepository->getBuilder()->orderBy('ordering')->get());
+        $categories = $this->categoryRepository->getAllCategoriesAndRecursive();
 
         return view('admin.product.edit')->with([
             'product' => $product,

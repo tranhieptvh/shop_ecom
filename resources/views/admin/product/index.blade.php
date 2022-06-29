@@ -71,6 +71,7 @@
                             <th scope="col">STT</th>
                             <th scope="col">Tên sản phẩm</th>
                             <th scope="col">Hình ảnh</th>
+                            <th scope="col">Chất lượng</th>
                             <th scope="col">Giá (VNĐ)</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -81,6 +82,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td><img src="{{ !empty($product->getMainImage->first()) ? asset($product->getMainImage->first()->path) : '' }}" style="height: 50px; max-width: 100px"></td>
+                                <td>{{ $product->volume && $product->concentration ? $product->volume . 'ml ' . $product->concentration . '%' : '' }}</td>
                                 <td>{{ number_format($product->price) }}</td>
                                 <td>
                                     <div style="display: flex;">

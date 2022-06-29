@@ -13,4 +13,7 @@ class CategoryRepository extends AbstractRepository
      */
     protected $model = \App\Category::class;
 
+    public function getAllCategoriesAndRecursive() {
+        return recursive($this->getBuilder()->orderBy('ordering')->get());
+    }
 }
