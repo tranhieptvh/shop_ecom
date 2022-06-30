@@ -13,8 +13,8 @@
                         <div class="top-search"><a href="javascript:void(0)"><i class="ti-search"></i></a></div>
                         <!-- Search Form -->
                         <div class="search-top">
-                            <form class="search-form">
-                                <input type="text" placeholder="Tìm kiếm..." name="keyword">
+                            <form class="search-form search-header">
+                                <input type="text" placeholder="Tìm kiếm..." name="keyword" value="{{ !empty($_GET['keyword']) ? $_GET['keyword'] : ''}}">
                                 <button value="search" type="submit"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -26,8 +26,8 @@
                 <div class="col-lg-8 col-md-7 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
-                            <form>
-                                <input type="text" name="keyword" placeholder="Tìm kiếm...">
+                            <form action="{{ route('client.product.index') }}" class="search-header">
+                                <input type="text" name="keyword" placeholder="Tìm kiếm..." value="{{ !empty($_GET['keyword']) ? $_GET['keyword'] : ''}}">
                                 <button class="btnn"><i class="ti-search"></i></button>
                             </form>
                         </div>

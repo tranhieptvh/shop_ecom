@@ -21,14 +21,38 @@ class ProductController extends Controller
     }
 
     public function category($slug) {
-        return view('client.product.index');
+        $category = $this->categoryRepository->getCategoryBySlug($slug);
+        if (!$category) {
+            return view('errors.404');
+        }
+        $category_ids = $this->categoryRepository->getChildCategories($category);
+        $_GET['category_ids'] = $category_ids;
+        $result = $this->productRepository->getProductsClient(12);
+        $products = $result['products'];
+        $count = $result['count'];
+
+        return view('client.product.category')->with([
+            'products' => $products,
+            'count' => $count,
+            'category' => $category,
+        ]);
     }
 
     public function index() {
-        $products = $this->productRepository->getAllProducts(12);
+        $result = $this->productRepository->getProductsClient(12);
+        $products = $result['products'];
+        $count = $result['count'];
 
         return view('client.product.index')->with([
             'products' => $products,
+            'count' => $count,
+        ]);
+    }
+
+    public function detail($slug) {
+        $product = $this->productRepository->getProductBySlug($slug);
+        return view('client.product.detail')->with([
+            'product' => $product,
         ]);
     }
 }

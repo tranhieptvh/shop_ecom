@@ -70,3 +70,33 @@
     color: #fff;
     background: #F7941D;
 }
+
+.title-list {
+    position: relative;
+}
+.title-list h2 {
+    display: inline-block;
+    color: #cb3f2d;
+    margin-right: 1rem;
+}
+.title-list::after {
+    content: "";
+    height: 2px;
+    width: 100%;
+    background: #0e1d42;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+.wrap-sort {
+    display: inline-block;
+    float: right;
+}
+.form-select:focus {
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+}
+
+.bread-list li:last-child {
+    color: #898989;
+}

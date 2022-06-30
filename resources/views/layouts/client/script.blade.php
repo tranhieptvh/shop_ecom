@@ -32,3 +32,5 @@
 <script src="{{asset('client/js/easing.js')}}"></script>
 <!-- Active JS -->
 <script src="{{asset('client/js/active.js')}}"></script>
+
+<script src="{{asset('client/js/custom.js')}}"></script>

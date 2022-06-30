@@ -30,7 +30,8 @@ class ProductController extends Controller
     }
 
     public function index() {
-        $products = $this->productRepository->getAllProducts(10);
+        $cond = [];
+        $products = $this->productRepository->getAllProductsAdmin($cond, 10);
         $brands = $this->brandRepository->getBuilder()->get();
         $categories = $this->categoryRepository->getAllCategoriesAndRecursive();
 
