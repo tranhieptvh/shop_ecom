@@ -1,7 +1,7 @@
-#cke_content {
+#cke_content, #cke_description {
     border: 1px solid #ced4da;
 }
-#cke_1_top {
+#cke_1_top, #cke_2_top {
     border-bottom: 1px solid #ced4da;
 }
 .image_container i {

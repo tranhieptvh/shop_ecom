@@ -99,7 +99,7 @@
                                 @endif
                                 <div>
                                     <img id="frame" src="{{ !empty($product->getMainImage->first()) ? asset($product->getMainImage->first()->path) : '' }}"
-                                         height="100px" class="{{ !empty($product->getMainImage->first()) ? '' : 'hidden' }}"/>
+                                         height="100px" class="{{ !empty($product->getMainImage->first()) ? '' : 'hidden' }}" alt=""/>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                                     <div class="d-flex flex-wrap justify-content-start" id="thumbnail_exist">
                                         @foreach($product->getThumbnailImage->toArray() as $thumbnail)
                                             <div class="image_container d-flex justify-content-center position-relative m-r-10" id="thumbnail_{{ $thumbnail['id'] }}">
-                                                <img src="{{ asset($thumbnail['path']) }}" alt=thumbnail/>
+                                                <img src="{{ asset($thumbnail['path']) }}" alt="thumbnail"/>
                                                 <i class="icon-close position-absolute" onclick="delete_exist_image({{ $thumbnail['id'] }})"></i>
                                             </div>
                                         @endforeach
@@ -145,7 +145,7 @@
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Mô tả</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="description" rows="5" cols="5">{{ old('description', $product->description) }}</textarea>
+                                <textarea id="description" class="form-control" name="description" rows="5" cols="5">{{ old('description', $product->description) }}</textarea>
                                 @if ($errors->has('description'))
                                     <div class="invalid-feedback validated">{{ $errors->first('description') }}</div>
                                 @endif
@@ -205,6 +205,26 @@
             filebrowserImageUploadUrl: "{{ url('admin/product/upload-ckeditor?_token='.csrf_token()) }}",
             filebrowserBrowseUrl: "{{ url('admin/product/file-browser?_token='.csrf_token()) }}",
             filebrowserUploadMethod: 'form'
+        });
+
+        CKEDITOR.replace( 'description', {
+            on: {
+                contentDom: function( evt ) {
+                    // Allow custom context menu only with table elemnts.
+                    evt.editor.editable().on( 'contextmenu', function( contextEvent ) {
+                        var path = evt.editor.elementPath();
+
+                        if ( !path.contains( 'table' ) ) {
+                            contextEvent.cancel();
+                        }
+                    }, null, null, 5 );
+                }
+            },
+            language: 'vi',
+            height: 200,
+            {{--filebrowserImageUploadUrl: "{{ url('admin/product/upload-ckeditor?_token='.csrf_token()) }}",--}}
+            {{--filebrowserBrowseUrl: "{{ url('admin/product/file-browser?_token='.csrf_token()) }}",--}}
+            {{--filebrowserUploadMethod: 'form'--}}
         });
 
         var delete_thumbnail_ids = [];

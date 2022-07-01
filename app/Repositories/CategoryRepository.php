@@ -48,4 +48,19 @@ class CategoryRepository extends AbstractRepository
 
         return $category_ids;
     }
+
+    public function getParentCategory($id) {
+        $categories = [];
+        $category = $this->getBuilder()->where('id', $id)->first();
+        $categories[] = $category;
+        if ($category->parent_id != 0) {
+            $parent_category = $this->getBuilder()->where('id', $category->parent_id)->first();
+            $categories[] = $parent_category;
+            if ($parent_category->parent_id != 0) {
+                $parent_parent_category = $this->getBuilder()->where('id', $parent_category->parent_id)->first();
+                $categories[] = $parent_parent_category;
+            }
+        }
+        return $categories;
+    }
 }

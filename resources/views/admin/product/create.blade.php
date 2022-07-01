@@ -133,7 +133,7 @@
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Mô tả</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" name="description" rows="5" cols="5">{{ old('description') }}</textarea>
+                                <textarea id="description" class="form-control" name="description" rows="5" cols="5">{{ old('description') }}</textarea>
                                 @if ($errors->has('description'))
                                     <div class="invalid-feedback validated">{{ $errors->first('description') }}</div>
                                 @endif
@@ -189,6 +189,26 @@
             filebrowserImageUploadUrl: "{{ url('admin/product/upload-ckeditor?_token='.csrf_token()) }}",
             filebrowserBrowseUrl: "{{ url('admin/product/file-browser?_token='.csrf_token()) }}",
             filebrowserUploadMethod: 'form'
+        });
+
+        CKEDITOR.replace( 'description', {
+            on: {
+                contentDom: function( evt ) {
+                    // Allow custom context menu only with table elemnts.
+                    evt.editor.editable().on( 'contextmenu', function( contextEvent ) {
+                        var path = evt.editor.elementPath();
+
+                        if ( !path.contains( 'table' ) ) {
+                            contextEvent.cancel();
+                        }
+                    }, null, null, 5 );
+                }
+            },
+            language: 'vi',
+            height: 200,
+            {{--filebrowserImageUploadUrl: "{{ url('admin/product/upload-ckeditor?_token='.csrf_token()) }}",--}}
+            {{--filebrowserBrowseUrl: "{{ url('admin/product/file-browser?_token='.csrf_token()) }}",--}}
+            {{--filebrowserUploadMethod: 'form'--}}
         });
 
     </script>

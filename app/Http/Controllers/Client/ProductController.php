@@ -51,8 +51,11 @@ class ProductController extends Controller
 
     public function detail($slug) {
         $product = $this->productRepository->getProductBySlug($slug);
+        $categories = $this->categoryRepository->getParentCategory($product->category_id);
+
         return view('client.product.detail')->with([
             'product' => $product,
+            'categories' => $categories,
         ]);
     }
 }
