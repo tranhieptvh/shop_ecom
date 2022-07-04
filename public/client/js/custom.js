@@ -54,4 +54,37 @@ $(document).ready(function() {
             },
         }
     });
+
+    $('.product-detail .btn-more').click(function () {
+        if ($('.product-detail .wrap-info .info').hasClass('show')) {
+            $('.product-detail .wrap-info .info').removeClass('show');
+            $(this).text('Xem tiếp...');
+        } else {
+            $('.product-detail .wrap-info .info').addClass('show');
+            $(this).text('Ẩn nội dung');
+        }
+    })
+
+    // Call API add cart
+    $('.add-to-cart').click(function() {
+        let user_id = $(this).data('user_id');
+        let product_id = $(this).data('product_id');
+        addToCart(user_id, product_id);
+    });
 });
+
+function addToCart(user_id, product_id) {
+    $.ajax({
+        type:'POST',
+        url:'/api/cart/add',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: {
+            user_id: user_id,
+            product_id: product_id,
+        },
+        success:function(data){
+            console.log(data);
+            $('.header .sinlge-bar .total-count').text(data.total_quantity);
+        }
+    });
+}

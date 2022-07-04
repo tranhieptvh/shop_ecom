@@ -43,8 +43,10 @@
                                                             </span>
                                                     </a>
                                                     <div class="button-head">
-                                                        <div class="product-action-2">
-                                                            <a title="Add to cart" href="#">Thêm vào giỏ hàng <i class="ti-bag"></i></a>
+                                                        <div class="product-action-2 add-to-cart"
+                                                             data-product_id="{{ $item->id }}"
+                                                             data-user_id="{{ Auth::user() ? Auth::user()->id : '' }}">
+                                                            <a title="Add to cart" href="javascript:void(0)">Thêm vào giỏ hàng <i class="ti-bag"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>

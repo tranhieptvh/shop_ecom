@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('cart')->group(function () {
+    Route::post('/add', 'Api\CartController@add');
+    Route::put('/update/{item}', 'Api\CartController@update');
+});

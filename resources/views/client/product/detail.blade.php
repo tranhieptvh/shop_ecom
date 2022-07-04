@@ -62,15 +62,20 @@
                         </div>
                     </div>
 
-                    <div class="wrap-info">
-                        <div class="wrap-title">
-                            <h2 class="title">THÔNG TIN & ĐÁNH GIÁ</h2>
-                        </div>
+                    @if(!empty($product->content))
+                        <div class="wrap-info">
+                            <div class="wrap-title">
+                                <h2 class="title">THÔNG TIN & ĐÁNH GIÁ</h2>
+                            </div>
+                                <div class="info">
+                                    {!! $product->content !!}
+                                </div>
 
-                        <div class="info">
-                            {!! $product->content !!}
+                                <div class="show-more">
+                                    <button class="btn-more">Xem tiếp...</button>
+                                </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
 
                 <div class="col-3 right-col">
@@ -81,7 +86,10 @@
                             <p class="price-vat">Giá trên chưa bao gồm VAT</p>
                         </div>
                         <div class="add-cart">
-                            <button>Thêm vào giỏ hàng &nbsp;<i class="ti-bag"></i></button>
+                            <button class="add-to-cart"
+                                    data-product_id="{{ $product->id }}"
+                                    data-user_id="{{ Auth::user() ? Auth::user()->id : '' }}"
+                            >Thêm vào giỏ hàng &nbsp;<i class="ti-bag"></i></button>
                         </div>
                         <div class="continue-buy">
                             <a href="{{ url()->previous() }}">Tiếp tục mua hàng</a>

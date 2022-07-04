@@ -30,7 +30,7 @@
     display: flex;
     justify-content: flex-end;
 }
-.show-more {
+.product-area .show-more {
     border: 1px solid #0e1d42;
     font-size: 1.2em;
 }
@@ -316,4 +316,60 @@
     position: absolute;
     bottom: -5px;
     left: 0;
+}
+.product-detail .wrap-info .info {
+    height: 492px;
+    overflow: hidden;
+    transition: all .4s ease 0s;
+    display: block;
+    text-align: justify;
+}
+.product-detail .wrap-info .info.show {
+    height: initial;
+}
+.product-detail .wrap-info .show-more {
+    margin-top: 20px;
+}
+.product-detail .wrap-info .show-more .btn-more {
+    border: 0;
+    background: #0e1d42;
+    color: #fFF;
+    padding: 10px 25px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+
+/*========== Login ==========*/
+.form-login input {
+    font-size: 1rem;
+}
+.form-login input:focus {
+    border-color: unset;
+    box-shadow: none;
+}
+
+/*======= Header ===========*/
+.header.shop .right-bar {
+    display: flex;
+    align-items: center;
+}
+.header .right-bar .sinlge-bar .avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center center;
+    display: inline-block;
+}
+.header.shop .right-bar .profile a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header.shop .right-bar .profile:hover {
+    cursor: pointer;
+    color: #F7941D;
 }

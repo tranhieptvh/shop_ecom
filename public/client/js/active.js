@@ -283,7 +283,7 @@ Version:1.0
 		$.scrollUp({
 			scrollText: '<span><i class="fa fa-angle-up"></i></span>',
 			easingType: 'easeInOutExpo',
-			scrollSpeed: 900,
+			scrollSpeed: 100,
 			animation: 'fade'
 		});
 

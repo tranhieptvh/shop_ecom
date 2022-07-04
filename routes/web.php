@@ -4,12 +4,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'Client\HomeController@index')->name('/');
 
-Route::get('/danh-muc/{slug}', 'Client\ProductController@category')->name('client.product.category');
-Route::get('/san-pham', 'Client\ProductController@index')->name('client.product.index');
-Route::get('/san-pham/{slug}', 'Client\ProductController@detail')->name('client.product.detail');
+Route::get('login', 'Client\AuthController@index')->name('client.auth.index');
+Route::post('login', 'Client\AuthController@login')->name('client.auth.login');
+Route::get('logout', 'Client\AuthController@logout')->name('client.auth.logout');
 
+Route::get('/category/{slug}', 'Client\ProductController@category')->name('client.product.category');
+Route::prefix('product')->group(function () {
+    Route::get('/', 'Client\ProductController@index')->name('client.product.index');
+    Route::get('/{slug}', 'Client\ProductController@detail')->name('client.product.detail');
+});
 
+Route::prefix('user')->group(function () {
+    Route::get('/profile', 'Client\UserController@profile')->name('client.user.profile');
+});
 
+Route::prefix('cart')->group(function () {
+    Route::get('/', 'Client\CartController@index')->name('client.cart.index');
+});
 
 // ADMIN
 Route::prefix('admin')->group(function () {

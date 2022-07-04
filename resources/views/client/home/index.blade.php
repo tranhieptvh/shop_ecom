@@ -24,10 +24,10 @@
                 </a>
             </div>
             <div class="right-col col-3 d-flex flex-column justify-content-between p-2">
-                <a href="route('client.product.category', 'japanese-whisky')">
+                <a href="{{ route('client.product.category', 'japanese-whisky') }}">
                     <img src="{{ asset('client/images/banner/JAPANESE-WHISKY.-1.jpg') }}" alt="JAPANESE-WHISKY">
                 </a>
-                <a href="route('client.product.category', 'vang-champagne')">
+                <a href="{{ route('client.product.category', 'vang-champagne') }}">
                     <img src="{{ asset('client/images/banner/VANG-CHAMPAGNE-2.jpg') }}" alt="VANG-CHAMPAGNE">
                 </a>
             </div>
@@ -62,8 +62,10 @@
                                             </div>
                                     </a>
                                     <div class="button-head">
-                                        <div class="product-action-2">
-                                            <a title="Add to cart" href="#">Thêm vào giỏ hàng <i class="ti-bag"></i></a>
+                                        <div class="product-action-2 add-to-cart"
+                                             data-product_id="{{ $item->id }}"
+                                             data-user_id="{{ Auth::user() ? Auth::user()->id : '' }}">
+                                            <a title="Add to cart" href="javascript:void(0)">Thêm vào giỏ hàng <i class="ti-bag"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -150,8 +152,10 @@
                                                             </span>
                                                         </a>
                                                         <div class="button-head">
-                                                            <div class="product-action-2">
-                                                                <a title="Add to cart" href="#">Thêm vào giỏ hàng <i class="ti-bag"></i></a>
+                                                            <div class="product-action-2 add-to-cart"
+                                                                 data-product_id="{{ $item->id }}"
+                                                                 data-user_id="{{ Auth::user() ? Auth::user()->id : '' }}">
+                                                                <a title="Add to cart" href="javascript:void(0)">Thêm vào giỏ hàng <i class="ti-bag"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
