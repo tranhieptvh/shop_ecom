@@ -7,8 +7,6 @@ use App\Repositories\ProductRepository;
 use App\Repositories\UserRepository;
 
 class CartHelper {
-    public $items = [];
-
     protected $productRepository;
     protected $cartRepository;
     protected $userRepository;
@@ -21,11 +19,10 @@ class CartHelper {
         $this->cartRepository = $cartRepository;
         $this->productRepository = $productRepository;
         $this->userRepository = $userRepository;
-
-        $this->items = session('cart') ? session('cart') : [];
     }
 
     public function add($user_id, $product_id) {
+        $items = [];
         $product = $this->productRepository->getBuilder()->where('id', $product_id)->first();
         $item = [
             'product_id' => $product_id,
@@ -44,12 +41,21 @@ class CartHelper {
 
             $carts = $this->cartRepository->getBuilder()->where('user_id', $user_id)->where('is_completed', 0)->get();
             foreach ($carts as $cart) {
-                $this->items[$cart->product_id] = $cart;
+                $items[$cart->product_id] = $cart;
             }
         } else {
-
+            if (session('cart')) {
+                $items = session('cart');
+            }
+            if (!empty($this->items[$product_id])) {
+                $items[$product_id]['quantity'] = $this->items['product_id']['quantity'] + 1;
+            } else {
+                $items[] = $item;
+            }
         }
 
-        session(['cart' => $this->items]);
+        return $items;
+
+//        session(['cart' => $this->items]);
     }
 }

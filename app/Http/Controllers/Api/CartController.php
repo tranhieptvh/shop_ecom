@@ -28,13 +28,14 @@ class CartController extends Controller
         $user_id = $_REQUEST['user_id'];
         $product_id = $_REQUEST['product_id'];
 
-        $cart->add($user_id, $product_id);
+        $items = $cart->add($user_id, $product_id);
 
-        $total_quantity = $this->getTotalQuantity($cart->items);
-        $total_price = $this->getTotalPrice($cart->items);
+        $total_quantity = $this->getTotalQuantity($items);
+        $total_price = $this->getTotalPrice($items);
 
-        session('total_quantity', $total_quantity);
-        session('total_price', $total_price);
+        session(['cart' => $items]);
+        session(['total_quantity' => $total_quantity]);
+        session(['total_price' => $total_price]);
 
         return response()->json([
             'cart' => $cart,
