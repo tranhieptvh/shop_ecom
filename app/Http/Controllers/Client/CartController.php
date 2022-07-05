@@ -22,6 +22,25 @@ class CartController extends Controller
     }
 
     public function index() {
-        return view('client.cart.index');
+        if (Auth::check()) {
+            $carts = $this->cartRepository->getBuilder()->where('user_id', Auth::user()->id)->where('is_completed', 0)->get();
+        } else {
+            if (session('cart')) {
+                $carts = session('cart');
+            } else {
+                $carts = null;
+            }
+        }
+
+        $total_price = 0;
+        foreach ($carts as $cart) {
+            $total_price += $cart->price * $cart->quantity;
+        }
+
+        return view('client.cart.index')->with([
+            'carts' => $carts,
+            'total_price' => $total_price,
+
+        ]);
     }
 }

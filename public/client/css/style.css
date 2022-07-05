@@ -2846,7 +2846,7 @@ Version:1.0
 	text-align: center;
 }
 .shopping-summery tbody tr {
-	border-bottom: 1px solid #F7941D;
+	border-bottom: 1px solid #eee;
 	margin-top: 20px;
 }
 .shopping-summery tbody tr img {
@@ -2854,11 +2854,7 @@ Version:1.0
 	width: 80px;
 	height: 80px;
 }
-.shopping-summery tbody tr:last-child{
-	border:none;
-}
 .shopping-summery tbody .product-name a {
-	font-weight: 600;
 	color: #282828;
 	font-weight: 600;
 	font-size: 17px;
