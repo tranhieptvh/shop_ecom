@@ -32,14 +32,14 @@ class CartHelper {
 
         if (!empty($user_id)) {
             $item['user_id'] = $user_id;
-            $cart = $this->cartRepository->getBuilder()->where('user_id', $user_id)->where('product_id', $product_id)->where('is_completed', 0)->first();
+            $cart = $this->cartRepository->getBuilder()->where('user_id', $user_id)->where('product_id', $product_id)->first();
             if ($cart) {
                 $this->cartRepository->update($cart, ['quantity' => $cart->quantity + 1]);
             } else {
                 $cart = $this->cartRepository->create($item);
             }
 
-            $carts = $this->cartRepository->getBuilder()->where('user_id', $user_id)->where('is_completed', 0)->get();
+            $carts = $this->cartRepository->getBuilder()->where('user_id', $user_id)->get();
             foreach ($carts as $cart) {
                 $items[$cart->product_id] = $cart;
             }

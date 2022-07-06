@@ -30,7 +30,7 @@ class ShareDataForView
     {
         if (Auth::check()) {
             $total_quantity = 0;
-            $carts = $this->cartRepository->getBuilder()->where('user_id', Auth::user()->id)->where('is_completed', 0)->get();
+            $carts = $this->cartRepository->getBuilder()->where('user_id', Auth::user()->id)->get();
             if ($carts->count() > 0) {
                 foreach($carts as $cart) {
                     $total_quantity += $cart->quantity;

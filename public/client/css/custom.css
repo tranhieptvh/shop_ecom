@@ -373,3 +373,11 @@
     cursor: pointer;
     color: #F7941D;
 }
+
+/*====== Cart =========*/
+.no-product {
+    color: red;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 20px 0;
+}

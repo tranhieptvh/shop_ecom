@@ -44,6 +44,26 @@ class CartController extends Controller
         ]);
     }
 
+    public function update() {
+        $cart_id = $_REQUEST['cart_id'];
+        $quantity = $_REQUEST['quantity'];
+
+        $cart = $this->cartRepository->getBuilder()->where('id', $cart_id)->first();
+        if ($cart) {
+            $this->cartRepository->update($cart, ['quantity' => $quantity]);
+        }
+
+        $carts = $this->cartRepository->getBuilder()->where('user_id', $cart->user_id)->get();
+        $total_quantity = $this->getTotalQuantity($carts);
+        $total_price = $this->getTotalPrice($carts);
+
+        return response()->json([
+            'cart' => $cart,
+            'total_quantity' => $total_quantity,
+            'total_price' => $total_price,
+        ]);
+    }
+
     public function getTotalQuantity($items) {
         $quantity = 0;
         foreach ($items as $item) {

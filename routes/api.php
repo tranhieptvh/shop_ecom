@@ -20,5 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('cart')->group(function () {
     Route::post('/add', 'Api\CartController@add');
-    Route::put('/update/{item}', 'Api\CartController@update');
+    Route::post('/update', 'Api\CartController@update');
 });
