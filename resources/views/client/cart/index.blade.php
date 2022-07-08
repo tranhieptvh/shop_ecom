@@ -38,34 +38,36 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($carts as $cart)
-                                <tr>
+                            @foreach($carts as $key => $cart)
+                                <tr id="{{ 'cart_'.$key }}">
                                     <td class="image" data-title="No">
-                                        <img src="{{ !empty($cart->product->getMainImage[0]) ? asset($cart->product->getMainImage[0]->path) : '' }}" alt="">
+                                        <img src="{{ !empty($cart['product']->getMainImage[0]) ? asset($cart['product']->getMainImage[0]->path) : '' }}" alt="">
                                     </td>
                                     <td class="product-des" data-title="Description">
-                                        <p class="product-name"><a href="{{ route('client.product.detail', $cart->product->slug) }}" target="_blank">
-                                                {{ $cart->product->name }}</a>
+                                        <p class="product-name"><a href="{{ route('client.product.detail', $cart['product']->slug) }}" target="_blank">
+                                                {{ $cart['product']->name }}</a>
                                         </p>
                                     </td>
-                                    <td class="price" data-title="Price"><span>{{ number_format($cart->price) }}</span></td>
+                                    <td class="price" data-title="Price"><span>{{ number_format($cart['price']) }}</span></td>
                                     <td class="qty" data-title="Qty"><!-- Input Order -->
-                                        <div class="input-group" data-cart_id="{{ $cart->id }}">
+                                        <div class="input-group"
+                                             data-cart_id="{{ isset($cart['id']) ? $cart['id'] : '' }}"
+                                             data-cart_index="{{ $key }}">
                                             <div class="button minus">
-                                                <button type="button" class="btn btn-primary btn-number" {{ $cart->quantity == 1 ? 'disabled' : '' }}>
+                                                <button type="button" class="btn btn-primary btn-number btn-minus" {{ $cart['quantity'] == 1 ? 'disabled' : '' }}>
                                                     <i class="ti-minus"></i>
                                                 </button>
                                             </div>
-                                            <input type="text" name="quantity" class="input-number" value="{{ $cart->quantity }}">
+                                            <input type="text" name="quantity" class="input-number" min="1" value="{{ $cart['quantity'] }}">
                                             <div class="button plus">
-                                                <button type="button" class="btn btn-primary btn-number">
+                                                <button type="button" class="btn btn-primary btn-number btn-plus">
                                                     <i class="ti-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
                                         <!--/ End Input Order -->
                                     </td>
-                                    <td class="total-amount" data-title="Total"><span>{{ number_format($cart->price * $cart->quantity) }}</span></td>
+                                    <td class="total-amount" data-title="Total"><span>{{ number_format($cart['price'] * $cart['quantity']) }}</span></td>
                                     <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
                                 </tr>
                             @endforeach
@@ -96,7 +98,7 @@
                                 <div class="col-lg-4 col-md-7 col-12">
                                     <div class="right">
                                         <ul>
-                                            <li>Hóa đơn<span>{{ number_format($total_price) }} VNĐ</span></li>
+                                            <li class="total_bill">Hóa đơn<span>{{ number_format($total_price) }} VNĐ</span></li>
                                             <li>Ship<span>Free</span></li>
                                             <li class="last">Tổng<span>{{ number_format($total_price) }} VNĐ</span></li>
                                         </ul>

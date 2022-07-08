@@ -78,17 +78,33 @@ $(document).ready(function() {
         $qty.attr('disabled', true);
         $(this).parent().find('button').attr('disabled', true);
         let cart_id = $(this).parent().data('cart_id');
+        let cart_index = $(this).parent().data('cart_index');
         let quantity = parseInt($qty.val(), 10) + 1;
-        updateCart(cart_id, quantity);
+        updateCart(cart_id, cart_index, quantity);
     });
     $('.qty .minus').on('click', function () {
         let $qty = $(this).parent().find('input[name="quantity"]');
-        $qty.attr('disabled', true);
+        if ( parseInt($qty.val(), 10) > 1) {
+            $qty.attr('disabled', true);
+            $(this).parent().find('button').attr('disabled', true);
+            let cart_id = $(this).parent().data('cart_id');
+            let cart_index = $(this).parent().data('cart_index');
+            let quantity = parseInt($qty.val(), 10) - 1 ;
+            updateCart(cart_id, cart_index, quantity);
+        } else {
+            console.log('delete')
+        }
+    });
+
+    $('.input-number').blur(function() {
+        console.log($(this).val())
+        $(this).attr('disabled', true);
         $(this).parent().find('button').attr('disabled', true);
         let cart_id = $(this).parent().data('cart_id');
-        let quantity = parseInt($qty.val(), 10) - 1 ;
-        updateCart(cart_id, quantity);
-    });
+        let cart_index = $(this).parent().data('cart_index');
+        let quantity = $(this).val();
+        updateCart(cart_id, cart_index, quantity);
+    })
 });
 
 function addToCart(user_id, product_id) {
@@ -107,25 +123,33 @@ function addToCart(user_id, product_id) {
     });
 }
 
-function updateCart(cart_id, quantity) {
-    console.log(1)
+function updateCart(cart_id = null, cart_index ,quantity) {
     $.ajax({
         type:'POST',
         url:'/api/cart/update',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: {
             cart_id: cart_id,
+            cart_session_index: cart_index,
             quantity: quantity,
         },
         success:function(data){
             console.log(data);
             setTimeout(function() {
-                $('.qty .input-group .input-number').attr('disabled', false);
-                $('.qty .input-group button').attr('disabled', false);
+                let view_cart = $('#cart_' + cart_index)
+                view_cart.find('input[name="quantity"]').attr('disabled', false);
+                if (data.cart.quantity > 1) {
+                    view_cart.find('button').attr('disabled', false);
+                } else {
+                    view_cart.find('button.btn-plus').attr('disabled', false);
+                }
 
-                $('.total-amount .last span').text(data.total_price)
+                view_cart.find('input[name="quantity"]').val(data.cart.quantity);
+                view_cart.find('.total-amount span').text(new Intl.NumberFormat().format(data.cart.price * data.cart.quantity));
+                $('.total-amount .last span').text(new Intl.NumberFormat().format(data.total_price) + ' VNĐ')
+                $('.total-amount .total_bill span').text(new Intl.NumberFormat().format(data.total_price) + ' VNĐ')
                 $('.header .sinlge-bar .total-count').text(data.total_quantity);
-            }, 2000)
+            }, 1000)
         }
     });
 }

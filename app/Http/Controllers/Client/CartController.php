@@ -23,7 +23,7 @@ class CartController extends Controller
 
     public function index() {
         if (Auth::check()) {
-            $carts = $this->cartRepository->getBuilder()->where('user_id', Auth::user()->id)->get();
+            $carts = $this->cartRepository->getBuilder()->where('user_id', Auth::user()->id)->get()->toArray();
         } else {
             if (session('cart')) {
                 $carts = session('cart');
@@ -34,10 +34,11 @@ class CartController extends Controller
 
         if ($carts) {
             $total_price = 0;
-            foreach ($carts as $cart) {
-                $product = $this->productRepository->getBuilder()->where('id', $cart->product_id)->first();
-                $cart->product = $product;
-                $total_price += $cart->price * $cart->quantity;
+            foreach ($carts as $key => $cart) {
+                $product = $this->productRepository->getBuilder()->where('id', $cart['product_id'])->first();
+                $cart['product'] = $product;
+                $total_price += $cart['price'] * $cart['quantity'];
+                $carts[$key] = $cart;
             }
 
             return view('client.cart.index')->with([

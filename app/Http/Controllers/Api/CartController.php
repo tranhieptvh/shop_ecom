@@ -46,16 +46,28 @@ class CartController extends Controller
 
     public function update() {
         $cart_id = $_REQUEST['cart_id'];
+        $cart_session_index = $_REQUEST['cart_session_index'];
         $quantity = $_REQUEST['quantity'];
 
-        $cart = $this->cartRepository->getBuilder()->where('id', $cart_id)->first();
-        if ($cart) {
-            $this->cartRepository->update($cart, ['quantity' => $quantity]);
+        if ($cart_id) {
+            $cart = $this->cartRepository->getBuilder()->where('id', $cart_id)->first();
+            if ($cart) {
+                $this->cartRepository->update($cart, ['quantity' => $quantity]);
+            }
+
+            $carts = $this->cartRepository->getBuilder()->where('user_id', $cart->user_id)->get();
+        } else {
+            $carts = session('cart');
+            $carts[$cart_session_index]['quantity'] = $quantity;
+            $cart = $carts[$cart_session_index];
+
+            session(['cart' => $carts]);
         }
 
-        $carts = $this->cartRepository->getBuilder()->where('user_id', $cart->user_id)->get();
         $total_quantity = $this->getTotalQuantity($carts);
         $total_price = $this->getTotalPrice($carts);
+        session(['total_quantity' => $total_quantity]);
+        session(['total_price' => $total_price]);
 
         return response()->json([
             'cart' => $cart,
