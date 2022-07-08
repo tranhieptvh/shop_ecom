@@ -2834,6 +2834,7 @@ Version:1.0
 }
 .shopping-summery thead .main-hading{
 	padding:0px 50px;
+    vertical-align: middle;
 }
 .shopping-summery thead {
 	background: #F7941D;
@@ -2940,8 +2941,9 @@ Version:1.0
 .shopping-summery tbody .action {
 	text-align: center;
 }
-.shopping-summery tbody .action a:hover{
+.shopping-summery tbody .action span:hover{
 	color:#F7941D;
+    cursor: pointer;
 }
 .shopping-cart .total-amount{
 	margin-top:50px;

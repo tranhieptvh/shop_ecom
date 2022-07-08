@@ -76,6 +76,18 @@ class CartController extends Controller
         ]);
     }
 
+    public function deleteCartItem() {
+        $cart_id = $_REQUEST['cart_id'];
+        $cart_session_index = $_REQUEST['cart_session_index'];
+
+        if ($cart_id) {
+            $cart = $this->cartRepository->getBuilder()->where('id', $cart_id)->first();
+            $result = $this->cartRepository->delete($cart);
+        } else {
+
+        }
+    }
+
     public function getTotalQuantity($items) {
         $quantity = 0;
         foreach ($items as $item) {

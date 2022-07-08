@@ -68,7 +68,13 @@
                                         <!--/ End Input Order -->
                                     </td>
                                     <td class="total-amount" data-title="Total"><span>{{ number_format($cart['price'] * $cart['quantity']) }}</span></td>
-                                    <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
+                                    <td class="action"
+                                        data-cart_id="{{ isset($cart['id']) ? $cart['id'] : '' }}"
+                                        data-cart_index="{{ $key }}">
+                                        <span class="delete-cart-item">
+                                            <i class="ti-trash remove-icon"></i>
+                                        </span>
+                                    </td>
                                 </tr>
                             @endforeach
 

@@ -97,13 +97,18 @@ $(document).ready(function() {
     });
 
     $('.input-number').blur(function() {
-        console.log($(this).val())
         $(this).attr('disabled', true);
         $(this).parent().find('button').attr('disabled', true);
         let cart_id = $(this).parent().data('cart_id');
         let cart_index = $(this).parent().data('cart_index');
         let quantity = $(this).val();
         updateCart(cart_id, cart_index, quantity);
+    })
+
+    $('.delete-cart-item').click(function() {
+        let cart_id = $(this).parent().data('cart_id');
+        let cart_index = $(this).parent().data('cart_index');
+        deleteCartItem(cart_id, cart_index);
     })
 });
 
@@ -150,6 +155,21 @@ function updateCart(cart_id = null, cart_index ,quantity) {
                 $('.total-amount .total_bill span').text(new Intl.NumberFormat().format(data.total_price) + ' VNĐ')
                 $('.header .sinlge-bar .total-count').text(data.total_quantity);
             }, 1000)
+        }
+    });
+}
+
+function deleteCartItem(cart_id, cart_index) {
+    $.ajax({
+        type:'POST',
+        url:'/api/cart/delete_cart_item',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: {
+            cart_id: cart_id,
+            cart_session_index: cart_index,
+        },
+        success:function(data){
+            console.log(data);
         }
     });
 }

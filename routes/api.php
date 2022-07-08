@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('cart')->group(function () {
     Route::post('/add', 'Api\CartController@add');
     Route::post('/update', 'Api\CartController@update');
+    Route::post('/delete_cart_item', 'Api\CartController@deleteCartItem');
 });
