@@ -170,6 +170,12 @@ function deleteCartItem(cart_id, cart_index) {
         },
         success:function(data){
             console.log(data);
+            if (data.result) {
+                $('tr#cart_'+data.cart_index).remove();
+                $('.total-amount .last span').text(new Intl.NumberFormat().format(data.total_price) + ' VNĐ')
+                $('.total-amount .total_bill span').text(new Intl.NumberFormat().format(data.total_price) + ' VNĐ')
+                $('.header .sinlge-bar .total-count').text(data.total_quantity);
+            }
         }
     });
 }

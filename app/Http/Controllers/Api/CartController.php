@@ -83,9 +83,26 @@ class CartController extends Controller
         if ($cart_id) {
             $cart = $this->cartRepository->getBuilder()->where('id', $cart_id)->first();
             $result = $this->cartRepository->delete($cart);
-        } else {
 
+            $carts = $this->cartRepository->getBuilder()->where('user_id', $cart->user_id)->get();
+        } else {
+            $carts = session('cart');
+            unset($carts[$cart_session_index]);
+
+            session(['cart' => $carts]);
         }
+
+        $total_quantity = $this->getTotalQuantity($carts);
+        $total_price = $this->getTotalPrice($carts);
+        session(['total_quantity' => $total_quantity]);
+        session(['total_price' => $total_price]);
+
+        return response()->json([
+            'result' => $result,
+            'cart_index' => $cart_session_index,
+            'total_quantity' => $total_quantity,
+            'total_price' => $total_price,
+        ]);
     }
 
     public function getTotalQuantity($items) {

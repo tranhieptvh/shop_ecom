@@ -109,7 +109,7 @@
                                             <li class="last">Tổng<span>{{ number_format($total_price) }} VNĐ</span></li>
                                         </ul>
                                         <div class="button5">
-                                            <a href="#" class="btn">Thanh toán</a>
+                                            <a href="{{ route('client.checkout') }}" class="btn">Thanh toán</a>
                                             <a href="{{ route('client.product.index') }}" class="btn">Tiếp tục mua sắm</a>
                                         </div>
                                     </div>

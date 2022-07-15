@@ -381,3 +381,57 @@
     font-weight: bold;
     padding: 20px 0;
 }
+
+/*====== Checkout =========*/
+.checkout-form .wrap-step {
+    position: relative;
+    padding-left: 50px;
+}
+.checkout-form .step {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 10px;
+}
+.checkout-form .step::after {
+    width: 1px;
+    height: 100%;
+    content: "";
+    position: absolute;
+    left: 14px;
+    border-left: 1px dotted #ccc;
+    top: 0;
+}
+.checkout-form .step span {
+    height: 30px;
+    width: 30px;
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    background: #0e1d42;
+    color: #FFF;
+    z-index: 2;
+    position: relative;
+    border-radius: 100%;
+}
+.checkout-form h5 {
+    padding: 5px 0 20px;
+}
+
+.checkout-form .payment-method input {
+    display: none;
+}
+.checkout-form .payment-method {
+    display: flex;
+    justify-content: space-between;
+}
+.checkout-form .payment-method label{
+    color: #fff !important;
+    position:relative;
+    font-size: 1em;
+    width: 45%;
+    text-align: center;
+    background: #0e1d42;
+    border-radius: 6px;
+    padding: 10px;
+}

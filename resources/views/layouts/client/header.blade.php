@@ -47,7 +47,7 @@
                             @endif
                         </div>
                         <div class="sinlge-bar shopping">
-                            <a href="{{ route('client.cart.index') }}" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{ $total_cart_quantity }}</span></a>
+                            <a href="{{ route('client.cart') }}" class="single-icon"><i class="ti-bag"></i> <span class="total-count">{{ $total_cart_quantity }}</span></a>
                             <!-- Shopping Item -->
 {{--                            <div class="shopping-item">--}}
 {{--                                <div class="dropdown-cart-header">--}}

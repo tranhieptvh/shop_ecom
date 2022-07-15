@@ -18,9 +18,8 @@ Route::prefix('user')->group(function () {
     Route::get('/profile', 'Client\UserController@profile')->name('client.user.profile');
 });
 
-Route::prefix('cart')->group(function () {
-    Route::get('/', 'Client\CartController@index')->name('client.cart.index');
-});
+Route::get('/cart', 'Client\CartController@index')->name('client.cart');
+Route::get('/checkout', 'Client\CartController@checkout')->name('client.checkout');
 
 // ADMIN
 Route::prefix('admin')->group(function () {
