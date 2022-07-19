@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CheckoutRequest;
 use App\Repositories\CartRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -24,6 +25,7 @@ class CartController extends Controller
     public function index() {
         if (Auth::check()) {
             $carts = $this->cartRepository->getBuilder()->where('user_id', Auth::user()->id)->get()->toArray();
+            session(['cart' => $carts]);
         } else {
             if (session('cart')) {
                 $carts = session('cart');
@@ -51,8 +53,11 @@ class CartController extends Controller
         }
     }
 
-    public function checkout() {
-        return view('client.cart.checkout')->with([
+    public function checkout(CheckoutRequest $request) {
+        $data_cart = session('cart');
+        $data_info = $request->all();
+
+        return view('client.cart.index')->with([
 
         ]);
     }

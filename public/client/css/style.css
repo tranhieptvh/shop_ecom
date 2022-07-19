@@ -3162,9 +3162,12 @@ Version:1.0
 }
 .shop.checkout .order-details {
 	margin-top: 30px;
-	background: #fff;
-	padding: 15px 0 30px 0;
+	background: #efece3;
+	padding: 15px 30px 30px;
 	border: 1px solid #eee;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 90px;
 }
 .shop.checkout .single-widget {
 	margin-bottom: 30px;
@@ -3176,16 +3179,15 @@ Version:1.0
 	position:relative;
 	font-size: 15px;
 	font-weight: 600;
-	padding: 10px 30px;
+	padding: 10px 0 5px;
 	line-height: 24px;
 	text-transform: uppercase;
 	color: #0e1d42;
-	padding-bottom: 5px;
 }
 .shop.checkout .single-widget h2:before{
 	position:absolute;
 	content:"";
-	left:30px;
+	left:0;
 	bottom:0;
 	height:2px;
 	width:50px;
@@ -3196,7 +3198,7 @@ Version:1.0
 }
 .shop.checkout .single-widget .content ul li {
 	display: block;
-	padding: 0px 30px;
+	/*padding: 0px 30px;*/
 	font-size: 15px;
 	font-weight: 400;
 	color: #0e1d42;
@@ -3208,11 +3210,11 @@ Version:1.0
 }
 .shop.checkout .single-widget .content ul li.last {
 	padding-top: 12px;
-	border-top: 1px solid #ebebeb;
+	border-top: 1px solid #cb3f2d;
 	display: block;
 	font-size: 15px;
-	font-weight: 400;
-	color: #0e1d42;
+    color: #cb3f2d;
+    font-weight: bold;
 }
 .shop.checkout .single-widget .checkbox {
 	text-align: left;
@@ -3278,7 +3280,7 @@ Version:1.0
 }
 .shop.checkout .single-widget.get-button {
 	text-align: center;
-	padding:0px 35px;
+	/*padding:0px 35px;*/
 }
 .shop.checkout .single-widget.get-button .btn {
 	height: 46px;

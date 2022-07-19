@@ -19,7 +19,7 @@ Route::prefix('user')->group(function () {
 });
 
 Route::get('/cart', 'Client\CartController@index')->name('client.cart');
-Route::get('/checkout', 'Client\CartController@checkout')->name('client.checkout');
+Route::post('/checkout', 'Client\CartController@checkout')->name('client.checkout');
 
 // ADMIN
 Route::prefix('admin')->group(function () {

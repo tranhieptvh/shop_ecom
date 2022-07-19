@@ -55,17 +55,16 @@ class CartController extends Controller
                 $this->cartRepository->update($cart, ['quantity' => $quantity]);
             }
 
-            $carts = $this->cartRepository->getBuilder()->where('user_id', $cart->user_id)->get();
+            $carts = $this->cartRepository->getBuilder()->where('user_id', $cart->user_id)->get()->toArray();
         } else {
             $carts = session('cart');
             $carts[$cart_session_index]['quantity'] = $quantity;
             $cart = $carts[$cart_session_index];
-
-            session(['cart' => $carts]);
         }
 
         $total_quantity = $this->getTotalQuantity($carts);
         $total_price = $this->getTotalPrice($carts);
+        session(['cart' => $carts]);
         session(['total_quantity' => $total_quantity]);
         session(['total_price' => $total_price]);
 
@@ -84,16 +83,15 @@ class CartController extends Controller
             $cart = $this->cartRepository->getBuilder()->where('id', $cart_id)->first();
             $result = $this->cartRepository->delete($cart);
 
-            $carts = $this->cartRepository->getBuilder()->where('user_id', $cart->user_id)->get();
+            $carts = $this->cartRepository->getBuilder()->where('user_id', $cart->user_id)->get()->toArray();
         } else {
             $carts = session('cart');
             unset($carts[$cart_session_index]);
-
-            session(['cart' => $carts]);
         }
 
         $total_quantity = $this->getTotalQuantity($carts);
         $total_price = $this->getTotalPrice($carts);
+        session(['cart' => $carts]);
         session(['total_quantity' => $total_quantity]);
         session(['total_price' => $total_price]);
 

@@ -72,7 +72,7 @@ $(document).ready(function() {
         addToCart(user_id, product_id);
     });
 
-    /*======= Product page Quantity Counter =========*/
+    // Call API update cart
     $('.qty .plus').on('click', function () {
         let $qty = $(this).parent().find('input[name="quantity"]');
         $qty.attr('disabled', true);
@@ -105,11 +105,25 @@ $(document).ready(function() {
         updateCart(cart_id, cart_index, quantity);
     })
 
+    // delete cart
     $('.delete-cart-item').click(function() {
         let cart_id = $(this).parent().data('cart_id');
         let cart_index = $(this).parent().data('cart_index');
         deleteCartItem(cart_id, cart_index);
     })
+
+    // checkout
+    $('.checkout-form .method-item').click(function() {
+        if (!$(this).hasClass('active')) {
+            $('.checkout-form .method-item').removeClass('active');
+            $(this).addClass('active');
+        }
+        if ($(this).hasClass('method-banking')) {
+            $('.info-banking').addClass('open');
+        } else {
+            $('.info-banking').removeClass('open');
+        }
+    });
 });
 
 function addToCart(user_id, product_id) {

@@ -67,6 +67,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="wrap-step payment">
                                 <div class="step">
@@ -76,14 +77,27 @@
                                 <div>
                                     <div class="col-lg-12 col-md-12 col-12">
                                         <div class="form-group payment-method">
-                                            <label>
+                                            <label class="method-item active">
                                                 Trả tiền mặt khi nhận hàng
+                                                <input type="radio" name="payment_method" value="0" checked>
+                                            </label>
+                                            <label class="method-item method-banking">
+                                                Chuyển khoản ngân hàng
                                                 <input type="radio" name="payment_method" value="1">
                                             </label>
-                                            <label>
-                                                Chuyển khoản khi nhận hàng
-                                                <input type="radio" name="payment_method" value="2">
-                                            </label>
+                                        </div>
+
+                                        <div class="info-banking">
+                                            <p><b>Lưu ý</b>: Quý khách vui lòng liên hệ shop theo thông tin dưới đây trước khi chuyển khoản:</p>
+                                            <p>Số điện thoại: +84 985250657</p>
+                                            <p>Hoặc Zalo: &nbsp; <a href="https://chat.zalo.me/?c=1507282913207556787" target="_blank">
+                                                    <img src="{{ asset('/client/images/zalo.svg') }}" alt="" class="zalo">
+                                                </a></p>
+                                            <br>
+                                            <p><b>Thông tin chuyển khoản:</b></p>
+                                            <p>Vietcombank chi nhánh Tây Hồ - 1016081089 - TRAN VAN HIEP</p>
+                                            <p>Hoặc quét mã QR:</p>
+                                            <img src="{{ asset('/client/images/payment_qrcode.png') }}" alt="QR CODE" class="qr-code">
                                         </div>
                                     </div>
                                 </div>
@@ -96,40 +110,21 @@
                     <div class="order-details">
                         <!-- Order Widget -->
                         <div class="single-widget">
-                            <h2>CART  TOTALS</h2>
+                            <h2>Đặt hàng</h2>
                             <div class="content">
                                 <ul>
-                                    <li>Sub Total<span>$330.00</span></li>
-                                    <li>(+) Shipping<span>$10.00</span></li>
-                                    <li class="last">Total<span>$340.00</span></li>
+                                    <li>Hóa đơn<span>$330.00</span></li>
+                                    <li>(+) Ship<span>Free</span></li>
+                                    <li class="last">Tổng<span>$340.00</span></li>
                                 </ul>
                             </div>
                         </div>
                         <!--/ End Order Widget -->
-                        <!-- Order Widget -->
-                        <div class="single-widget">
-                            <h2>Payments</h2>
-                            <div class="content">
-                                <div class="checkbox">
-                                    <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label>
-                                    <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Cash On Delivery</label>
-                                    <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox"> PayPal</label>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End Order Widget -->
-                        <!-- Payment Method Widget -->
-                        <div class="single-widget payement">
-                            <div class="content">
-                                <img src="images/payment-method.png" alt="#">
-                            </div>
-                        </div>
-                        <!--/ End Payment Method Widget -->
                         <!-- Button Widget -->
                         <div class="single-widget get-button">
                             <div class="content">
                                 <div class="button">
-                                    <a href="#" class="btn">proceed to checkout</a>
+                                    <a href="#" class="btn">Đặt hàng</a>
                                 </div>
                             </div>
                         </div>

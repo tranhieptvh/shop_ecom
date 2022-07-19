@@ -418,20 +418,37 @@
     padding: 5px 0 20px;
 }
 
-.checkout-form .payment-method input {
-    display: none;
-}
 .checkout-form .payment-method {
     display: flex;
     justify-content: space-between;
 }
-.checkout-form .payment-method label{
+.checkout-form .payment-method label {
     color: #fff !important;
     position:relative;
     font-size: 1em;
-    width: 45%;
+    width: 48%;
     text-align: center;
     background: #0e1d42;
     border-radius: 6px;
     padding: 10px;
+    cursor: pointer;
+}
+.checkout-form .payment-method input[type="radio"] {
+    display: none;
+}
+.checkout-form .payment-method label.active {
+    background: #F7941D;
+}
+.payment .info-banking {
+    display: none;
+}
+.payment .info-banking.open {
+    display: block;
+}
+.payment .info-banking img.qr-code {
+    width: 50%;
+}
+.payment .info-banking img.zalo {
+    vertical-align: bottom;
+    width: 5%;
 }

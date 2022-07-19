@@ -20,8 +20,8 @@ class CreateOrdersTable extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('note');
-            $table->datetime('orders_date');
             $table->integer('status');
+            $table->integer('method')->default(0)->comment('0-COD, 1-banking');
             $table->timestamps();
         });
     }
