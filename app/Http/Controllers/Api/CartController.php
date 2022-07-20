@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helper\CartHelper;
+use App\Helpers\CartHelper;
 use App\Http\Controllers\Controller;
 use App\Repositories\CartRepository;
 use App\Repositories\ProductRepository;

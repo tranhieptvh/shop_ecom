@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helper;
+namespace App\Helpers;
 
 use App\Repositories\CartRepository;
 use App\Repositories\ProductRepository;
