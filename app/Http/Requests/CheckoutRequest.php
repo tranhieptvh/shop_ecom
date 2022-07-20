@@ -13,7 +13,7 @@ class CheckoutRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,6 @@ class CheckoutRequest extends FormRequest
             'email' => 'bail|required|email',
             'phone' => 'bail|required|numeric',
             'address' => 'bail|required',
-            'method' => 'bail|required',
         ];
     }
 
@@ -39,7 +38,6 @@ class CheckoutRequest extends FormRequest
             'email' => 'Email',
             'phone' => 'Số điện thoại',
             'address' => 'Địa chỉ',
-            'method' => 'Phương thức thanh toán',
         ];
     }
 }

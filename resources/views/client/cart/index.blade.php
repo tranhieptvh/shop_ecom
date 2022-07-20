@@ -87,8 +87,9 @@
                 <div class="shop checkout section mt-5">
                     <div class="container">
                         <!-- Form -->
-                        <form class="form" method="POST" action="{{ route('client.checkout') }}">
+                        <form class="form" method="POST" action="{{ route('client.checkout') }}" id="form-checkout">
                             @csrf
+
                             <div class="row">
                                 <div class="col-lg-8 col-12">
                                     <div class="checkout-form">
@@ -103,25 +104,41 @@
                                                 <div class="col-lg-12 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label>Họ tên<span>*</span></label>
-                                                        <input type="text" name="name">
+                                                        <input type="text" name="name" value="{{ old('name') }}">
+                                                        @if ($errors->has('name'))
+                                                            <div class="invalid-feedback d-block">{{ $errors->first('name') }}</div>
+{{--                                                            <script>--}}
+{{--                                                                var el = document.getElementById("form-checkout");--}}
+{{--                                                                el.scrollIntoView();--}}
+{{--                                                            </script>--}}
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label>Số điện thoại<span>*</span></label>
-                                                        <input type="text" name="phone">
+                                                        <input type="text" name="phone" value="{{ old('phone') }}">
+                                                        @if ($errors->has('phone'))
+                                                            <div class="invalid-feedback d-block">{{ $errors->first('phone') }}</div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label>Email<span>*</span></label>
-                                                        <input type="email" name="email">
+                                                        <input type="text" name="email" value="{{ old('email') }}">
+                                                        @if ($errors->has('email'))
+                                                            <div class="invalid-feedback d-block">{{ $errors->first('email') }}</div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label>Địa chỉ nhận hàng<span>*</span></label>
-                                                        <input type="text" name="address">
+                                                        <input type="text" name="address" value="{{ old('address') }}">
+                                                        @if ($errors->has('address'))
+                                                            <div class="invalid-feedback d-block">{{ $errors->first('address') }}</div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-12">

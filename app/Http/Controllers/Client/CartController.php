@@ -55,9 +55,9 @@ class CartController extends Controller
 
     public function checkout(CheckoutRequest $request) {
         $data_cart = session('cart');
-        $data_info = $request->all();
+        $data_info = $request->input();
 
-        return view('client.cart.index')->with([
+        return view('client.cart.thank')->with([
 
         ]);
     }
