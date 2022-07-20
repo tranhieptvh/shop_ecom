@@ -20,9 +20,11 @@ class CreateOrdersTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
-            $table->string('note');
-            $table->integer('status');
+            $table->string('note')->nullable();
+            $table->integer('status')->default(0);
             $table->integer('method')->default(0)->comment('0-COD, 1-banking');
+            $table->integer('paid_flg')->default(0);
+            $table->string('evidence_img')->nullable();
             $table->timestamps();
         });
     }

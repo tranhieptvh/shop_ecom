@@ -87,6 +87,7 @@ class CartController extends Controller
         } else {
             $carts = session('cart');
             unset($carts[$cart_session_index]);
+            $result = true;
         }
 
         $total_quantity = $this->getTotalQuantity($carts);

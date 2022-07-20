@@ -48,6 +48,13 @@
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/order' ? 'active' : '' }}" href="{{ route('admin.order.index') }}">
+                            <i data-feather="list"></i>
+                            <span class="lan-3">Đơn hàng</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

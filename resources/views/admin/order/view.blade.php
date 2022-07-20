@@ -23,217 +23,140 @@
                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
             </div>
         @endif
-        <div class="card">
-            <form class="form theme-form" method="POST" action="{{ route('admin.order.update', $order->id) }}" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
+        <div class="d-flex">
+            <div class="card col-sm-6">
+                <form class="form theme-form" method="POST" action="{{ route('admin.order.update', $order->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
 
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Tên khách hàng</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control disable" type="text" name="name" value="{{ $order->name }}" disabled>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control disable" type="text" name="email" value="{{ $order->email }}" disabled>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">SĐT</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control disable" type="text" name="email" value="{{ $order->phone }}" disabled>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Địa chỉ</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control disable" type="text" name="address" value="{{ $order->address }}" disabled>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Ghi chú đơn hàng</label>
+                                <div class="col-sm-9">
+                                    <textarea name="note" cols="30" rows="5" disabled class="disable">{{ $order->note }}</textarea>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Phương thức thanh toán</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control disable" type="text" name="address" value="{{ $order->method == \App\Order::METHOD['COD']['value'] ? 'COD' : 'Banking' }}" disabled>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Tổng tiền (VNĐ)</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total_amount) }}" disabled>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Trạng thái đơn hàng</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" name="status">
+                                        @foreach(\App\Order::STATUS as $status)
+                                            <option value="{{ $status['value'] }}" {{ $order->status == $status['value'] ? 'selected' : ''}}>
+                                                {{ $status['key'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Trạng thái thanh toán</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" name="paid_flg">
+                                        @foreach(\App\Order::PAYMENT as $payment)
+                                            <option value="{{ $payment['value'] }}" {{ $order->paid_flg == $payment['value'] ? 'selected' : ''}}>
+                                                {{ $payment['key'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Hình ảnh minh chứng</label>
+                                <div class="col-sm-9">
+                                    <input class="d-none" type="file" name="evidence_img" id="evidence_img" value="{{ $order->evidence_img }}" onchange="preview()">
+                                    <button class="btn btn-primary m-b-5" type="button" onclick=" document.getElementById('evidence_img').click()">Chọn ảnh</button>
+                                    <div>
+                                        <img id="frame" src="{{ !empty($order->evidence_img) ? asset($order->evidence_img) : '' }}"
+                                             style="width: 100%;" class="{{ !empty($order->evidence_img) ? '' : 'hidden' }}" alt=""/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button class="btn btn-success btn-lg" type="submit">Lưu</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card col-sm-6 m-l-10">
                 <div class="card-body">
                     <div class="row">
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Tên sản phẩm<span class="required">*</span></label>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" name="name" id="name" value="{{ old('name', $product->name) }}">
-                                @if ($errors->has('name'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('name') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Slug <span class="required">*</span></label>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" name="slug" id="slug" value="{{ old('slug', $product->slug) }}">
-                                @if ($errors->has('slug'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('slug') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Giá (VNĐ) <span class="required">*</span></label>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" name="price" value="{{ old('price', $product->price) }}">
-                                @if ($errors->has('price'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('price') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Thương hiệu</label>
-                            <div class="col-sm-9">
-                                <select class="form-select" name="brand_id" id="">
-                                    <option value="">--- Chọn thương hiệu</option>
-                                    @foreach($brands as $brand)
-                                        <option value="{{ $brand->id }}" {{ $brand->id == $product->brand_id ? 'selected' : '' }}>{{ $brand->name }}</option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('brand_id'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('brand_id') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Danh mục <span class="required">*</span></label>
-                            <div class="col-sm-9">
-                                <select class="form-select" name="category_id" id="">
-                                    <option value="">--- Chọn danh mục</option>
-                                    @foreach($categories as $category)
-                                        <option value="{{ $category->id }}"
-                                                class="{{ $category->level == 0 ? 'red bold' : '' }} {{ $category->level == 1 ? 'bold' : '' }}"
-                                            {{ $category->id == $product->category_id ? 'selected' : '' }}>
-                                            {{ str_repeat('|--- ', $category->level) . $category->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('category_id'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('category_id') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Hình ảnh <span class="required">*</span></label>
-                            <div class="col-sm-9">
-                                <input class="d-none" type="file" name="main" id="main_img" value="{{ $product->getMainImage }}" onchange="preview()">
-                                <button class="btn btn-primary m-b-5" type="button" onclick=" document.getElementById('main_img').click()">Chọn ảnh</button>
-                                @if ($errors->has('main'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('main') }}</div>
-                                @endif
-                                <div>
-                                    <img id="frame" src="{{ !empty($product->getMainImage->first()) ? asset($product->getMainImage->first()->path) : '' }}"
-                                         height="100px" class="{{ !empty($product->getMainImage->first()) ? '' : 'hidden' }}" alt=""/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Ảnh thumbnail</label>
-                            <div class="col-sm-9">
-                                <input class="d-none" type="file" name="thumbnail[]" id="thumbnail" multiple onchange="image_select()">
-                                <button class="btn btn-primary m-b-5" type="button" onclick="document.getElementById('thumbnail').click()">Chọn ảnh</button>
-                                @if ($errors->has('thumbnail'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('thumbnail') }}</div>
-                                @endif
-                                <div class="d-flex flex-wrap justify-content-start">
-                                    <div class="d-flex flex-wrap justify-content-start" id="thumbnail_exist">
-                                        @foreach($product->getThumbnailImage->toArray() as $thumbnail)
-                                            <div class="image_container d-flex justify-content-center position-relative m-r-10" id="thumbnail_{{ $thumbnail['id'] }}">
-                                                <img src="{{ asset($thumbnail['path']) }}" alt="thumbnail"/>
-                                                <i class="icon-close position-absolute" onclick="delete_exist_image({{ $thumbnail['id'] }})"></i>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <div class="d-flex flex-wrap justify-content-start" id="thumbnail_container"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Thể tích (ml)</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" name="volume" value="{{ old('volume', $product->volume) }}">
-                                @if ($errors->has('volume'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('volume') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Nồng độ (%)</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" type="text" name="concentration" value="{{ old('concentration', $product->concentration) }}">
-                                @if ($errors->has('concentration'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('concentration') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Mô tả</label>
-                            <div class="col-sm-9">
-                                <textarea id="description" class="form-control" name="description" rows="5" cols="5">{{ old('description', $product->description) }}</textarea>
-                                @if ($errors->has('description'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('description') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Nội dung</label>
-                            <div class="col-sm-9">
-                                <textarea id="content" name="content" cols="30" rows="10">{{ old('content', $product->content) }}</textarea>
-                                @if ($errors->has('content'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('content') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Nổi bật</label>
-                            <div class="col-sm-9">
-                                <div class="form-check form-check-inline checkbox checkbox-primary">
-                                    <input class="form-check-input" id="is_feature" name="is_feature" type="checkbox" value="1" {{ $product->is_feature == 1 ? 'checked' : '' }} data-bs-original-title="" title="">
-                                    <label class="form-check-label" for="is_feature"></label>
-                                </div>
-                                @if ($errors->has('is_feature'))
-                                    <div class="invalid-feedback validated">{{ $errors->first('is_feature') }}</div>
-                                @endif
-                            </div>
-                        </div>
-                        <input type="text" name="delete_thumbnail" hidden>
+                        <table class="table">
+                            <thead>
+                                <tr class="table-primary">
+                                    <th>STT</th>
+                                    <th colspan="2">Sản phẩm</th>
+                                    <th>Đơn giá (VNĐ)</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền (VNĐ)</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach($order->orderDetails as $key => $detail)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>
+                                            <img src="{{ $detail->product->getMainImage[0] ? asset($detail->product->getMainImage[0]->path) : '' }}" alt="" height="100px">
+                                        </td>
+                                        <td>
+                                            <p class="product-name"><a href="{{ route('client.product.detail', $detail->product->slug) }}" target="_blank">
+                                                    {{ $detail->product->name }}</a>
+                                            </p>
+                                        </td>
+                                        <td>{{ number_format($detail->price) }}</td>
+                                        <td>{{ $detail->quantity }}</td>
+                                        <td>{{ number_format($detail->price * $detail->quantity) }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+
+                        </table>
                     </div>
                 </div>
-                <div class="card-footer text-center">
-                    <button class="btn btn-success btn-lg" type="submit">Lưu</button>
-                </div>
-            </form>
+            </div>
         </div>
+
     </div>
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/js/backend/product.js') }}"></script>
-
-    <script>
-        CKEDITOR.replace( 'content', {
-            on: {
-                contentDom: function( evt ) {
-                    // Allow custom context menu only with table elemnts.
-                    evt.editor.editable().on( 'contextmenu', function( contextEvent ) {
-                        var path = evt.editor.elementPath();
-
-                        if ( !path.contains( 'table' ) ) {
-                            contextEvent.cancel();
-                        }
-                    }, null, null, 5 );
-                }
-            },
-            language: 'vi',
-            height: 500,
-            filebrowserImageUploadUrl: "{{ url('admin/product/upload-ckeditor?_token='.csrf_token()) }}",
-            filebrowserBrowseUrl: "{{ url('admin/product/file-browser?_token='.csrf_token()) }}",
-            filebrowserUploadMethod: 'form'
-        });
-
-        CKEDITOR.replace( 'description', {
-            on: {
-                contentDom: function( evt ) {
-                    // Allow custom context menu only with table elemnts.
-                    evt.editor.editable().on( 'contextmenu', function( contextEvent ) {
-                        var path = evt.editor.elementPath();
-
-                        if ( !path.contains( 'table' ) ) {
-                            contextEvent.cancel();
-                        }
-                    }, null, null, 5 );
-                }
-            },
-            language: 'vi',
-            height: 200,
-            {{--filebrowserImageUploadUrl: "{{ url('admin/product/upload-ckeditor?_token='.csrf_token()) }}",--}}
-            {{--filebrowserBrowseUrl: "{{ url('admin/product/file-browser?_token='.csrf_token()) }}",--}}
-            {{--filebrowserUploadMethod: 'form'--}}
-        });
-
-        var delete_thumbnail_ids = [];
-        function delete_exist_image(id) {
-            $('#thumbnail_'+id).remove();
-            delete_thumbnail_ids.push(id);
-            console.log(delete_thumbnail_ids)
-            $('input[name="delete_thumbnail"]').val(delete_thumbnail_ids);
-        }
-
-    </script>
 @endsection

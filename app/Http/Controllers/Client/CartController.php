@@ -5,21 +5,31 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutRequest;
 use App\Repositories\CartRepository;
+use App\Repositories\OrderDetailRepository;
+use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
     protected $productRepository;
     protected $cartRepository;
+    protected $orderRepository;
+    protected $orderDetailRepository;
 
     public function __construct(
         CartRepository $cartRepository,
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        OrderRepository $orderRepository,
+        OrderDetailRepository $orderDetailRepository
     ) {
         $this->cartRepository = $cartRepository;
         $this->productRepository = $productRepository;
+        $this->orderRepository = $orderRepository;
+        $this->orderDetailRepository = $orderDetailRepository;
     }
 
     public function index() {
@@ -57,8 +67,40 @@ class CartController extends Controller
         $data_cart = session('cart');
         $data_info = $request->input();
 
-        return view('client.cart.thank')->with([
+        if (Auth::check()) {
+            $data_info['user_id'] = Auth::user()->id;
+        }
 
-        ]);
+        DB::beginTransaction();
+        try {
+            $order = $this->orderRepository->create($data_info);
+
+            foreach ($data_cart as $detail) {
+                $detail['order_id'] = $order->id;
+                $this->orderDetailRepository->create($detail);
+            }
+
+            if (Auth::check()) {
+                $carts = $this->cartRepository->getBuilder()->where('user_id', Auth::user()->id)->get();
+                foreach ($carts as $cart) {
+                    $this->cartRepository->delete($cart);
+                }
+            }
+
+            session(['cart' => null]);
+            session(['total_quantity' => 0]);
+            session(['total_price' => 0]);
+
+            DB::commit();
+            return redirect()->route('client.thank');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Message: ' . $e->getMessage() . ' Line: ' . $e->getLine());
+            return back();
+        }
+    }
+
+    public function thank() {
+        return view('client.cart.thank');
     }
 }

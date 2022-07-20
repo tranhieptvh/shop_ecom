@@ -33,6 +33,7 @@
                             <th scope="col">Tổng tiền (VNĐ)</th>
                             <th scope="col">Phương thức thanh toán</th>
                             <th scope="col">Trạng thái thanh toán</th>
+                            <th scope="col">Trạng thái đơn hàng</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -42,8 +43,13 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $order->name }}</td>
                                 <td>{{ number_format($order->total_amount) }}</td>
-                                <td>{{ $order->method == \App\Order::METHOD_COD ? 'COD' : 'Banking' }}</td>
-                                <td>{{ $order->paid_flg == \App\Order::PAYMENT_UNPAID ? 'Chưa thanh toán' : 'Đã thanh toán' }}</td>
+                                <td>{{ $order->method == \App\Order::METHOD['COD']['value'] ? 'COD' : 'Banking' }}</td>
+                                <td>{{ $order->paid_flg == \App\Order::PAYMENT['UNPAID']['value'] ? 'Chưa thanh toán' : 'Đã thanh toán' }}</td>
+                                <td>
+                                    @foreach(\App\Order::STATUS as $status)
+                                        {{ $order->status == $status['value'] ? $status['key'] : '' }}
+                                    @endforeach
+                                </td>
                                 <td>
                                     <div style="display: flex;">
                                         <a href="{{ route('admin.order.view', $order->id) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-eye"></i></a>

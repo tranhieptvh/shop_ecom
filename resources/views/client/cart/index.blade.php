@@ -160,11 +160,11 @@
                                                     <div class="form-group payment-method">
                                                         <label class="method-item active">
                                                             Trả tiền mặt khi nhận hàng
-                                                            <input type="radio" name="payment_method" value="0" checked>
+                                                            <input type="radio" name="method" value="0" checked>
                                                         </label>
                                                         <label class="method-item method-banking">
                                                             Chuyển khoản ngân hàng
-                                                            <input type="radio" name="payment_method" value="1">
+                                                            <input type="radio" name="method" value="1">
                                                         </label>
                                                     </div>
 

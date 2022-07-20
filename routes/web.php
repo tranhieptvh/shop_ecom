@@ -20,6 +20,7 @@ Route::prefix('user')->group(function () {
 
 Route::get('/cart', 'Client\CartController@index')->name('client.cart');
 Route::post('/checkout', 'Client\CartController@checkout')->name('client.checkout');
+Route::get('/thank', 'Client\CartController@thank')->name('client.thank');
 
 // ADMIN
 Route::prefix('admin')->group(function () {
@@ -72,6 +73,12 @@ Route::prefix('admin')->group(function () {
             Route::delete('/destroy/{id}', 'Admin\ProductController@destroy')->name('admin.product.destroy');
             Route::post('/upload-ckeditor', 'Admin\ProductController@upload_ckeditor');
             Route::get('/file-browser', 'Admin\ProductController@file_browser');
+        });
+
+        Route::prefix('order')->group(function () {
+            Route::get('/', 'Admin\OrderController@index')->name('admin.order.index');
+            Route::get('/view/{id}', 'Admin\OrderController@view')->name('admin.order.view');
+            Route::put('/update/{id}', 'Admin\OrderController@update')->name('admin.order.update');
         });
     });
 });
