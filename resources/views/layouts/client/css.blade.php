@@ -9,7 +9,7 @@
 <!-- Themify Icons -->
 <link rel="stylesheet" type="text/css" href="{{asset('client/css/themify-icons.css')}}">
 <!-- Animate CSS -->
-<link rel="stylesheet" type="text/css" href="{{asset('client/css/css/animate.css')}}">
+{{--<link rel="stylesheet" type="text/css" href="{{asset('client/css/css/animate.css')}}">--}}
 <!-- Flex Slider CSS -->
 <link rel="stylesheet" type="text/css" href="{{asset('client/css/flex-slider.min.css')}}">
 <!-- Owl Carousel -->

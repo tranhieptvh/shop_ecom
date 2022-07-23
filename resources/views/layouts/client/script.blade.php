@@ -5,9 +5,10 @@
 <!-- Popper JS -->
 <script src="{{asset('client/js/popper.min.js')}}"></script>
 <!-- Bootstrap JS -->
+<script src="{{asset('assets/js/bootstrap/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('client/js/bootstrap.min.js')}}"></script>
 <!-- Color JS -->
-<script src="{{asset('client/js/colors.js')}}"></script>
+{{--<script src="{{asset('client/js/colors.js')}}"></script>--}}
 <!-- Slicknav JS -->
 <script src="{{asset('client/js/slicknav.min.js')}}"></script>
 <!-- Owl Carousel JS -->

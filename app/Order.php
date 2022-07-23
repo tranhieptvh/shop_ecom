@@ -18,22 +18,22 @@ class Order extends Model
             'value' => 0,
         ],
         'BANKING' => [
-            'key' => 'Chuyên khoản ngân hàng',
+            'key' => 'Chuyển khoản ngân hàng',
             'value' => 1,
         ],
     ];
 
     const STATUS = [
         'CONFIRMING' => [
-            'key' => 'Đang confirm',
+            'key' => 'Đang xác nhận',
             'value' => 0
         ],
         'CONFIRMED' => [
-            'key' => 'Đã confirm',
+            'key' => 'Đã xác nhận',
             'value' => 1
         ],
         'SHIPPING' => [
-            'key' => 'Đang ship hàng',
+            'key' => 'Đang giao hàng',
             'value' => 2
         ],
         'RECEIVED' => [
@@ -43,6 +43,10 @@ class Order extends Model
         'DONE' => [
             'key' => 'Hoàn thành',
             'value' => 4
+        ],
+        'REJECT' => [
+            'key' => 'Hủy đơn',
+            'value' => 5
         ],
     ];
 

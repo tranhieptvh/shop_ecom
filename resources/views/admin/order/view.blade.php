@@ -64,7 +64,7 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Phương thức thanh toán</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="address" value="{{ $order->method == \App\Order::METHOD['COD']['value'] ? 'COD' : 'Banking' }}" disabled>
+                                    <input class="form-control disable" type="text" name="address" value="{{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}" disabled>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -97,17 +97,19 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Hình ảnh minh chứng</label>
-                                <div class="col-sm-9">
-                                    <input class="d-none" type="file" name="evidence_img" id="evidence_img" value="{{ $order->evidence_img }}" onchange="preview()">
-                                    <button class="btn btn-primary m-b-5" type="button" onclick=" document.getElementById('evidence_img').click()">Chọn ảnh</button>
-                                    <div>
-                                        <img id="frame" src="{{ !empty($order->evidence_img) ? asset($order->evidence_img) : '' }}"
-                                             style="width: 100%;" class="{{ !empty($order->evidence_img) ? '' : 'hidden' }}" alt=""/>
+                            @if ($order->method == \App\Order::METHOD['BANKING']['value'])
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label">Hình ảnh minh chứng</label>
+                                    <div class="col-sm-9">
+                                        <input class="d-none" type="file" name="evidence_img" id="evidence_img" value="{{ $order->evidence_img }}" onchange="preview()">
+                                        <button class="btn btn-primary m-b-5" type="button" onclick=" document.getElementById('evidence_img').click()">Chọn ảnh</button>
+                                        <div>
+                                            <img id="frame" src="{{ !empty($order->evidence_img) ? asset($order->evidence_img) : '' }}"
+                                                 style="width: 100%;" class="{{ !empty($order->evidence_img) ? '' : 'hidden' }}" alt=""/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="card-footer text-center">

@@ -193,3 +193,15 @@ function deleteCartItem(cart_id, cart_index) {
         }
     });
 }
+
+function preview() {
+    frame.src=URL.createObjectURL(event.target.files[0]);
+    if ($('#frame').hasClass('d-none')) {
+        $('#frame').removeClass('d-none');
+    }
+}
+
+function preview_evd() {
+    preview();
+    $('.wrap-submit').removeClass('d-none');
+}

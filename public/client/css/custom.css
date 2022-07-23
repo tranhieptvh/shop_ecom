@@ -452,3 +452,137 @@
     vertical-align: bottom;
     width: 5%;
 }
+
+/*====== Profile =========*/
+.section-profile .menu-col {
+    border-right: 1px solid #a95b2b;
+}
+.section-profile .wrap-menu .menu-item {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+.section-profile .wrap-menu .menu-item.active {
+    color: #cb3f2d;
+}
+.section-profile .main-col {
+    margin-top: 10px;
+}
+.section-profile .form .form-group label{
+    color: #0e1d42;
+    position: relative;
+    font-size: 1em;
+    font-weight: bold;
+}
+.section-profile .form .form-group label span {
+    color: #ff2c18;
+    margin-left: 4px;
+}
+.section-profile .form .form-group input {
+    height: 45px;
+    width: 100%;
+    line-height: 50px;
+    padding: 0 20px;
+    border-radius: 3px;
+    color: #0e1d42 !important;
+    border: 1px solid #ccc;
+    outline: none;
+}
+.section-profile #frame {
+    height: 150px;
+    margin-top: 10px;
+}
+.section-profile button {
+    height: 46px;
+    line-height: 19px;
+    text-align: center;
+    border: unset;
+    border-radius: 5px;
+    color: #fff;
+}
+.section-profile button.btn-img {
+    background: #0e1d42;
+}
+.section-profile .alert-dismissible .btn-close {
+    top: -22%;
+}
+.section-profile .wrap-title {
+    border-bottom: 1px solid #a95b2b;
+}
+.section-profile .purchase .list-order .heading {
+    background: #F7941D;
+    text-align: center;
+}
+.section-profile .purchase .list-order a {
+    color: #cb3f2d;
+    text-decoration: underline;
+}
+
+/*====== Order detail =========*/
+.order-detail .main-step {
+    position: relative;
+    padding-left: 50px;
+}
+.order-detail .main-step .title,
+.order-detail .list-product .title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #cb3f2d;
+}
+.order-detail .step {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 10px;
+}
+.order-detail .step span {
+    height: 30px;
+    width: 30px;
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    background: #0e1d42;
+    color: #FFF;
+    z-index: 2;
+    position: relative;
+    border-radius: 100%;
+}
+.order-detail .step::after {
+    width: 1px;
+    height: 100%;
+    content: "";
+    position: absolute;
+    left: 14px;
+    border-left: 1px dotted #ccc;
+    top: 0;
+}
+.check-pass {
+    color: #3f901d;
+    margin-left: 20px;
+}
+.check-pass i {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.order-detail .payment #frame {
+    height: unset;
+    width: 50%;
+}
+.section-profile .list-product .heading {
+    background: #F7941D;
+    text-align: center;
+}
+.order-detail .list-product table {
+    vertical-align: middle;
+}
+.order-detail .list-product table img {
+    height: 100px;
+}
+.order-detail .list-product table tfoot tr td:first-child {
+    text-align: right;
+    border-right: 1px solid rgba(0,0,0,0.075);
+}
+.order-detail .list-product table tfoot tr:last-child {
+    border-bottom-color: #212529;
+    font-weight: bold;
+    color: #cb3f2d;
+}

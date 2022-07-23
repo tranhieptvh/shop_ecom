@@ -43,8 +43,8 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $order->name }}</td>
                                 <td>{{ number_format($order->total_amount) }}</td>
-                                <td>{{ $order->method == \App\Order::METHOD['COD']['value'] ? 'COD' : 'Banking' }}</td>
-                                <td>{{ $order->paid_flg == \App\Order::PAYMENT['UNPAID']['value'] ? 'Chưa thanh toán' : 'Đã thanh toán' }}</td>
+                                <td>{{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}</td>
+                                <td>{{ $order->paid_flg == \App\Order::PAYMENT['UNPAID']['value'] ? \App\Order::PAYMENT['UNPAID']['key'] : \App\Order::PAYMENT['PAID']['key'] }}</td>
                                 <td>
                                     @foreach(\App\Order::STATUS as $status)
                                         {{ $order->status == $status['value'] ? $status['key'] : '' }}
