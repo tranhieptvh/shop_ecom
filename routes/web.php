@@ -7,6 +7,8 @@ Route::get('/', 'Client\HomeController@index')->name('/');
 Route::get('login', 'Client\AuthController@index')->name('client.auth.index');
 Route::post('login', 'Client\AuthController@login')->name('client.auth.login');
 Route::get('logout', 'Client\AuthController@logout')->name('client.auth.logout');
+Route::get('register', 'Client\AuthController@register')->name('client.auth.register');
+Route::post('post-register', 'Client\AuthController@postRegister')->name('client.auth.post-register');
 
 Route::get('/category/{slug}', 'Client\ProductController@category')->name('client.product.category');
 Route::prefix('product')->group(function () {

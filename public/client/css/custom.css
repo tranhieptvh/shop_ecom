@@ -586,3 +586,8 @@
     font-weight: bold;
     color: #cb3f2d;
 }
+
+/*====== Register =========*/
+span.required {
+    color: red;
+}

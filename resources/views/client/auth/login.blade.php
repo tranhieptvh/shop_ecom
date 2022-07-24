@@ -6,13 +6,19 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-xl-10">
                     <div>
-                        <div class="row g-0">
+                        <div class="row align-items-center g-0">
                             <div class="col-md-6 col-lg-5 d-none d-md-block">
                                 <img src="https://ruoungoai.net/uploads/chivas-regal-18-den.jpg"
                                      alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
+                                    @if (session('success'))
+                                        <div class="alert alert-success dark alert-dismissible fade show" role="alert">
+                                            {{ session('success') }}
+                                            <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                                        </div>
+                                    @endif
 
                                     <form action="{{ route('client.auth.login') }}" method="POST">
                                         @csrf
@@ -44,7 +50,7 @@
                                         </div>
 
                                         <a class="small text-muted" href="#!">Quên mật khẩu</a> <br>
-                                        <a class="small text-muted" href="#!">Đăng ký</a>
+                                        <a class="small text-muted" href="{{ route('client.auth.register') }}">Đăng ký</a>
                                     </form>
 
                                 </div>
