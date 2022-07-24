@@ -3,7 +3,10 @@ html, body {
 }
 
 .main-logo {
-    height: 28px;
+    height: 42px;
+}
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .logo-wrapper {
+    padding: 20px 30px;
 }
 .validated {
     display: block !important;

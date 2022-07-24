@@ -2,7 +2,7 @@
     <div>
         <div class="logo-wrapper text-center">
             <a href="{{route('admin')}}">
-                <img class="img-fluid for-light main-logo" src="{{asset('assets/images/logo/logo-dark.png')}}" alt="">
+                <img class="img-fluid for-light main-logo" src="{{asset('logo/logo_dark.png')}}" alt="">
             </a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
         </div>

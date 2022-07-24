@@ -7,7 +7,7 @@
                     <!-- Single Widget -->
                     <div class="single-footer about">
                         <div class="logo">
-                            <a href="index.html"><img src="{{ asset('client/images/logo2.png') }}" alt="#"></a>
+                            <a href="index.html"><img src="{{ asset('logo/logo_light.png') }}" alt="#"></a>
                         </div>
                         <p class="text">Tuân thủ Nghị định số 185/2013/NĐ-CP của Chính Phủ và Luật Quảng Cáo số 16/2012/QH13 về kinh doanh bán hàng qua mạng. Maltco.asia là trang thông tin chia sẻ kiến thức về rượu ngoại hoạt động phi lợi nhuận. Chúng tôi không kinh doanh trực tiếp trên internet. Vui lòng đến trực tiếp đến các cửa hàng hoặc gọi tới số hotline để được tư vấn. </p>
                         <p class="call">Hotline: <span><a href="tel:0985250657">0985 250 657</a></span></p>

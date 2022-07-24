@@ -316,7 +316,7 @@ Version:1.0
 }
 .header.shop .logo {
 	float: left;
-	margin-top: 35px;
+	margin-top: 0;
 }
 .header.shop .top-contact {
 	margin-top:0px;
@@ -544,10 +544,6 @@ Version:1.0
 }
 .header.shop .right-nav li a {
 	color: #0e1d42;
-}
-.header.shop .logo {
-	float: left;
-	margin: 19px 0 0;
 }
 .header.shop .top-contact {
 	margin-top:0px;
@@ -4769,7 +4765,9 @@ Version:1.0
 .footer .about .logo{
 	margin-bottom:20px;
 }
-.footer .about .logo img{}
+.footer .about .logo img{
+    width: 40%;
+}
 .footer .about .text{
 	color:#fff;
 	font-weight: 400;
