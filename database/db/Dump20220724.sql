@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 5.7.36, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: shop_ecom
 -- ------------------------------------------------------
--- Server version	5.7.36-0ubuntu0.18.04.1
+-- Server version	8.0.29
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,10 +21,10 @@
 
 DROP TABLE IF EXISTS `brands`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `brands` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -48,13 +48,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `carts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carts` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) unsigned NOT NULL,
-  `product_id` bigint(20) unsigned NOT NULL,
-  `price` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint unsigned NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `price` int NOT NULL,
+  `quantity` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -62,7 +62,7 @@ CREATE TABLE `carts` (
   KEY `carts_product_id_foreign` (`product_id`),
   CONSTRAINT `carts_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   CONSTRAINT `carts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (12,3,10,2650000,2,'2022-07-15 07:01:42','2022-07-19 11:53:57'),(15,3,12,2950000,1,'2022-07-15 07:15:42','2022-07-19 11:49:26'),(18,3,8,5900000,1,'2022-07-19 11:42:57','2022-07-19 11:46:04'),(19,3,22,560000,1,'2022-07-19 11:51:34','2022-07-19 11:51:34'),(20,3,21,760000,1,'2022-07-19 11:51:34','2022-07-19 11:51:34'),(21,3,20,760000,1,'2022-07-19 11:51:35','2022-07-19 11:53:55');
+INSERT INTO `carts` VALUES (32,2,8,5900000,1,'2022-07-23 14:58:43','2022-07-23 14:58:43'),(37,3,22,560000,1,'2022-07-23 18:19:32','2022-07-23 18:19:32'),(38,3,21,760000,1,'2022-07-23 19:15:32','2022-07-23 19:15:32');
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,13 +81,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categories` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent_id` int(11) NOT NULL,
-  `ordering` int(11) NOT NULL DEFAULT '1',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_id` int NOT NULL,
+  `ordering` int NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -112,13 +112,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `failed_jobs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -134,44 +134,18 @@ LOCK TABLES `failed_jobs` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `images`
---
-
-DROP TABLE IF EXISTS `images`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `images` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `images`
---
-
-LOCK TABLES `images` WRITE;
-/*!40000 ALTER TABLE `images` DISABLE KEYS */;
-/*!40000 ALTER TABLE `images` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `migrations`
 --
 
 DROP TABLE IF EXISTS `migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,8 +154,41 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (5,'2014_10_12_100000_create_password_resets_table',1),(6,'2019_08_19_000000_create_failed_jobs_table',1),(7,'2022_05_11_041908_create_roles_table',1),(10,'2022_05_11_041990_create_users_table',2),(19,'2022_05_17_150001_create_images_table',6),(27,'2022_05_17_151046_add_column_avatar_to_users_table',11),(42,'2022_05_19_155109_create_brands_table',15),(43,'2022_05_23_105508_create_products_table',15),(44,'2022_05_23_111825_create_product_images_table',15),(45,'2022_05_12_101810_create_categories_table',16),(46,'2022_06_20_173602_add_column_is_feature_to_products_table',17),(48,'2022_06_29_171311_add_column_volume_and_concentration_to_products_table',18),(53,'2022_07_04_140953_create_carts_table',19),(59,'2022_05_31_111613_create_orders_table',20),(60,'2022_05_31_111942_create_orders_details_table',20);
+INSERT INTO `migrations` VALUES (5,'2014_10_12_100000_create_password_resets_table',1),(6,'2019_08_19_000000_create_failed_jobs_table',1),(7,'2022_05_11_041908_create_roles_table',1),(10,'2022_05_11_041990_create_users_table',2),(27,'2022_05_17_151046_add_column_avatar_to_users_table',11),(42,'2022_05_19_155109_create_brands_table',15),(43,'2022_05_23_105508_create_products_table',15),(44,'2022_05_23_111825_create_product_images_table',15),(45,'2022_05_12_101810_create_categories_table',16),(46,'2022_06_20_173602_add_column_is_feature_to_products_table',17),(48,'2022_06_29_171311_add_column_volume_and_concentration_to_products_table',18),(53,'2022_07_04_140953_create_carts_table',19),(73,'2022_05_31_111613_create_orders_table',20),(74,'2022_05_31_111942_create_order_details_table',20);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_details`
+--
+
+DROP TABLE IF EXISTS `order_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_details` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `order_id` bigint unsigned NOT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `price` int NOT NULL,
+  `quantity` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_details_order_id_foreign` (`order_id`),
+  KEY `order_details_product_id_foreign` (`product_id`),
+  CONSTRAINT `order_details_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  CONSTRAINT `order_details_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_details`
+--
+
+LOCK TABLES `order_details` WRITE;
+/*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
+INSERT INTO `order_details` VALUES (1,1,8,5900000,1,'2022-07-20 17:22:29','2022-07-20 17:22:29'),(2,1,10,2650000,1,'2022-07-20 17:22:29','2022-07-20 17:22:29'),(3,1,12,2950000,1,'2022-07-20 17:22:29','2022-07-20 17:22:29'),(4,2,21,760000,1,'2022-07-20 17:23:02','2022-07-20 17:23:02'),(5,2,20,760000,1,'2022-07-20 17:23:02','2022-07-20 17:23:02'),(6,2,18,4500000,1,'2022-07-20 17:23:02','2022-07-20 17:23:02'),(7,3,9,4100000,2,'2022-07-23 17:26:25','2022-07-23 17:26:25'),(8,3,21,760000,1,'2022-07-23 17:26:25','2022-07-23 17:26:25'),(9,4,4,10450000,1,'2022-07-23 17:51:18','2022-07-23 17:51:18'),(10,4,5,3900000,1,'2022-07-23 17:51:18','2022-07-23 17:51:18');
+/*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -190,20 +197,23 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL,
-  `method` int(11) NOT NULL DEFAULT '0' COMMENT '0-COD, 1-banking',
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int NOT NULL DEFAULT '0',
+  `method` int NOT NULL DEFAULT '0' COMMENT '0-COD, 1-banking',
+  `paid_flg` int NOT NULL DEFAULT '0',
+  `evidence_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,39 +222,8 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,NULL,'T_V_H','tranhieptvh97+22@gmail.com','0985250657','Ngõ 28 Phố Đại Linh, Trung Văn, Từ Liêm, Hà Nội','note 1',2,0,1,'uploads/images/order/htyNv5t_1658342390.png','2022-07-20 17:22:29','2022-07-20 18:40:28'),(2,3,'Hiệp Trần','tranhieptvh97@gmail.com','0985250657','Vĩnh Thinh, Vĩnh Tường, Vĩnh Phúc','note 2',4,1,0,'/uploads/images/order/bank_evd.jpg','2022-07-20 17:23:02','2022-07-23 11:36:31'),(3,3,'Trần Hiệp 123','tranhieptvh97@gmail.com','0985250657','Vĩnh Thinh, Vĩnh Tường, Vĩnh Phúc','xxx',0,0,0,NULL,'2022-07-23 17:26:25','2022-07-23 17:26:25'),(4,3,'T_V_H','tranhieptvh97@gmail.com','0985250657','Vĩnh Thinh, Vĩnh Tường, Vĩnh Phúc','note 123',0,1,1,'uploads/images/order/album-anh-gaara-kazekage-de-ngu-trong-truyen-naruto-dep-hinh-3_1658644701.jpg','2022-07-23 17:51:18','2022-07-24 06:38:41');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `orders_details`
---
-
-DROP TABLE IF EXISTS `orders_details`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `orders_details` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `orders_id` bigint(20) unsigned NOT NULL,
-  `product_id` bigint(20) unsigned NOT NULL,
-  `price` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `orders_details_orders_id_foreign` (`orders_id`),
-  KEY `orders_details_product_id_foreign` (`product_id`),
-  CONSTRAINT `orders_details_orders_id_foreign` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`),
-  CONSTRAINT `orders_details_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `orders_details`
---
-
-LOCK TABLES `orders_details` WRITE;
-/*!40000 ALTER TABLE `orders_details` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orders_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -253,10 +232,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `password_resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -277,12 +256,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `product_images`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product_images` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `type` int(11) NOT NULL DEFAULT '0' COMMENT '0: default, 1:thumbnail',
-  `product_id` bigint(20) unsigned NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` int NOT NULL DEFAULT '0' COMMENT '0: default, 1:thumbnail',
+  `product_id` bigint unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -307,19 +286,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `products` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` int(11) NOT NULL,
-  `volume` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `concentration` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci,
-  `content` longtext COLLATE utf8mb4_unicode_ci,
-  `category_id` bigint(20) unsigned NOT NULL,
-  `brand_id` bigint(20) unsigned DEFAULT NULL,
-  `is_feature` tinyint(4) NOT NULL DEFAULT '0',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int NOT NULL,
+  `volume` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `concentration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `category_id` bigint unsigned NOT NULL,
+  `brand_id` bigint unsigned DEFAULT NULL,
+  `is_feature` tinyint NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -347,10 +326,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roles` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -373,26 +352,26 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `date_of_birth` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_id` bigint(20) unsigned NOT NULL,
-  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date_of_birth` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role_id` bigint unsigned NOT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_role_id_foreign` (`role_id`),
   CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -401,7 +380,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Trần Văn Hiệp','tranhieptvh@gmail.com','$2y$10$EbXUXY3oWfSR2fW9kqT6he1FBLF0Ty6zuA197AFjL8G45sW1dmSl6',NULL,'30-07-1997','0985250657','Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',1,NULL,NULL,'2022-05-13 04:43:16','2022-05-13 04:43:16'),(2,'HiệpTV','hieptv@kaopiz.com','$2y$10$L.1c5OI5O/gZ3khkaXXPjuorNJxiBtI7/QdF.1mw//DX2UyYv.kMa',NULL,'30-07-1997','0985250657','Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',2,'uploads/images/user/1653281712_user.jpg','y9QUFXNMpkLEqOOACVyrlxOle4Fd0QIoayO8jclwkLU2qSKNuDE6OMHVrqme','2022-05-13 04:43:16','2022-05-23 04:55:12'),(3,'Trần Hiệp','tranhieptvh97@gmail.com','$2y$10$FmqU.pxdiUhJOWmOZM.NQuN/BTFKQuUT4brSTXB0MaH8z/GXisPGG',NULL,'30-07-1997','0985250657','Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,'uploads/images/user/1653281943_user.jpg',NULL,'2022-05-13 06:41:18','2022-05-23 04:59:03'),(4,'Trần Hiệp + 1','tranhieptvh97+1@gmail.com','$2y$10$hwxM7cIHMWWwJQY9BbUeM.dzEzM0B.tp/IYQ3wPX3/hL8zOksdcB.',NULL,'30-07-1997','0185250657','Số 1 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc 1',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 09:18:54'),(8,'Trần Hiệp + 5','tranhieptvh97+5@gmail.com','$2y$10$fLEFPqW2M1WMCPOWY6I9SOqNyT.bWoco4fbrTkH22VuBrJoFS4JWO',NULL,'30-07-1997','0585250657','Số 5 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 08:55:42'),(9,'Trần Hiệp + 6','tranhieptvh97+6@gmail.com','$2y$10$CVqqg8JlRN5kEFk/XvUTd.T7GtIFJsbaVfz/I5.ZQMmokpaWnU83y',NULL,'30-07-1997','0685250657','Số 6 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 08:55:42'),(10,'Trần Hiệp + 7','tranhieptvh97+7@gmail.com','$2y$10$ELS7QymDIGi3rz5Yvkhx7uVFTYCj0EDh3fTebuTx/bwlMg6rxR/wG',NULL,'30-07-1997','0785250657','Số 7 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 08:55:42'),(11,'Trần Hiệp + 8','tranhieptvh97+8@gmail.com','$2y$10$K84vOBPV2da3KqTe8DdAT.AG.ceVSXnAbp705oe/dTLjECtytebHq',NULL,'30-07-1997','0885250657','Số 8 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 08:55:42'),(12,'Trần Hiệp + 9','tranhieptvh97+9@gmail.com','$2y$10$HFrGgL8Gw2m7t4ZPPu/Fp.wKP5pbQ/FtMu1FxFvX2iZUaYI8y2kuq',NULL,'30-07-1997','0985250657','Số 9 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 08:55:42'),(18,'Tran Van Hiep','tranhieptvh97+11@gmail.com','$2y$10$AMCB88BT8cedLKMXwT3oCO60.CTtylPCHOWt.cg0qYcixeCz7Sw6W',NULL,'18-05-2022','0985250657','Vinh Thinh',3,NULL,NULL,'2022-05-18 02:25:39','2022-05-18 02:25:39'),(19,'Tran Van Hiep','tranhieptvh+10@gmail.com','$2y$10$4h6axWenw7J6kavtWbd//OziP2hahffm5lTF4UaofH0iZhgLgAm3u',NULL,'30-07-1997','0985250657','Vinh Thinh',3,NULL,NULL,'2022-05-20 00:36:10','2022-05-20 00:36:10'),(21,'Tran Van Hiep','tranhieptvh+12@gmail.com','$2y$10$a2B5FqBv3mcIPYWEuCJIo.0gaHOujAOEouVCPYQalZGRfI0IwwCm2',NULL,'30-07-1997','0985250657','Vinh Thinh',3,NULL,NULL,'2022-05-20 00:36:50','2022-05-20 00:36:50'),(22,'Tran Van Hiep','tranhieptvh+13@gmail.com','$2y$10$xOCbaiEgCeYxVJw0V88fheue12xqnFAz0Gf.ol95C3r8eVEGBv6my',NULL,'30-07-1997','0985250657','Vinh Thinh',3,NULL,NULL,'2022-05-20 02:46:58','2022-05-20 02:46:58'),(23,'Tran Van Hiep','tranhieptvh+14@gmail.com','$2y$10$p4SaMmhHcDJtUrQ0wdn3u.z5ZybVAlBpbX5kgOR30U9V/GDk2qLpW',NULL,'30-07-1997','0985250657','Vinh Thinh',3,NULL,NULL,'2022-05-20 02:49:05','2022-05-20 02:49:05'),(24,'Tran Van Hiep','tranhieptvh+15@gmail.com','$2y$10$g2hFi.wK7J8wx0/QpK/Sdep1kk3e2tm9Mm7BfO.fP9ojNeqmyI/Hy',NULL,'30-07-1997','0985250657','Vinh Thinh',3,'uploads/images/user/user_1653560791.jpg',NULL,'2022-05-20 02:49:29','2022-05-26 10:26:31'),(25,'Tran Van Hiep','tranhieptvh+19@gmail.com','$2y$10$2.K1uZ5gyIU/WL3B2KnQkesNjiRUxX3TXBHm.NaEICPWC7LqoEeKO',NULL,'26-05-2022','0985250657','Vinh Thinh',3,'uploads/images/user/user_1653560708.jpg',NULL,'2022-05-26 10:25:08','2022-05-26 10:25:08');
+INSERT INTO `users` VALUES (1,'Trần Văn Hiệp','tranhieptvh@gmail.com','$2y$10$EbXUXY3oWfSR2fW9kqT6he1FBLF0Ty6zuA197AFjL8G45sW1dmSl6',NULL,'30-07-1997','0985250657','Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',1,NULL,NULL,'2022-05-13 04:43:16','2022-05-13 04:43:16'),(2,'HiệpTV','hieptv@kaopiz.com','$2y$10$L.1c5OI5O/gZ3khkaXXPjuorNJxiBtI7/QdF.1mw//DX2UyYv.kMa',NULL,'30-07-1997','0985250657','Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',2,'uploads/images/user/1653281712_user.jpg','zjhMvcK2PUmLucYQ2GQO8GLGlPARphBh87PgcvXShmv5wuTisN2kihF9MbLm','2022-05-13 04:43:16','2022-05-23 04:55:12'),(3,'Member','member@rubia.com','$2y$10$FmqU.pxdiUhJOWmOZM.NQuN/BTFKQuUT4brSTXB0MaH8z/GXisPGG',NULL,'30-07-1997','0985250657','Vĩnh Phúc, Việt Nam',3,'uploads/images/user/4807137-8844207085-gAwCBk_1658603532.jpeg',NULL,'2022-05-13 06:41:18','2022-07-23 19:12:12'),(4,'Admin','admin@rubia.com','$2y$10$hwxM7cIHMWWwJQY9BbUeM.dzEzM0B.tp/IYQ3wPX3/hL8zOksdcB.',NULL,'30-07-1997','0985250657','Hà Nội, Việt Nam',1,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 09:18:54'),(8,'Trần Hiệp','tranhieptvh97@gmail.com','$2y$10$fLEFPqW2M1WMCPOWY6I9SOqNyT.bWoco4fbrTkH22VuBrJoFS4JWO',NULL,'30-07-1997','0585250657','Số 5 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 08:55:42'),(9,'Trần Hiệp + 6','tranhieptvh97+6@gmail.com','$2y$10$CVqqg8JlRN5kEFk/XvUTd.T7GtIFJsbaVfz/I5.ZQMmokpaWnU83y',NULL,'30-07-1997','0685250657','Số 6 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 08:55:42'),(10,'Trần Hiệp + 7','tranhieptvh97+7@gmail.com','$2y$10$ELS7QymDIGi3rz5Yvkhx7uVFTYCj0EDh3fTebuTx/bwlMg6rxR/wG',NULL,'30-07-1997','0785250657','Số 7 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 08:55:42'),(11,'Trần Hiệp + 8','tranhieptvh97+8@gmail.com','$2y$10$K84vOBPV2da3KqTe8DdAT.AG.ceVSXnAbp705oe/dTLjECtytebHq',NULL,'30-07-1997','0885250657','Số 8 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 08:55:42'),(12,'Trần Hiệp + 9','tranhieptvh97+9@gmail.com','$2y$10$HFrGgL8Gw2m7t4ZPPu/Fp.wKP5pbQ/FtMu1FxFvX2iZUaYI8y2kuq',NULL,'30-07-1997','0985250657','Số 9 Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',3,NULL,NULL,'2022-05-13 08:55:42','2022-05-13 08:55:42'),(18,'Tran Van Hiep','tranhieptvh97+11@gmail.com','$2y$10$AMCB88BT8cedLKMXwT3oCO60.CTtylPCHOWt.cg0qYcixeCz7Sw6W',NULL,'18-05-2022','0985250657','Vinh Thinh',3,NULL,NULL,'2022-05-18 02:25:39','2022-05-18 02:25:39'),(19,'Tran Van Hiep','tranhieptvh+10@gmail.com','$2y$10$4h6axWenw7J6kavtWbd//OziP2hahffm5lTF4UaofH0iZhgLgAm3u',NULL,'30-07-1997','0985250657','Vinh Thinh',3,NULL,NULL,'2022-05-20 00:36:10','2022-05-20 00:36:10'),(21,'Tran Van Hiep','tranhieptvh+12@gmail.com','$2y$10$a2B5FqBv3mcIPYWEuCJIo.0gaHOujAOEouVCPYQalZGRfI0IwwCm2',NULL,'30-07-1997','0985250657','Vinh Thinh',3,NULL,NULL,'2022-05-20 00:36:50','2022-05-20 00:36:50'),(22,'Tran Van Hiep','tranhieptvh+13@gmail.com','$2y$10$xOCbaiEgCeYxVJw0V88fheue12xqnFAz0Gf.ol95C3r8eVEGBv6my',NULL,'30-07-1997','0985250657','Vinh Thinh',3,NULL,NULL,'2022-05-20 02:46:58','2022-05-20 02:46:58'),(23,'Tran Van Hiep','tranhieptvh+14@gmail.com','$2y$10$p4SaMmhHcDJtUrQ0wdn3u.z5ZybVAlBpbX5kgOR30U9V/GDk2qLpW',NULL,'30-07-1997','0985250657','Vinh Thinh',3,NULL,NULL,'2022-05-20 02:49:05','2022-05-20 02:49:05'),(24,'Tran Van Hiep','tranhieptvh+15@gmail.com','$2y$10$g2hFi.wK7J8wx0/QpK/Sdep1kk3e2tm9Mm7BfO.fP9ojNeqmyI/Hy',NULL,'30-07-1997','0985250657','Vinh Thinh',3,'uploads/images/user/user_1653560791.jpg',NULL,'2022-05-20 02:49:29','2022-05-26 10:26:31'),(25,'Tran Van Hiep','tranhieptvh+19@gmail.com','$2y$10$2.K1uZ5gyIU/WL3B2KnQkesNjiRUxX3TXBHm.NaEICPWC7LqoEeKO',NULL,'26-05-2022','0985250657','Vinh Thinh',3,'uploads/images/user/user_1653560708.jpg',NULL,'2022-05-26 10:25:08','2022-05-26 10:25:08'),(28,'Hiệp Trần 99','tranhieptvh97+99@gmail.com','$2y$10$7DngfC9gX9r4Q4cWTe17GONAMlZcVeKG9iCqxTYtKdgs4KXMmcrA.',NULL,'30-07-1997','0985250657','Nam Từ Liêm, Hà Nội',3,NULL,NULL,'2022-07-24 06:33:18','2022-07-24 06:33:18');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -414,4 +393,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-19 19:08:59
+-- Dump completed on 2022-07-24 17:49:19
