@@ -15,6 +15,17 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
+                'name' => 'Admin',
+                'email' => 'admin@rubia.com',
+                'password' => Hash::make(123456),
+                'date_of_birth' => '30-07-1997',
+                'phone' => '0985250657',
+                'address' => 'Hà Nội',
+                'role_id' => '1',
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime(),
+            ],
+            [
                 'name' => 'Trần Văn Hiệp',
                 'email' => 'tranhieptvh@gmail.com',
                 'password' => Hash::make(123456),
