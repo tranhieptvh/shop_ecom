@@ -23,7 +23,7 @@ class OrderController extends Controller
     }
 
     public function index() {
-        $orders = $this->orderRepository->getBuilder()->orderBy('id', 'DESC')->paginate(10);
+        $orders = $this->orderRepository->getOrders(12);
 
         foreach ($orders as $order) {
             $order->total_amount = $this->orderDetailRepository->getTotalAmount($order->id);

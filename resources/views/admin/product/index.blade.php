@@ -28,6 +28,7 @@
                             <option value="">--- Chọn danh mục</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}"
+                                        {{ (!empty($_GET['category_id']) && $category->id == $_GET['category_id']) ? 'selected' : ''}}
                                         class="{{ $category->level == 0 ? 'red bold' : '' }} {{ $category->level == 1 ? 'bold' : '' }}">
                                     {{ str_repeat('|--- ', $category->level) . $category->name }}
                                 </option>
@@ -39,13 +40,15 @@
                         <select class="form-select" name="brand_id" id="">
                             <option value="">--- Chọn thương hiệu</option>
                             @foreach($brands as $brand)
-                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                <option value="{{ $brand->id }}" {{ (!empty($_GET['brand_id']) && $brand->id == $_GET['brand_id']) ? 'selected' : ''}}>
+                                    {{ $brand->name }}
+                                    </option>
                             @endforeach
                         </select>
                     </label>
                     <label>
                         Tên sản phẩm
-                        <input type="text" name="name" class="form-control">
+                        <input type="text" name="name" class="form-control" value="{{ !empty($_GET['name']) ? $_GET['name'] : '' }}">
                     </label>
 
                     <label>
