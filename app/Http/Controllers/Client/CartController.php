@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use stdClass;
 
 class CartController extends Controller
 {
@@ -36,12 +37,20 @@ class CartController extends Controller
         if (Auth::check()) {
             $carts = $this->cartRepository->getBuilder()->where('user_id', Auth::user()->id)->get()->toArray();
             session(['cart' => $carts]);
+
+            $user = Auth::user();
         } else {
             if (session('cart')) {
                 $carts = session('cart');
             } else {
                 $carts = null;
             }
+
+            $user = new StdClass();
+            $user->name = '';
+            $user->phone = '';
+            $user->email = '';
+            $user->address = '';
         }
 
         if ($carts) {
@@ -56,7 +65,7 @@ class CartController extends Controller
             return view('client.cart.index')->with([
                 'carts' => $carts,
                 'total_price' => $total_price,
-
+                'user' => $user,
             ]);
         } else {
             return view('client.cart.index');
@@ -66,6 +75,7 @@ class CartController extends Controller
     public function checkout(CheckoutRequest $request) {
         $data_cart = session('cart');
         $data_info = $request->input();
+        $data_info['code'] = $this->orderRepository->generateUniqueCode();
 
         if (Auth::check()) {
             $data_info['user_id'] = Auth::user()->id;

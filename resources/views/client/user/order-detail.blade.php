@@ -40,7 +40,7 @@
             <div class="overview">
                 <div class="row col-12 mt-1">
                     <span class="col-3"><b>Mã đơn hàng: </b></span>
-                    <span class="col-9">#{{ $order->id }}</span>
+                    <span class="col-9">#{{ $order->code }}</span>
                 </div>
                 <div class="row col-12 mt-1">
                     <span class="col-3"><b>Thời gian đặt hàng: </b></span>
@@ -93,7 +93,9 @@
                 </div>
                 <p class="title mb-3">
                     Thông tin thanh toán
-                    {{--                <span class="check-pass"><i class="ti-check"></i></span>--}}
+                    @if ($order->paid_flg == \App\Order::PAYMENT['PAID']['value'])
+                        <span class="check-pass"><i class="ti-check"></i></span>
+                    @endif
                 </p>
 
                 <div class="row col-12 mt-1">

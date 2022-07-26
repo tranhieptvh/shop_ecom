@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -81,11 +82,11 @@ class UserController extends Controller
         return redirect()->to('/');
     }
 
-    public function orderDetail($id) {
+    public function orderDetail($code) {
         if(Auth::check()) {
             $user_id = Auth::user()->id;
-            $order = $this->orderRepository->find($id);
-            $order->total_amount = $this->orderDetailRepository->getTotalAmount($id);
+            $order = $this->orderRepository->getOrderByCode($code);
+            $order->total_amount = $this->orderDetailRepository->getTotalAmount($order->id);
 
             if (empty($order) || $order->user_id != $user_id) {
                 $order = null;

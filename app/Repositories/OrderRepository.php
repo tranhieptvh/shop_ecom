@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Str;
 use Torann\LaravelRepository\Repositories\AbstractRepository;
 
 class OrderRepository extends AbstractRepository
@@ -33,5 +34,28 @@ class OrderRepository extends AbstractRepository
         }
 
         return $orders->orderBy('id', 'DESC')->paginate($paginate);
+    }
+
+    public function generateUniqueCode() {
+        $code = Str::random(8);
+
+        if ($this->checkExistsCode($code)) {
+            return $this->generateUniqueCode();
+        }
+
+        return $code;
+    }
+
+    public function checkExistsCode($code) {
+        $count = $this->getBuilder()->where('code', $code)->get()->count();
+
+        if ($count > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getOrderByCode($code) {
+        return $this->getBuilder()->where('code', $code)->first();
     }
 }

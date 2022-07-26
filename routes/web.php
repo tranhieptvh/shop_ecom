@@ -20,8 +20,8 @@ Route::prefix('user')->group(function () {
     Route::get('/profile', 'Client\UserController@profile')->name('client.user.profile');
     Route::put('/update/{id}', 'Client\UserController@update')->name('client.user.update');
     Route::get('/purchase', 'Client\UserController@purchase')->name('client.user.purchase');
-    Route::get('/order-detail/{id}', 'Client\UserController@orderDetail')->name('client.user.order-detail');
-    Route::put('/update-evidence/{id}', 'Client\UserController@updateEvidence')->name('client.user.update-evidence');
+    Route::get('/order-detail/{code}', 'Client\UserController@orderDetail')->name('client.user.order-detail');
+    Route::put('/update-evidence/{code}', 'Client\UserController@updateEvidence')->name('client.user.update-evidence');
 });
 
 Route::get('/cart', 'Client\CartController@index')->name('client.cart');

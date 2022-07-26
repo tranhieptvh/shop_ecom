@@ -104,20 +104,16 @@
                                                 <div class="col-lg-12 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label>Họ tên<span>*</span></label>
-                                                        <input type="text" name="name" value="{{ old('name') }}">
+                                                        <input type="text" name="name" value="{{ old('name', $user->name) }}">
                                                         @if ($errors->has('name'))
                                                             <div class="invalid-feedback d-block">{{ $errors->first('name') }}</div>
-{{--                                                            <script>--}}
-{{--                                                                var el = document.getElementById("form-checkout");--}}
-{{--                                                                el.scrollIntoView();--}}
-{{--                                                            </script>--}}
                                                         @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label>Số điện thoại<span>*</span></label>
-                                                        <input type="text" name="phone" value="{{ old('phone') }}">
+                                                        <input type="text" name="phone" value="{{ old('phone', $user->phone) }}">
                                                         @if ($errors->has('phone'))
                                                             <div class="invalid-feedback d-block">{{ $errors->first('phone') }}</div>
                                                         @endif
@@ -126,7 +122,7 @@
                                                 <div class="col-lg-12 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label>Email<span>*</span></label>
-                                                        <input type="text" name="email" value="{{ old('email') }}">
+                                                        <input type="text" name="email" value="{{ old('email', $user->email) }}">
                                                         @if ($errors->has('email'))
                                                             <div class="invalid-feedback d-block">{{ $errors->first('email') }}</div>
                                                         @endif
@@ -135,7 +131,7 @@
                                                 <div class="col-lg-12 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label>Địa chỉ nhận hàng<span>*</span></label>
-                                                        <input type="text" name="address" value="{{ old('address') }}">
+                                                        <input type="text" name="address" value="{{ old('address', $user->address) }}">
                                                         @if ($errors->has('address'))
                                                             <div class="invalid-feedback d-block">{{ $errors->first('address') }}</div>
                                                         @endif
@@ -144,7 +140,9 @@
                                                 <div class="col-lg-12 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label>Ghi chú đơn hàng</label>
-                                                        <textarea name="note" id="" cols="30" rows="5"></textarea>
+                                                        <textarea name="note" id="" cols="30" rows="5">
+                                                            {{ old('note') }}
+                                                        </textarea>
                                                     </div>
                                                 </div>
                                             </div>
