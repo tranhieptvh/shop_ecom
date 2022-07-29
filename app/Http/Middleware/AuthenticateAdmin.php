@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticateAdmin
 {
@@ -16,8 +17,11 @@ class AuthenticateAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::check()) {
-            return redirect()->to('admin/login');
+        $is_admin = Auth::check() && (Auth::user()->role_id == 1 || Auth::user()->role_id == 2);
+        if (!$is_admin) {
+            Auth::logout();
+            Session::flush();
+            return redirect()->to('/admin/login');
         }
         return $next($request);
     }
