@@ -114,6 +114,11 @@
                     </div>
                     <div class="card-footer text-center">
                         <button class="btn btn-success btn-lg" type="submit">Lưu</button>
+
+                        <a href="{{ route('admin.order.export-order', $order->code) }}" class="btn btn-outline-primary d-inline-flex align-items-center m-l-20">
+                            <i data-feather="download"></i>
+                            <span class="m-l-10">Xuất hóa đơn</span>
+                        </a>
                     </div>
                 </form>
             </div>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\InfoRepository;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -13,13 +15,16 @@ class OrderController extends Controller
 {
     protected $orderRepository;
     protected $orderDetailRepository;
+    protected $infoRepository;
 
     public function __construct(
         OrderRepository $orderRepository,
-        OrderDetailRepository $orderDetailRepository
+        OrderDetailRepository $orderDetailRepository,
+        InfoRepository $infoRepository
     ) {
         $this->orderRepository = $orderRepository;
         $this->orderDetailRepository = $orderDetailRepository;
+        $this->infoRepository = $infoRepository;
     }
 
     public function index() {
@@ -67,5 +72,20 @@ class OrderController extends Controller
             Log::error('Message: ' . $e->getMessage() . ' Line: ' . $e->getLine());
             return back();
         }
+    }
+
+    public function exportOrder($code) {
+        $order = $this->orderRepository->getOrderByCode($code);
+        $order->total_amount = $this->orderDetailRepository->getTotalAmount($order->id);
+
+        $info = $this->infoRepository->getInfoShop();
+
+        $data = [];
+        $data['order'] = $order;
+        $data['order_details'] = $order->orderDetails;
+        $data['info'] = $info;
+
+        $pdf = PDF::loadView('pdf.order', compact('data'));
+        return $pdf->download($order->code . '_' . $order->name . '.pdf');
     }
 }

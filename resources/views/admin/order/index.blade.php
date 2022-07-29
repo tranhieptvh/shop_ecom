@@ -20,48 +20,52 @@
             <div class="col-sm-3"></div>
             <div class="col-sm-9">
                 <form action="">
-                    <label>
-                        Trạng thái Thanh toán
-                        <select class="form-select" name="paid_flg" id="">
-                            <option value="">--- Chọn</option>
-                            @foreach(\App\Order::PAYMENT as $payment)
-                                <option value="{{ $payment['value'] }}" {{ (isset($_GET['paid_flg']) && $payment['value'] === $_GET['paid_flg']) ? 'selected' : ''}}>
-                                    {{ $payment['key'] }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </label>
-                    <label>
-                        Trạng thái đơn hàng
-                        <select class="form-select" name="status" id="">
-                            <option value="">--- Chọn</option>
-                            @foreach(\App\Order::STATUS as $status)
-                                <option value="{{ $status['value'] }}" {{ (isset($_GET['status']) && $status['value'] === $_GET['status']) ? 'selected' : ''}}>
-                                    {{ $status['key'] }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </label>
+                    <div>
+                        <label>
+                            Trạng thái Thanh toán
+                            <select class="form-select" name="paid_flg" id="">
+                                <option value="">--- Chọn</option>
+                                @foreach(\App\Order::PAYMENT as $payment)
+                                    <option value="{{ $payment['value'] }}" {{ (isset($_GET['paid_flg']) && $payment['value'] === $_GET['paid_flg']) ? 'selected' : ''}}>
+                                        {{ $payment['key'] }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </label>
+                        <label>
+                            Trạng thái đơn hàng
+                            <select class="form-select" name="status" id="">
+                                <option value="">--- Chọn</option>
+                                @foreach(\App\Order::STATUS as $status)
+                                    <option value="{{ $status['value'] }}" {{ (isset($_GET['status']) && $status['value'] === $_GET['status']) ? 'selected' : ''}}>
+                                        {{ $status['key'] }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </label>
+                    </div>
 
-                    <label>
-                        Mã đơn hàng
-                        <input type="text" name="code" class="form-control" value="{{ !empty($_GET['code']) ? $_GET['code'] : '' }}">
-                    </label>
-                    <label>
-                        Số điện thoại
-                        <input type="text" name="phone" class="form-control" value="{{ !empty($_GET['phone']) ? $_GET['phone'] : '' }}">
-                    </label>
+                    <div>
+                        <label>
+                            Mã đơn hàng
+                            <input type="text" name="code" class="form-control" value="{{ !empty($_GET['code']) ? $_GET['code'] : '' }}">
+                        </label>
+                        <label>
+                            Số điện thoại
+                            <input type="text" name="phone" class="form-control" value="{{ !empty($_GET['phone']) ? $_GET['phone'] : '' }}">
+                        </label>
 
-                    <label>
-                        Email
-                        <input type="text" name="email" class="form-control" value="{{ !empty($_GET['email']) ? $_GET['email'] : '' }}">
-                    </label>
+                        <label>
+                            Email
+                            <input type="text" name="email" class="form-control" value="{{ !empty($_GET['email']) ? $_GET['email'] : '' }}">
+                        </label>
 
-                    <label>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </label>
+                        <label>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </label>
+                    </div>
                 </form>
             </div>
         </div>
