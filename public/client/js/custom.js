@@ -165,8 +165,9 @@ function updateCart(cart_id = null, cart_index ,quantity) {
 
                 view_cart.find('input[name="quantity"]').val(data.cart.quantity);
                 view_cart.find('.total-amount span').text(new Intl.NumberFormat().format(data.cart.price * data.cart.quantity));
-                $('.total-amount .last span').text(new Intl.NumberFormat().format(data.total_price) + ' VNĐ')
                 $('.total-amount .total_bill span').text(new Intl.NumberFormat().format(data.total_price) + ' VNĐ')
+                $('.total-amount .vat span').text(new Intl.NumberFormat().format(data.vat) + ' VNĐ')
+                $('.total-amount .last span').text(new Intl.NumberFormat().format(data.total_price + data.vat) + ' VNĐ')
                 $('.header .sinlge-bar .total-count').text(data.total_quantity);
             }, 1000)
         }
@@ -186,8 +187,9 @@ function deleteCartItem(cart_id, cart_index) {
             console.log(data);
             if (data.result) {
                 $('tr#cart_'+data.cart_index).remove();
-                $('.total-amount .last span').text(new Intl.NumberFormat().format(data.total_price) + ' VNĐ')
                 $('.total-amount .total_bill span').text(new Intl.NumberFormat().format(data.total_price) + ' VNĐ')
+                $('.total-amount .vat span').text(new Intl.NumberFormat().format(data.vat) + ' VNĐ')
+                $('.total-amount .last span').text(new Intl.NumberFormat().format(data.total_price + data.vat) + ' VNĐ')
                 $('.header .sinlge-bar .total-count').text(data.total_quantity);
             }
         }

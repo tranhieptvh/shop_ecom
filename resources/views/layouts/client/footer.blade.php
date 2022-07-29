@@ -68,7 +68,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-12">
                         <div class="left">
-                            <p class="mb-0 text-center">Copyright {{ date('Y') }} © TVH Shop. All Rights Reserved.</p>
+                            <p class="mb-0 text-center">Copyright {{ date('Y') }} © Rubia Shop. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>

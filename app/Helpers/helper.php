@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
+
 function recursive($data, $parent_id = 0, $level = 0) {
     $result = [];
     foreach ($data as $key => $item) {
@@ -30,4 +32,11 @@ function getDateDiffWithNow($datetime) {
     $datetime = new DateTime($datetime);
 
     return $now->diff($datetime)->format("%a");
+}
+
+function sendMail($view, $data, $subject, $to) {
+    Mail::send($view, compact('data'), function($email) use($subject, $to){
+        $email->subject($subject);
+        $email->to($to);
+    });
 }

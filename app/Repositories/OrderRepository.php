@@ -25,6 +25,10 @@ class OrderRepository extends AbstractRepository
             $orders->where('status', $_GET['status']);
         }
 
+        if (!empty($_GET['code'])) {
+            $orders->where('code', 'LIKE', '%' . $_GET['code'] . '%');
+        }
+
         if (!empty($_GET['phone'])) {
             $orders->where('phone', 'LIKE', '%' . $_GET['phone'] . '%');
         }

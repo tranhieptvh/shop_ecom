@@ -44,6 +44,10 @@
                     </label>
 
                     <label>
+                        Mã đơn hàng
+                        <input type="text" name="code" class="form-control" value="{{ !empty($_GET['code']) ? $_GET['code'] : '' }}">
+                    </label>
+                    <label>
                         Số điện thoại
                         <input type="text" name="phone" class="form-control" value="{{ !empty($_GET['phone']) ? $_GET['phone'] : '' }}">
                     </label>
@@ -68,6 +72,7 @@
                         <thead>
                         <tr class="table-primary">
                             <th scope="col">STT</th>
+                            <th scope="col">Mã đơn hàng</th>
                             <th scope="col">Tên khách hàng</th>
                             <th scope="col">Tổng tiền (VNĐ)</th>
                             <th scope="col">Phương thức thanh toán</th>
@@ -80,8 +85,9 @@
                         @foreach ($orders as $key => $order)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
+                                <td>#{{ $order->code }}</td>
                                 <td>{{ $order->name }}</td>
-                                <td>{{ number_format($order->total_amount) }}</td>
+                                <td>{{ number_format($order->total) }}</td>
                                 <td>{{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}</td>
                                 <td>{{ $order->paid_flg == \App\Order::PAYMENT['UNPAID']['value'] ? \App\Order::PAYMENT['UNPAID']['key'] : \App\Order::PAYMENT['PAID']['key'] }}</td>
                                 <td>
@@ -91,7 +97,7 @@
                                 </td>
                                 <td>
                                     <div style="display: flex;">
-                                        <a href="{{ route('admin.order.view', $order->id) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('admin.order.view', $order->code) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-eye"></i></a>
                                     </div>
                                 </td>
                             </tr>

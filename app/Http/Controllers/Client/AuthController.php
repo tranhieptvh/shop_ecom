@@ -8,7 +8,9 @@ use App\Http\Requests\RegisterRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
@@ -55,10 +57,26 @@ class AuthController extends Controller
         $user_data['password'] = Hash::make($user_data['password']);
         $user_data['role_id'] = \App\Role::ROLE['MEMBER'];
 
-        $user = $this->userRepository->create($user_data);
+        DB::beginTransaction();
+        try {
+            $user = $this->userRepository->create($user_data);
 
-        return redirect()->route('client.auth.index')->with([
-            'success' => 'Đăng ký thành công, vui lòng đăng nhập!'
-        ]);
+            $view = 'emails.register';
+            $data = [];
+            $data['email'] = $user->email;
+            $data['name'] = $user->name;
+            $subject = 'Đăng ký tài khoản Rubia Shop thành công!';
+            $to = $user->email;
+            sendmail($view, $data, $subject, $to);
+
+            DB::commit();
+            return redirect()->route('client.auth.index')->with([
+                'success' => 'Đăng ký thành công, vui lòng đăng nhập!'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Message: ' . $e->getMessage() . ' Line: ' . $e->getLine());
+            return back();
+        }
     }
 }

@@ -25,18 +25,18 @@ class OrderController extends Controller
     public function index() {
         $orders = $this->orderRepository->getOrders(12);
 
-        foreach ($orders as $order) {
-            $order->total_amount = $this->orderDetailRepository->getTotalAmount($order->id);
-        }
+//        foreach ($orders as $order) {
+//            $order->total_amount = $this->orderDetailRepository->getTotalAmount($order->id);
+//        }
 
         return view('admin.order.index')->with([
             'orders' => $orders,
         ]);
     }
 
-    public function view($id) {
-        $order = $this->orderRepository->find($id);
-        $order->total_amount = $this->orderDetailRepository->getTotalAmount($id);
+    public function view($code) {
+        $order = $this->orderRepository->getOrderByCode($code);
+//        $order->total_amount = $this->orderDetailRepository->getTotalAmount($id);
 
         return view('admin.order.view')->with([
             'order' => $order,

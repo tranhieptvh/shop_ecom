@@ -448,6 +448,10 @@
 .payment .info-banking img.qr-code {
     width: 50%;
 }
+img.zalo-qr-code {
+    width: 40%;
+    margin-left: 50px;
+}
 .payment .info-banking img.zalo {
     vertical-align: bottom;
     width: 5%;

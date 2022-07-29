@@ -68,9 +68,9 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Tổng tiền (VNĐ)</label>
+                                <label class="col-sm-3 col-form-label">Tổng tiền (+VAT) (VNĐ)</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total_amount) }}" disabled>
+                                    <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total) }}" disabled>
                                 </div>
                             </div>
                             <div class="mb-3 row">

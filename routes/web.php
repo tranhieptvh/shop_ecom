@@ -2,31 +2,33 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'Client\HomeController@index')->name('/');
+Route::group(['domain' => env('APP_URL')], function() {
+    Route::get('/', 'Client\HomeController@index')->name('/');
 
-Route::get('login', 'Client\AuthController@index')->name('client.auth.index');
-Route::post('login', 'Client\AuthController@login')->name('client.auth.login');
-Route::get('logout', 'Client\AuthController@logout')->name('client.auth.logout');
-Route::get('register', 'Client\AuthController@register')->name('client.auth.register');
-Route::post('post-register', 'Client\AuthController@postRegister')->name('client.auth.post-register');
+    Route::get('login', 'Client\AuthController@index')->name('client.auth.index');
+    Route::post('login', 'Client\AuthController@login')->name('client.auth.login');
+    Route::get('logout', 'Client\AuthController@logout')->name('client.auth.logout');
+    Route::get('register', 'Client\AuthController@register')->name('client.auth.register');
+    Route::post('post-register', 'Client\AuthController@postRegister')->name('client.auth.post-register');
 
-Route::get('/category/{slug}', 'Client\ProductController@category')->name('client.product.category');
-Route::prefix('product')->group(function () {
-    Route::get('/', 'Client\ProductController@index')->name('client.product.index');
-    Route::get('/{slug}', 'Client\ProductController@detail')->name('client.product.detail');
+    Route::get('/category/{slug}', 'Client\ProductController@category')->name('client.product.category');
+    Route::prefix('product')->group(function () {
+        Route::get('/', 'Client\ProductController@index')->name('client.product.index');
+        Route::get('/{slug}', 'Client\ProductController@detail')->name('client.product.detail');
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::get('/profile', 'Client\UserController@profile')->name('client.user.profile');
+        Route::put('/update/{id}', 'Client\UserController@update')->name('client.user.update');
+        Route::get('/purchase', 'Client\UserController@purchase')->name('client.user.purchase');
+        Route::get('/order-detail/{code}', 'Client\UserController@orderDetail')->name('client.user.order-detail');
+        Route::put('/update-evidence/{code}', 'Client\UserController@updateEvidence')->name('client.user.update-evidence');
+    });
+
+    Route::get('/cart', 'Client\CartController@index')->name('client.cart');
+    Route::post('/checkout', 'Client\CartController@checkout')->name('client.checkout');
+    Route::get('/thank', 'Client\CartController@thank')->name('client.thank');
 });
-
-Route::prefix('user')->group(function () {
-    Route::get('/profile', 'Client\UserController@profile')->name('client.user.profile');
-    Route::put('/update/{id}', 'Client\UserController@update')->name('client.user.update');
-    Route::get('/purchase', 'Client\UserController@purchase')->name('client.user.purchase');
-    Route::get('/order-detail/{code}', 'Client\UserController@orderDetail')->name('client.user.order-detail');
-    Route::put('/update-evidence/{code}', 'Client\UserController@updateEvidence')->name('client.user.update-evidence');
-});
-
-Route::get('/cart', 'Client\CartController@index')->name('client.cart');
-Route::post('/checkout', 'Client\CartController@checkout')->name('client.checkout');
-Route::get('/thank', 'Client\CartController@thank')->name('client.thank');
 
 // ADMIN
 Route::prefix('admin')->group(function () {
@@ -83,7 +85,7 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('order')->group(function () {
             Route::get('/', 'Admin\OrderController@index')->name('admin.order.index');
-            Route::get('/view/{id}', 'Admin\OrderController@view')->name('admin.order.view');
+            Route::get('/view/{code}', 'Admin\OrderController@view')->name('admin.order.view');
             Route::put('/update/{id}', 'Admin\OrderController@update')->name('admin.order.update');
         });
     });

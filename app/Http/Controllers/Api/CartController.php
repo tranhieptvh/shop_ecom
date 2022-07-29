@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\CartHelper;
 use App\Http\Controllers\Controller;
 use App\Repositories\CartRepository;
+use App\Repositories\InfoRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\UserRepository;
 
@@ -13,15 +14,19 @@ class CartController extends Controller
     protected $productRepository;
     protected $cartRepository;
     protected $userRepository;
+    protected $infoRepository;
 
     public function __construct(
         CartRepository $cartRepository,
         ProductRepository $productRepository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        InfoRepository $infoRepository
+
     ) {
         $this->cartRepository = $cartRepository;
         $this->productRepository = $productRepository;
         $this->userRepository = $userRepository;
+        $this->infoRepository = $infoRepository;
     }
 
     public function add(CartHelper $cart) {
@@ -62,8 +67,12 @@ class CartController extends Controller
             $cart = $carts[$cart_session_index];
         }
 
+        $info = $this->infoRepository->getInfoShop();
+
         $total_quantity = $this->getTotalQuantity($carts);
         $total_price = $this->getTotalPrice($carts);
+        $vat = $total_price * $info->vat / 100;
+
         session(['cart' => $carts]);
         session(['total_quantity' => $total_quantity]);
         session(['total_price' => $total_price]);
@@ -72,6 +81,7 @@ class CartController extends Controller
             'cart' => $cart,
             'total_quantity' => $total_quantity,
             'total_price' => $total_price,
+            'vat' => $vat,
         ]);
     }
 
@@ -90,8 +100,12 @@ class CartController extends Controller
             $result = true;
         }
 
+        $info = $this->infoRepository->getInfoShop();
+
         $total_quantity = $this->getTotalQuantity($carts);
         $total_price = $this->getTotalPrice($carts);
+        $vat = $total_price * $info->vat / 100;
+
         session(['cart' => $carts]);
         session(['total_quantity' => $total_quantity]);
         session(['total_price' => $total_price]);
@@ -101,6 +115,7 @@ class CartController extends Controller
             'cart_index' => $cart_session_index,
             'total_quantity' => $total_quantity,
             'total_price' => $total_price,
+            'vat' => $vat,
         ]);
     }
 

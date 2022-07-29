@@ -140,9 +140,7 @@
                                                 <div class="col-lg-12 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label>Ghi chú đơn hàng</label>
-                                                        <textarea name="note" id="" cols="30" rows="5">
-                                                            {{ old('note') }}
-                                                        </textarea>
+                                                        <textarea name="note" id="" cols="30" rows="5">{{ old('note') }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,6 +153,13 @@
                                             <h5>Thanh toán</h5>
                                             <div>
                                                 <div class="col-lg-12 col-md-12 col-12">
+                                                    <div class="mb-4">
+                                                        <p><b>Lưu ý</b>: Quý khách vui lòng liên hệ <b>Rubia Shop</b> theo thông tin dưới đây trước khi thực hiện đặt hàng hoặc chuyển khoản:</p>
+                                                        <p>Số điện thoại: {{ $info->phone }}</p>
+                                                        <p>Địa chỉ: {{ $info->address }}</p>
+                                                        <p><b>Hoặc Zalo:</b></p>
+                                                        <img src="{{ asset($info->zalo_qr) }}" alt="ZALO QR CODE" class="zalo-qr-code">
+                                                    </div>
                                                     <div class="form-group payment-method">
                                                         <label class="method-item active">
                                                             Trả tiền mặt khi nhận hàng
@@ -167,16 +172,10 @@
                                                     </div>
 
                                                     <div class="info-banking">
-                                                        <p><b>Lưu ý</b>: Quý khách vui lòng liên hệ shop theo thông tin dưới đây trước khi chuyển khoản:</p>
-                                                        <p>Số điện thoại: +84 985250657</p>
-                                                        <p>Hoặc Zalo: &nbsp; <a href="https://chat.zalo.me/?c=1507282913207556787" target="_blank">
-                                                                <img src="{{ asset('/client/images/zalo.svg') }}" alt="" class="zalo">
-                                                            </a></p>
-                                                        <br>
                                                         <p><b>Thông tin chuyển khoản:</b></p>
-                                                        <p>Vietcombank chi nhánh Tây Hồ - 1016081089 - TRAN VAN HIEP</p>
-                                                        <p>Hoặc quét mã QR:</p>
-                                                        <img src="{{ asset('/client/images/payment_qrcode.png') }}" alt="QR CODE" class="qr-code">
+                                                        <p>{{ $info->bank }}</p>
+                                                        <p><b>Hoặc quét mã QR:</b></p>
+                                                        <img src="{{ asset($info->bank_qr) }}" alt="QR CODE" class="qr-code">
                                                     </div>
                                                 </div>
                                             </div>
@@ -192,7 +191,8 @@
                                                 <ul>
                                                     <li class="total_bill">Hóa đơn<span>{{ number_format($total_price) }} VNĐ</span></li>
                                                     <li>(+) Ship<span>Free</span></li>
-                                                    <li class="last">Tổng<span>{{ number_format($total_price) }} VNĐ</span></li>
+                                                    <li class="vat">(+) VAT ({{ $info->vat }}%)<span>{{ number_format($total_price * 0.1) }}</span></li>
+                                                    <li class="last">Tổng<span>{{ number_format($total_price * 1.1) }} VNĐ</span></li>
                                                 </ul>
                                             </div>
                                         </div>

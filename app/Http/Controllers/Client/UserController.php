@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClientUserUpdateRequest;
+use App\Repositories\InfoRepository;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\UserRepository;
@@ -18,15 +19,18 @@ class UserController extends Controller
     protected $userRepository;
     protected $orderRepository;
     protected $orderDetailRepository;
+    protected $infoRepository;
 
     public function __construct(
         UserRepository $userRepository,
         OrderRepository $orderRepository,
-        OrderDetailRepository $orderDetailRepository
+        OrderDetailRepository $orderDetailRepository,
+        InfoRepository $infoRepository
     ) {
         $this->userRepository = $userRepository;
         $this->orderRepository = $orderRepository;
         $this->orderDetailRepository = $orderDetailRepository;
+        $this->infoRepository = $infoRepository;
     }
 
     public function profile() {
@@ -71,9 +75,9 @@ class UserController extends Controller
         if(Auth::check()) {
             $user_id = Auth::user()->id;
             $orders = $this->orderRepository->getBuilder()->where('user_id', $user_id)->orderBy('id', 'DESC')->get();
-            foreach ($orders as $order) {
-                $order->total_amount = $this->orderDetailRepository->getTotalAmount($order->id);
-            }
+//            foreach ($orders as $order) {
+//                $order->total_amount = $this->orderDetailRepository->getTotalAmount($order->id);
+//            }
 
             return view('client.user.purchase')->with([
                 'orders' => $orders,
@@ -92,8 +96,11 @@ class UserController extends Controller
                 $order = null;
             }
 
+            $info = $this->infoRepository->getInfoShop();
+
             return view('client.user.order-detail')->with([
                 'order' => $order,
+                'info' => $info,
             ]);
         }
         return redirect()->to('/');
