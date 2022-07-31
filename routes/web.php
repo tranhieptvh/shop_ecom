@@ -37,6 +37,8 @@ Route::get('/thank', 'Client\CartController@thank')->name('client.thank');
 
 Route::get('/contact', 'Client\ContactController@index')->name('client.contact');
 Route::get('/deposit', 'Client\ContactController@deposit')->name('client.deposit');
+Route::get('/transport', 'Client\PolicyController@transport')->name('client.transport');
+Route::get('/refund', 'Client\PolicyController@refund')->name('client.refund');
 
 // ADMIN
 Route::prefix('admin')->group(function () {
