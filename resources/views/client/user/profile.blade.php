@@ -65,7 +65,7 @@
                 <div class="form-group row col-12">
                     <label class="col-3">Ngày sinh<span>*</span></label>
                     <div class="col-9">
-                        <input type="text" name="date_of_birth" value="{{ old('date_of_birth', $user->date_of_birth) }}">
+                        <input type="date" name="date_of_birth" value="{{ old('date_of_birth', date_format(date_create($user->date_of_birth), 'Y-m-d')) }}">
                         @if ($errors->has('date_of_birth'))
                             <div class="invalid-feedback d-block">{{ $errors->first('date_of_birth') }}</div>
                         @endif

@@ -49,6 +49,7 @@ class UserController extends Controller
     public function update(ClientUserUpdateRequest $request, $id)
     {
         $user_data = $request->input();
+        $user_data['date_of_birth'] = date_format(date_create($user_data['date_of_birth']), 'd-m-Y');
 
         DB::beginTransaction();
         try {

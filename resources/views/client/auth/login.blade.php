@@ -18,9 +18,15 @@
 
                                         <h1 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Đăng nhập</h1>
 
+                                        @if (session('success'))
+                                            <div class="alert alert-success dark alert-dismissible fade show" role="alert">
+                                                {!! session('success') !!}
+                                                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                                            </div>
+                                        @endif
                                         @if (session('error'))
                                             <div class="alert alert-danger dark alert-dismissible fade show" role="alert">
-                                                {{ session('error') }}
+                                                {!! session('error') !!}
                                                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
                                             </div>
                                         @endif
