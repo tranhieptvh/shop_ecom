@@ -22,7 +22,7 @@
                 <form action="">
                     <div>
                         <label>
-                            Trạng thái Thanh toán
+                            Trạng thái thanh toán
                             <select class="form-select" name="paid_flg" id="">
                                 <option value="">--- Chọn</option>
                                 @foreach(\App\Order::PAYMENT as $payment)
@@ -92,12 +92,20 @@
                                 <td>#{{ $order->code }}</td>
                                 <td>{{ $order->name }}</td>
                                 <td>{{ number_format($order->total) }}</td>
-                                <td>{{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}</td>
-                                <td>{{ $order->paid_flg == \App\Order::PAYMENT['UNPAID']['value'] ? \App\Order::PAYMENT['UNPAID']['key'] : \App\Order::PAYMENT['PAID']['key'] }}</td>
                                 <td>
-                                    @foreach(\App\Order::STATUS as $status)
-                                        {{ $order->status == $status['value'] ? $status['key'] : '' }}
-                                    @endforeach
+                                    {{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}
+                                </td>
+                                <td>
+                                    <span class="flag {{ $order->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? 'paid' : 'unpaid'}}">
+                                        {{ $order->paid_flg == \App\Order::PAYMENT['UNPAID']['value'] ? \App\Order::PAYMENT['UNPAID']['key'] : \App\Order::PAYMENT['PAID']['key'] }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="flag {{ 'status_' . $order->status }}">
+                                        @foreach(\App\Order::STATUS as $status)
+                                            {{ $order->status == $status['value'] ? $status['key'] : '' }}
+                                        @endforeach
+                                    </span>
                                 </td>
                                 <td>
                                     <div style="display: flex;">

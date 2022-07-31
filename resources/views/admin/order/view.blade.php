@@ -73,18 +73,7 @@
                                     <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total) }}" disabled>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Trạng thái đơn hàng</label>
-                                <div class="col-sm-9">
-                                    <select class="form-select" name="status">
-                                        @foreach(\App\Order::STATUS as $status)
-                                            <option value="{{ $status['value'] }}" {{ $order->status == $status['value'] ? 'selected' : ''}}>
-                                                {{ $status['key'] }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                            <hr>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Trạng thái thanh toán</label>
                                 <div class="col-sm-9">
@@ -110,6 +99,19 @@
                                     </div>
                                 </div>
                             @endif
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Trạng thái đơn hàng</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" name="status">
+                                        @foreach(\App\Order::STATUS as $status)
+                                            <option value="{{ $status['value'] }}" {{ $order->status == $status['value'] ? 'selected' : ''}}>
+                                                {{ $status['key'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-center">

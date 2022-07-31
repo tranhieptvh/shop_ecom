@@ -79,8 +79,22 @@
                         <td style="border: 1px solid;"><b>{{ number_format($data['order']->total_amount * $data['info']->vat / 100) }}</b></td>
                     </tr>
                     <tr>
+                        <td colspan="4" style="border: 1px solid;"><b>Đã thanh toán (VNĐ)</b></td>
+                        <td style="border: 1px solid;">
+                            <b>
+                                {{ $data['order']->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? number_format($data['order']->total) : 0 }}
+                            </b>
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan="4" style="border: 1px solid;"><span style="color: red;"><b>Tổng (VNĐ)</b></span></td>
-                        <td style="border: 1px solid;"><span style="color: red;"><b>{{ number_format($data['order']->total) }}</b></span></td>
+                        <td style="border: 1px solid;">
+                            <span style="color: red;">
+                                <b>
+                                    {{ $data['order']->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? 0 : number_format($data['order']->total) }}
+                                </b>
+                            </span>
+                        </td>
                     </tr>
                     </tfoot>
                 </table>

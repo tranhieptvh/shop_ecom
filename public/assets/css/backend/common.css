@@ -50,3 +50,34 @@ form .required {
 .red {
     color: red !important;
 }
+
+.flag {
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #fff;
+}
+.paid {
+    background: #4fb724;
+}
+.unpaid {
+    background: #ff2c18;
+}
+
+.flag.status_0 {
+    background: #25cff2;
+}
+.flag.status_1 {
+    background: #2e9de4;
+}
+.flag.status_2 {
+    background: #fad42e;
+}
+.flag.status_3 {
+    background: #00ff00;
+}
+.flag.status_4 {
+    background: #4fb724;
+}
+.flag.status_5 {
+    background: #ff2c18;
+}
