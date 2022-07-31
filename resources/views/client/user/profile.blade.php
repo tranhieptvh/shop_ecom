@@ -21,12 +21,6 @@
 @endsection
 
 @section('content')
-    @if (session('success'))
-        <div class="alert alert-success dark alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
-        </div>
-    @endif
 
     <div class="wrap-title mb-4 pb-1">
         <h3>Hồ Sơ Của Tôi</h3>
@@ -34,6 +28,13 @@
     </div>
 
     <div class="info">
+        @if (session('success'))
+            <div class="alert alert-success dark alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+            </div>
+        @endif
+
         <form action="{{ route('client.user.update', $user->id) }}" enctype="multipart/form-data" method="POST" class="form">
             @csrf
             @method('PUT')

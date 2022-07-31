@@ -52,6 +52,12 @@
                             <span>Danh sách đơn hàng</span>
                         </a>
                     </div>
+                    <div class="menu-item {{ request()->route()->getName() == 'client.user.change-password' ? 'active' : '' }}">
+                        <a href="{{ route('client.user.change-password') }}">
+                            <i class="ti-key"></i> &nbsp;
+                            <span>Đổi mật khẩu</span>
+                        </a>
+                    </div>
                     <div class="menu-item">
                         <a href="{{ route('client.auth.logout') }}">
                             <i class="ti-arrow-right"></i> &nbsp;

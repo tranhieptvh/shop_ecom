@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ClientUserUpdateRequest;
 use App\Repositories\InfoRepository;
 use App\Repositories\OrderDetailRepository;
@@ -11,6 +12,7 @@ use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -130,6 +132,43 @@ class UserController extends Controller
                     'error' => 'Đơn hàng không tồn tại.',
                 ]);
             }
+        }
+        return redirect()->to('/');
+    }
+
+    public function changePassword() {
+        return view('client.user.change-password');
+    }
+
+    public function postChangePassword(Request $request) {
+        if(Auth::check()) {
+            if (!(Hash::check($request->get('password'), Auth::user()->password))) {
+                return redirect()->back()->with("error", "Vui lòng nhập đúng mật khẩu hiện tại!");
+            }
+
+            if(strcmp($request->get('password'), $request->get('new-password')) == 0){
+                return redirect()->back()->with("error", "Mật khẩu mới phải khác mật khẩu hiện tại!");
+            }
+
+            if(!(strcmp($request->get('new-password'), $request->get('new-password-confirm')) == 0)){
+                return redirect()->back()->with("error", "Vui lòng nhập lại đúng mật khẩu mới!");
+            }
+
+            $rules = [
+                'password' => 'required',
+                'new-password' => 'required|string|min:6',
+            ];
+            $attrNames = [
+                'password' => 'Mật khẩu hiện tại',
+                'new-password' => 'Mật khẩu mới',
+            ];
+            $request->validate($rules, [], $attrNames);
+
+            $user = Auth::user();
+            $user->password = Hash::make($request->get('new-password'));
+            $user->save();
+
+            return redirect()->back()->with("success", "Đổi mật khẩu thành công!");
         }
         return redirect()->to('/');
     }

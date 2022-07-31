@@ -13,17 +13,17 @@
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
-                                    @if (session('success'))
-                                        <div class="alert alert-success dark alert-dismissible fade show" role="alert">
-                                            {{ session('success') }}
-                                            <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
-                                        </div>
-                                    @endif
-
                                     <form action="{{ route('client.auth.login') }}" method="POST">
                                         @csrf
 
                                         <h1 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Đăng nhập</h1>
+
+                                        @if (session('error'))
+                                            <div class="alert alert-danger dark alert-dismissible fade show" role="alert">
+                                                {{ session('error') }}
+                                                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                                            </div>
+                                        @endif
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="email">Email</label>

@@ -31,14 +31,13 @@ class AuthController extends Controller
     }
 
     public function login(LoginRequest $request) {
-        $remember = $request->has('remember_me') ? true : false;
         if (Auth::attempt([
             'email' => $request->email,
             'password' => $request->password,
-        ], $remember)) {
+        ])) {
             return redirect()->to('/');
         }
-        return view('client.auth.login')->with('error', 'Đăng nhập không thành công, vui lòng thử lại!');
+        return back()->with('error', 'Email hoặc mật khẩu không đúng, vui lòng thử lại!');
     }
 
     public function logout() {

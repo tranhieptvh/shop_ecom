@@ -26,6 +26,8 @@ Route::prefix('user')->group(function () {
     Route::get('/purchase', 'Client\UserController@purchase')->name('client.user.purchase');
     Route::get('/order-detail/{code}', 'Client\UserController@orderDetail')->name('client.user.order-detail');
     Route::put('/update-evidence/{code}', 'Client\UserController@updateEvidence')->name('client.user.update-evidence');
+    Route::get('/change-password', 'Client\UserController@changePassword')->name('client.user.change-password');
+    Route::post('/post-change-password', 'Client\UserController@postChangePassword')->name('client.user.post-change-password');
 });
 
 Route::get('/cart', 'Client\CartController@index')->name('client.cart');
