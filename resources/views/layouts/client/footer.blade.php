@@ -19,9 +19,9 @@
                     <div class="single-footer links">
                         <h4>Thông tin</h4>
                         <ul>
-                            <li><a href="#">Liên hệ</a></li>
-                            <li><a href="#">Cửa hàng</a></li>
-                            <li><a href="#">Ký gửi & trao đổi</a></li>
+                            <li><a href="{{ route('client.contact') }}">Liên hệ</a></li>
+{{--                            <li><a href="#">Cửa hàng</a></li>--}}
+                            <li><a href="{{ route('client.deposit') }}">Ký gửi & trao đổi</a></li>
                         </ul>
                     </div>
                     <!-- End Single Widget -->

@@ -595,3 +595,18 @@ img.zalo-qr-code {
 span.required {
     color: red;
 }
+
+/*====== Contact =========*/
+.contact p {
+    margin-top: 0.25rem;
+}
+.contact ul li {
+    list-style: unset;
+}
+.contact ul {
+    padding-left: 50px;
+    list-style-type: square;
+}
+.contact .example {
+    text-align: center;
+}
