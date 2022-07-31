@@ -1,5 +1,9 @@
 @extends('layouts.client.master')
 
+@section('title')
+    {{ $category->name }}
+@endsection
+
 @section('style')
 @endsection
 

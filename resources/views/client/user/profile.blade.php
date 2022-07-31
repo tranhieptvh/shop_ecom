@@ -1,5 +1,9 @@
 @extends('layouts.client.profile')
 
+@section('title')
+    Thông tin cá nhân
+@endsection
+
 @section('style')
 @endsection
 

@@ -1,5 +1,9 @@
 @extends('layouts.client.master')
 
+@section('title')
+    Chính sách giao hàng
+@endsection
+
 @section('style')
 @endsection
 
@@ -11,7 +15,7 @@
                     <div class="bread-inner">
                         <ul class="bread-list">
                             <li><a href="{{ route('/') }}">Trang chủ<i class="ti-arrow-right"></i></a></li>
-                            <li class="active">Giao hàng</li>
+                            <li class="active">Chính sách giao hàng</li>
                         </ul>
                     </div>
                 </div>

@@ -1,5 +1,9 @@
 @extends('layouts.client.master')
 
+@section('title')
+    Liên hệ
+@endsection
+
 @section('style')
 @endsection
 

@@ -1,5 +1,9 @@
 @extends('layouts.client.master')
 
+@section('title')
+    {{ $product->name }}
+@endsection
+
 @section('style')
 @endsection
 
