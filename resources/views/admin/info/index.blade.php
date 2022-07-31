@@ -57,9 +57,9 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Zalo QR code</label>
+                                <label class="col-sm-3 col-form-label">Zalo QR code <span class="required">*</span></label>
                                 <div class="col-sm-9">
-                                    <input class="d-none" type="file" name="zalo_qr" id="zalo_qr" value="{{ old('zalo_qr') }}" onchange="preview(frame_zalo)">
+                                    <input class="d-none" type="file" name="zalo_qr" id="zalo_qr" value="{{ old('zalo_qr') }}" onchange="previewQrCode(frame_zalo)">
                                     <button class="btn btn-primary m-b-5" type="button" onclick=" document.getElementById('zalo_qr').click()">Chọn ảnh</button>
                                     @if ($errors->has('zalo_qr'))
                                         <div class="invalid-feedback validated">{{ $errors->first('zalo_qr') }}</div>
@@ -80,9 +80,9 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Banking QR code</label>
+                                <label class="col-sm-3 col-form-label">Banking QR code <span class="required">*</span></label>
                                 <div class="col-sm-9">
-                                    <input class="d-none" type="file" name="bank_qr" id="bank_qr" value="{{ old('bank_qr') }}" onchange="preview(frame_bank)">
+                                    <input class="d-none" type="file" name="bank_qr" id="bank_qr" value="{{ old('bank_qr') }}" onchange="previewQrCode(frame_bank)">
                                     <button class="btn btn-primary m-b-5" type="button" onclick=" document.getElementById('bank_qr').click()">Chọn ảnh</button>
                                     @if ($errors->has('bank_qr'))
                                         <div class="invalid-feedback validated">{{ $errors->first('bank_qr') }}</div>
@@ -96,7 +96,7 @@
 
                             <hr>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">VAT <span class="required">*</span></label>
+                                <label class="col-sm-3 col-form-label">VAT (%) <span class="required">*</span></label>
                                 <div class="col-sm-9">
                                     <input class="form-control" type="text" name="vat" value="{{ old('vat', $info->vat) }}">
                                     @if ($errors->has('vat'))

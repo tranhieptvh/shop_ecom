@@ -57,8 +57,15 @@ $("input[name='price']").keyup(function (e) {
     } );
 });
 
-function preview(idFrame = 'frame') {
+function preview() {
     frame.src=URL.createObjectURL(event.target.files[0]);
+    if ($('#frame').hasClass('hidden')) {
+        $('#frame').removeClass('hidden');
+    }
+}
+
+function previewQrCode(idFrame) {
+    idFrame.src=URL.createObjectURL(event.target.files[0]);
     if ($('#frame').hasClass('hidden')) {
         $('#frame').removeClass('hidden');
     }
