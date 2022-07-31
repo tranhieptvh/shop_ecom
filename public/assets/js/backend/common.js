@@ -57,7 +57,7 @@ $("input[name='price']").keyup(function (e) {
     } );
 });
 
-function preview() {
+function preview(idFrame = 'frame') {
     frame.src=URL.createObjectURL(event.target.files[0]);
     if ($('#frame').hasClass('hidden')) {
         $('#frame').removeClass('hidden');

@@ -93,6 +93,11 @@ Route::prefix('admin')->group(function () {
             Route::put('/update/{id}', 'Admin\OrderController@update')->name('admin.order.update');
             Route::get('/export-order/{code}', 'Admin\OrderController@exportOrder')->name('admin.order.export-order');
         });
+
+        Route::prefix('info')->group(function () {
+            Route::get('/', 'Admin\InfoController@index')->name('admin.info.index');
+            Route::post('/update', 'Admin\InfoController@update')->name('admin.info.update');
+        });
     });
 });
 
