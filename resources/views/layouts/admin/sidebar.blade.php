@@ -37,7 +37,7 @@
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/brand' ? 'active' : '' }}" href="{{ route('admin.brand.index') }}">
                             <i data-feather="list"></i>
-                            <span class="lan-3">Thương hiệu</span>
+                            <span class="lan-3">Nhãn hàng</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>

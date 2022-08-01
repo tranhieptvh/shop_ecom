@@ -7,11 +7,11 @@
 @endsection
 
 @section('breadcrumb-title')
-    <h3>Quản lý thương hiệu</h3>
+    <h3>Quản lý nhãn hàng</h3>
 @endsection
 
 @section('breadcrumb-items')
-    <li class="breadcrumb-item">Quản lý thương hiệu</li>
+    <li class="breadcrumb-item">Quản lý nhãn hàng</li>
 @endsection
 
 @section('content')
