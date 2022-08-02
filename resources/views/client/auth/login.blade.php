@@ -12,7 +12,7 @@
                     <div>
                         <div class="row align-items-center g-0">
                             <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img src="https://ruoungoai.net/uploads/chivas-regal-18-den.jpg"
+                                <img src="{{ asset('logo/login.jpg') }}"
                                      alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
