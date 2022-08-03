@@ -44,9 +44,9 @@
                         <!-- Single Widget -->
                         <div class="contact">
                             <ul>
-                                <li>Nam Từ Liêm, Hà Nội</li>
-                                <li>tranhieptvh@gmail.com</li>
-                                <li>0985 250 657</li>
+                                <li>{{ $info->address }}</li>
+                                <li>{{ $info->email }}</li>
+                                <li>{{ $info->phone }}</li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->

@@ -597,16 +597,16 @@ span.required {
 }
 
 /*====== Contact =========*/
-.contact p {
+.contact-page p {
     margin-top: 0.25rem;
 }
-.contact ul li {
+.contact-page ul li {
     list-style: unset;
 }
-.contact ul {
+.contact-page ul {
     padding-left: 50px;
     list-style-type: square;
 }
-.contact .example {
+.contact-page .example {
     text-align: center;
 }

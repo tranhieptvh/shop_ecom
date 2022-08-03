@@ -26,7 +26,7 @@
 
 @section('content')
 
-    <div class="contact  mt-3 mb-5">
+    <div class="contact-page  mt-3 mb-5">
         <div class="container">
             <div class="row col-12">
                 <h2>GIỚI THIỆU</h2>
