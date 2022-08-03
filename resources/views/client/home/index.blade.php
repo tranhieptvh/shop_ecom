@@ -62,7 +62,7 @@
 {{--                                        <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">--}}
                                             <div class="stock">
                                                 <span class="out-of-stock">Hot</span>
-                                                <span class="new">Best seller</span>
+{{--                                                <span class="new">Best seller</span>--}}
                                             </div>
                                     </a>
                                     <div class="button-head">
