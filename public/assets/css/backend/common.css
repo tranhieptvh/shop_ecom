@@ -60,11 +60,11 @@ form .required {
     background: #4fb724;
 }
 .unpaid {
-    background: #ff2c18;
+    background: #9c9c9c;
 }
 
 .flag.status_0 {
-    background: #25cff2;
+    background: #9c9c9c;
 }
 .flag.status_1 {
     background: #2e9de4;
@@ -80,4 +80,10 @@ form .required {
 }
 .flag.status_5 {
     background: #ff2c18;
+}
+.flag.feature {
+    background: #4fb724;
+}
+.flag.not-feature {
+    background: #9c9c9c;
 }
