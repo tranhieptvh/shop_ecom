@@ -87,3 +87,7 @@ form .required {
 .flag.not-feature {
     background: #9c9c9c;
 }
+
+.table {
+    vertical-align: middle;
+}
