@@ -57,10 +57,10 @@
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Thương hiệu</label>
+                            <label class="col-sm-3 col-form-label">Nhãn hàng</label>
                             <div class="col-sm-9">
                                 <select class="form-select" name="brand_id" id="">
-                                    <option value="">--- Chọn thương hiệu</option>
+                                    <option value="">--- Chọn nhãn hàng</option>
                                     @foreach($brands as $brand)
                                         <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                     @endforeach

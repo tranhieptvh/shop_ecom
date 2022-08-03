@@ -38,7 +38,7 @@
                     <label>
                         Thuơng hiệu
                         <select class="form-select" name="brand_id" id="">
-                            <option value="">--- Chọn thương hiệu</option>
+                            <option value="">--- Chọn nhãn hàng</option>
                             @foreach($brands as $brand)
                                 <option value="{{ $brand->id }}" {{ (!empty($_GET['brand_id']) && $brand->id == $_GET['brand_id']) ? 'selected' : ''}}>
                                     {{ $brand->name }}

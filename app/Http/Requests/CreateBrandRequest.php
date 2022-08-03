@@ -31,7 +31,7 @@ class CreateBrandRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'Tên thương hiệu',
+            'name' => 'Tên nhãn hàng',
         ];
     }
 }
