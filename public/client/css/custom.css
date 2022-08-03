@@ -512,6 +512,8 @@ img.zalo-qr-code {
 .section-profile .wrap-title {
     border-bottom: 1px solid #a95b2b;
 }
+
+/*====== Purchase =========*/
 .section-profile .purchase .list-order .heading {
     background: #F7941D;
     text-align: center;
@@ -519,6 +521,35 @@ img.zalo-qr-code {
 .section-profile .purchase .list-order a {
     color: #cb3f2d;
     text-decoration: underline;
+}
+.flag {
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #fff;
+}
+.paid {
+    background: #4fb724;
+}
+.unpaid {
+    background: #9c9c9c;
+}
+.flag.status_0 {
+    background: #9c9c9c;
+}
+.flag.status_1 {
+    background: #2e9de4;
+}
+.flag.status_2 {
+    background: #fad42e;
+}
+.flag.status_3 {
+    background: #00ff00;
+}
+.flag.status_4 {
+    background: #4fb724;
+}
+.flag.status_5 {
+    background: #ff2c18;
 }
 
 /*====== Order detail =========*/

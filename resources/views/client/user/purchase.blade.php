@@ -37,7 +37,8 @@
                     <th>Mã đơn hàng</th>
                     <th>Tổng (VNĐ)</th>
                     <th>Thời gian đặt hàng</th>
-                    <th>Trạng thái</th>
+                    <th>Trạng thái thanh toán</th>
+                    <th>Trạng thái đơn hàng</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,9 +56,16 @@
                         <td>{{ number_format($order->total) }}</td>
                         <td>{{ date_format($order->created_at, 'd-m-Y H:i:s') }}</td>
                         <td>
-                            @foreach(\App\Order::STATUS as $status)
-                                {{ $order->status == $status['value'] ? $status['key'] : '' }}
-                            @endforeach
+                            <span class="flag {{ $order->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? 'paid' : 'unpaid'}}">
+                                {{ $order->paid_flg == \App\Order::PAYMENT['UNPAID']['value'] ? \App\Order::PAYMENT['UNPAID']['key'] : \App\Order::PAYMENT['PAID']['key'] }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="flag {{ 'status_' . $order->status }}">
+                                @foreach(\App\Order::STATUS as $status)
+                                    {{ $order->status == $status['value'] ? $status['key'] : '' }}
+                                @endforeach
+                            </span>
                         </td>
                     </tr>
                 @endforeach
