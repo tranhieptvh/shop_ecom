@@ -98,9 +98,9 @@
                         <div class="continue-buy">
                             <a href="{{ url()->previous() }}">Tiếp tục mua hàng</a>
                         </div>
-                        <div class="wishlist">
-                            <a href="">Sản phẩm yêu thích &nbsp;<i class="ti-heart"></i></a>
-                        </div>
+{{--                        <div class="wishlist">--}}
+{{--                            <a href="">Sản phẩm yêu thích &nbsp;<i class="ti-heart"></i></a>--}}
+{{--                        </div>--}}
 
                         <div class="status-box">
                             <p><i class="ti-check-box"></i> &nbsp; Còn hàng</p>
