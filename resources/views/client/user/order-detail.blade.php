@@ -175,10 +175,10 @@
                             <td colspan="3">Hóa đơn</td>
                             <td colspan="3">{{ number_format($order->total_amount) }} (VNĐ)</td>
                         </tr>
-                        <tr>
-                            <td colspan="3">Ship</td>
-                            <td colspan="3">Free</td>
-                        </tr>
+{{--                        <tr>--}}
+{{--                            <td colspan="3">Ship</td>--}}
+{{--                            <td colspan="3">Free</td>--}}
+{{--                        </tr>--}}
                         <tr>
                             <td colspan="3">VAT ({{ $info->vat }}%)</td>
                             <td colspan="3">{{ number_format($order->total_amount * $info->vat / 100) }} (VNĐ)</td>
