@@ -41,7 +41,7 @@ class RegisterRequest extends FormRequest
             'phone' => 'Số điện thoại',
             'address' => 'Địa chỉ',
             'email' => 'Email',
-            'password' => 'Password',
+            'password' => 'Mật khẩu',
         ];
     }
 }
