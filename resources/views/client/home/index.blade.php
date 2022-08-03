@@ -24,7 +24,7 @@
             </div>
             <div class="mid-col col-6 p-2">
                 <a href="">
-                    <img src="{{ asset('client/images/banner/Malt_banner1.png') }}" alt="Malt">
+                    <img src="{{ asset('client/images/banner/main-banner.png') }}" alt="Malt">
                 </a>
             </div>
             <div class="right-col col-3 d-flex flex-column justify-content-between p-2">
