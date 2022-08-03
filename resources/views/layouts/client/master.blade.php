@@ -45,7 +45,7 @@
                     <div class="single-service">
                         <i class="ti-rocket"></i>
                         <h4>Miễn phí giao hàng</h4>
-                        <p>Trên toàn quốc</p>
+                        <p>Nội thành Hà Nội</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
