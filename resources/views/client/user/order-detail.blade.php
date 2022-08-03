@@ -53,10 +53,12 @@
                 <div class="row col-12 mt-1">
                     <span class="col-3"><b>Trạng thái đơn hàng: </b></span>
                     <span class="col-9">
-                    @foreach(\App\Order::STATUS as $status)
-                            {{ $order->status == $status['value'] ? $status['key'] : '' }}
-                        @endforeach
-                </span>
+                        <span class="flag {{ 'status_' . $order->status }}">
+                            @foreach(\App\Order::STATUS as $status)
+                                {{ $order->status == $status['value'] ? $status['key'] : '' }}
+                            @endforeach
+                        </span>
+                    </span>
                 </div>
             </div>
 
