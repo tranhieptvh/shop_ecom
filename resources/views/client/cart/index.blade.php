@@ -195,7 +195,7 @@
                                                 <ul>
                                                     <li class="total_bill">Hóa đơn<span>{{ number_format($total_price) }} VNĐ</span></li>
 {{--                                                    <li>(+) Ship<span>Free</span></li>--}}
-                                                    <li class="vat">(+) VAT ({{ $info->vat }}%)<span>{{ number_format($total_price * $info->vat / 100) }}</span></li>
+                                                    <li class="vat">(+) VAT ({{ $info->vat }}%)<span>{{ number_format($total_price * $info->vat / 100) }} VNĐ</span></li>
                                                     <li class="last">Tổng<span>{{ number_format($total_price + $total_price * $info->vat / 100) }} VNĐ</span></li>
                                                 </ul>
                                             </div>

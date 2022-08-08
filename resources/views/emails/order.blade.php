@@ -51,10 +51,10 @@
                     <td colspan="4" style="border: 1px solid;"><b>Hóa đơn (VNĐ)</b></td>
                     <td style="border: 1px solid;"><b>{{ number_format($data['order']->total_amount) }}</b></td>
                 </tr>
-                <tr>
-                    <td colspan="4" style="border: 1px solid;"><b>Ship</b></td>
-                    <td style="border: 1px solid;"><b>Free</b></td>
-                </tr>
+{{--                <tr>--}}
+{{--                    <td colspan="4" style="border: 1px solid;"><b>Ship</b></td>--}}
+{{--                    <td style="border: 1px solid;"><b>Free</b></td>--}}
+{{--                </tr>--}}
                 <tr>
                     <td colspan="4" style="border: 1px solid;"><b>VAT ({{ $data['info']->vat }}%) (VNĐ)</b></td>
                     <td style="border: 1px solid;"><b>{{ number_format($data['order']->total_amount * $data['info']->vat / 100) }}</b></td>

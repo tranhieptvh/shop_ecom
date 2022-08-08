@@ -71,8 +71,8 @@
                         <td style="border: 1px solid;"><b>{{ number_format($data['order']->total_amount) }}</b></td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="border: 1px solid;"><b>Ship</b></td>
-                        <td style="border: 1px solid;"><b>Free</b></td>
+                        <td colspan="4" style="border: 1px solid;"><b>Ship (VNĐ)</b></td>
+                        <td style="border: 1px solid;"><b>0</b></td>
                     </tr>
                     <tr>
                         <td colspan="4" style="border: 1px solid;"><b>VAT ({{ $data['info']->vat }}%) (VNĐ)</b></td>
