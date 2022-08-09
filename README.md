@@ -37,8 +37,8 @@
   php artisan key:generate
     ```
 - Bước 5: Migrate và Seeding data: Chọn 1 trong 2 cách sau:
-  + Cách 1: Import file .sql trong folder database/db, đây là DB ở local của dev (khuyên chọn, vì có đủ DB)
-  + Cách 2: Run migrate and seeding data (Chỉ seeding data bảng roles và users)
+    + Cách 1: Import file .sql trong folder database/db, đây là DB ở local của dev (khuyên chọn, vì có đủ DB)
+    + Cách 2: Run migrate and seeding data (Chỉ seeding data bảng roles và users)
   ```bash
   php artisan migrate
   php artisan db:seed
@@ -54,6 +54,6 @@
 
 ## Truy cập vào dự án
 - Client: http://127.0.0.1/
-  + Account: member@rubia.com - 123456
+    + Account: member@rubia.com - 123456
 - Admin: http://127.0.0.1/admin
-  + Account: admin@rubia.com - 123456
+    + Account: admin@rubia.com - 123456
