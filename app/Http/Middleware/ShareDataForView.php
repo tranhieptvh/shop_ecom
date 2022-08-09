@@ -4,19 +4,24 @@ namespace App\Http\Middleware;
 
 use App\Repositories\CartRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\InfoRepository;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use Symfony\Polyfill\Intl\Idn\Info;
 
 class ShareDataForView
 {
     protected $cartRepository;
     protected $categoryRepository;
-    public function __construct(CartRepository $cartRepository, CategoryRepository $categoryRepository)
+    protected $infoRepository;
+
+    public function __construct(CartRepository $cartRepository, CategoryRepository $categoryRepository, InfoRepository $infoRepository)
     {
         $this->cartRepository = $cartRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->infoRepository = $infoRepository;
     }
 
     /**
@@ -55,6 +60,10 @@ class ShareDataForView
             }
         }
         View::share('categories_menu', $categories_menu);
+
+        $info = $this->infoRepository->getInfoShop();
+        View::share('info', $info);
+
         return $next($request);
     }
 }

@@ -50,3 +50,44 @@ form .required {
 .red {
     color: red !important;
 }
+
+.flag {
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #fff;
+}
+.paid {
+    background: #4fb724;
+}
+.unpaid {
+    background: #9c9c9c;
+}
+
+.flag.status_0 {
+    background: #9c9c9c;
+}
+.flag.status_1 {
+    background: #2e9de4;
+}
+.flag.status_2 {
+    background: #fad42e;
+}
+.flag.status_3 {
+    background: #00ff00;
+}
+.flag.status_4 {
+    background: #4fb724;
+}
+.flag.status_5 {
+    background: #ff2c18;
+}
+.flag.feature {
+    background: #4fb724;
+}
+.flag.not-feature {
+    background: #9c9c9c;
+}
+
+.table {
+    vertical-align: middle;
+}

@@ -19,7 +19,9 @@
 
 @section('content')
     <div class="container-fluid">
-        Home
+        <p style="font-size: 1rem;">
+            Chào mừng <b>{{ Auth::user()->name }}</b> đã đến với trang Admin quản lý của <b>Rubia Shop</b>
+        </p>
     </div>
 @endsection
 

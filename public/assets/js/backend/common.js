@@ -63,3 +63,10 @@ function preview() {
         $('#frame').removeClass('hidden');
     }
 }
+
+function previewQrCode(idFrame) {
+    idFrame.src=URL.createObjectURL(event.target.files[0]);
+    if ($('#frame').hasClass('hidden')) {
+        $('#frame').removeClass('hidden');
+    }
+}

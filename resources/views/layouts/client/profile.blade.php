@@ -8,7 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>TVH Shop</title>
+    <title>
+        @yield('title')
+    </title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{asset('logo/favicon.png')}}">
     <!-- Web Font -->
@@ -50,6 +52,12 @@
                         <a href="{{ route('client.user.purchase') }}">
                             <i class="ti-receipt"></i> &nbsp;
                             <span>Danh sách đơn hàng</span>
+                        </a>
+                    </div>
+                    <div class="menu-item {{ request()->route()->getName() == 'client.user.change-password' ? 'active' : '' }}">
+                        <a href="{{ route('client.user.change-password') }}">
+                            <i class="ti-key"></i> &nbsp;
+                            <span>Đổi mật khẩu</span>
                         </a>
                     </div>
                     <div class="menu-item">
@@ -106,6 +114,37 @@
 
 @include('layouts/client/script')
 @yield('script')
+
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
+
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "110558835076275");
+    chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            xfbml            : true,
+            version          : 'v14.0'
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 </body>
 </html>

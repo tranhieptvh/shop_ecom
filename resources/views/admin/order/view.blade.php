@@ -68,23 +68,12 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Tổng tiền (VNĐ)</label>
+                                <label class="col-sm-3 col-form-label">Tổng tiền (+VAT) (VNĐ)</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total_amount) }}" disabled>
+                                    <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total) }}" disabled>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Trạng thái đơn hàng</label>
-                                <div class="col-sm-9">
-                                    <select class="form-select" name="status">
-                                        @foreach(\App\Order::STATUS as $status)
-                                            <option value="{{ $status['value'] }}" {{ $order->status == $status['value'] ? 'selected' : ''}}>
-                                                {{ $status['key'] }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                            <hr>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Trạng thái thanh toán</label>
                                 <div class="col-sm-9">
@@ -110,10 +99,28 @@
                                     </div>
                                 </div>
                             @endif
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Trạng thái đơn hàng</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" name="status">
+                                        @foreach(\App\Order::STATUS as $status)
+                                            <option value="{{ $status['value'] }}" {{ $order->status == $status['value'] ? 'selected' : ''}}>
+                                                {{ $status['key'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-center">
                         <button class="btn btn-success btn-lg" type="submit">Lưu</button>
+
+                        <a href="{{ route('admin.order.export-order', $order->code) }}" class="btn btn-outline-primary d-inline-flex align-items-center m-l-20">
+                            <i data-feather="download"></i>
+                            <span class="m-l-10">Xuất hóa đơn</span>
+                        </a>
                     </div>
                 </form>
             </div>

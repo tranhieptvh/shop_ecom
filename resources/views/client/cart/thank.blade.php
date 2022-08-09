@@ -1,5 +1,9 @@
 @extends('layouts.client.master')
 
+@section('title')
+    Thanh toán thành công
+@endsection
+
 @section('style')
 @endsection
 
@@ -24,7 +28,7 @@
     <div class="section-thank">
         <div class="container">
             <p class="mt-5">Cảm ơn quý khách đã đặt hàng!</p>
-            <p class="mt-2 mb-5">Chúng tôi sẽ sớm liên hệ với quý khách để xác nhận đơn hàng.</p>
+            <p class="mt-2 mb-5"><b>Rubia Shop</b> sẽ sớm liên hệ với quý khách để xác nhận đơn hàng.</p>
         </div>
     </div>
 @endsection

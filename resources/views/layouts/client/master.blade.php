@@ -8,7 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>RuBia Shop</title>
+    <title>
+        @yield('title')
+    </title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{asset('logo/favicon.png')}}">
     <!-- Web Font -->
@@ -43,7 +45,7 @@
                     <div class="single-service">
                         <i class="ti-rocket"></i>
                         <h4>Miễn phí giao hàng</h4>
-                        <p>Trên toàn quốc</p>
+                        <p>Nội thành Hà Nội</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
@@ -75,6 +77,37 @@
 
     @include('layouts/client/script')
     @yield('script')
+
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "110558835076275");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml            : true,
+                version          : 'v14.0'
+            });
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
 </body>
 </html>

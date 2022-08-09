@@ -21,11 +21,11 @@ class AuthController extends Controller
         if (Auth::attempt([
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => [config('constants.ROLE_ROOT'), config('constants.ROLE_ADMIN')],
+            'role_id' => [\App\Role::ROLE['ROOT'], \App\Role::ROLE['ADMIN']],
         ], $remember)) {
             return redirect()->to('admin');
         }
-        return view('admin.auth.login')->with('error', 'Đăng nhập không thành công, vui lòng thử lại!');
+        return back()->with('error', 'Đăng nhập không thành công, vui lòng thử lại!');
     }
 
     public function logout() {

@@ -31,8 +31,8 @@
                                         <div class="invalid-feedback validated">{{ $errors->first('password') }}</div>
                                     @endif
                                 </div>
-                                @if (!empty($error))
-                                    <div class="invalid-feedback validated">{{ $error }}</div>
+                                @if (session('error'))
+                                    <div class="invalid-feedback validated">{{ session('error') }}</div>
                                 @endif
                                 <div class="form-group mb-0">
                                     <div class="checkbox p-0">

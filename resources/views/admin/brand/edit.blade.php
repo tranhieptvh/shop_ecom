@@ -7,12 +7,12 @@
 @endsection
 
 @section('breadcrumb-title')
-    <h3>Chỉnh sửa thương hiệu</h3>
+    <h3>Chỉnh sửa nhãn hàng</h3>
 @endsection
 
 @section('breadcrumb-items')
     <li class="breadcrumb-item">
-        <a href="{{ route('admin.brand.index') }}">Thương hiệu</a>
+        <a href="{{ route('admin.brand.index') }}">Nhãn hàng</a>
     </li>
     <li class="breadcrumb-item active">Chỉnh sửa</li>
 @endsection
@@ -33,7 +33,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label">Tên <span class="required">*</span></label>
+                            <label class="col-sm-3 col-form-label">Tên nhãn hàng <span class="required">*</span></label>
                             <div class="col-sm-9">
                                 <input class="form-control" type="text" name="name" id="name" value="{{ old('name', $brand->name) }}">
                                 @if ($errors->has('name'))

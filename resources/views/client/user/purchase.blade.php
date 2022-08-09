@@ -1,5 +1,9 @@
 @extends('layouts.client.profile')
 
+@section('title')
+    Danh sách đơn hàng
+@endsection
+
 @section('style')
 @endsection
 
@@ -26,15 +30,15 @@
     </div>
 
     <div class="purchase">
-        <table class="table list-order">
+        <table class="table list-order text-center">
             <thead>
                 <tr class="heading">
                     <th>STT</th>
                     <th>Mã đơn hàng</th>
-{{--                    <th colspan="2">Sản phẩm</th>--}}
                     <th>Tổng (VNĐ)</th>
                     <th>Thời gian đặt hàng</th>
-                    <th>Trạng thái</th>
+                    <th>Trạng thái thanh toán</th>
+                    <th>Trạng thái đơn hàng</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,15 +50,22 @@
                 @foreach($orders as $key => $order)
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td>#{{ $order->id }} &nbsp;&nbsp;
-                            <a href="{{ route('client.user.order-detail', $order->id) }}" target="_blank">Xem chi tiết</a>
+                        <td> &nbsp;&nbsp;
+                            <a href="{{ route('client.user.order-detail', $order->code) }}" target="_blank">#{{ $order->code }}</a>
                         </td>
-                        <td>{{ number_format($order->total_amount) }}</td>
+                        <td>{{ number_format($order->total) }}</td>
                         <td>{{ date_format($order->created_at, 'd-m-Y H:i:s') }}</td>
                         <td>
-                            @foreach(\App\Order::STATUS as $status)
-                                {{ $order->status == $status['value'] ? $status['key'] : '' }}
-                            @endforeach
+                            <span class="flag {{ $order->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? 'paid' : 'unpaid'}}">
+                                {{ $order->paid_flg == \App\Order::PAYMENT['UNPAID']['value'] ? \App\Order::PAYMENT['UNPAID']['key'] : \App\Order::PAYMENT['PAID']['key'] }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="flag {{ 'status_' . $order->status }}">
+                                @foreach(\App\Order::STATUS as $status)
+                                    {{ $order->status == $status['value'] ? $status['key'] : '' }}
+                                @endforeach
+                            </span>
                         </td>
                     </tr>
                 @endforeach

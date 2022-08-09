@@ -28,6 +28,7 @@
                             <option value="">--- Chọn danh mục</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}"
+                                        {{ (!empty($_GET['category_id']) && $category->id == $_GET['category_id']) ? 'selected' : ''}}
                                         class="{{ $category->level == 0 ? 'red bold' : '' }} {{ $category->level == 1 ? 'bold' : '' }}">
                                     {{ str_repeat('|--- ', $category->level) . $category->name }}
                                 </option>
@@ -37,15 +38,17 @@
                     <label>
                         Thuơng hiệu
                         <select class="form-select" name="brand_id" id="">
-                            <option value="">--- Chọn thương hiệu</option>
+                            <option value="">--- Chọn nhãn hàng</option>
                             @foreach($brands as $brand)
-                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                <option value="{{ $brand->id }}" {{ (!empty($_GET['brand_id']) && $brand->id == $_GET['brand_id']) ? 'selected' : ''}}>
+                                    {{ $brand->name }}
+                                    </option>
                             @endforeach
                         </select>
                     </label>
                     <label>
                         Tên sản phẩm
-                        <input type="text" name="name" class="form-control">
+                        <input type="text" name="name" class="form-control" value="{{ !empty($_GET['name']) ? $_GET['name'] : '' }}">
                     </label>
 
                     <label>
@@ -73,6 +76,7 @@
                             <th scope="col">Hình ảnh</th>
                             <th scope="col">Chất lượng</th>
                             <th scope="col">Giá (VNĐ)</th>
+                            <th scope="col">Nổi bật</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -84,6 +88,11 @@
                                 <td><img src="{{ !empty($product->getMainImage->first()) ? asset($product->getMainImage->first()->path) : '' }}" style="height: 50px; max-width: 100px"></td>
                                 <td>{{ $product->volume && $product->concentration ? $product->volume . 'ml ' . $product->concentration . '%' : '' }}</td>
                                 <td>{{ number_format($product->price) }}</td>
+                                <td>
+                                    <span class="flag {{ $product->is_feature == 1 ? 'feature' : 'not-feature' }}">
+                                        {{ $product->is_feature == 1 ? 'Nổi bật' : 'Không' }}
+                                    </span>
+                                </td>
                                 <td>
                                     <div style="display: flex;">
                                         <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-pencil"></i></a>

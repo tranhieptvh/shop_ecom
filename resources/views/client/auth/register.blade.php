@@ -1,5 +1,9 @@
 @extends('layouts.client.master')
 
+@section('title')
+    Đăng ký
+@endsection
+
 @section('content')
     <section class="form-login">
         <div class="container py-5 h-100">

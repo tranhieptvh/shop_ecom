@@ -448,6 +448,10 @@
 .payment .info-banking img.qr-code {
     width: 50%;
 }
+img.zalo-qr-code {
+    width: 40%;
+    margin-left: 50px;
+}
 .payment .info-banking img.zalo {
     vertical-align: bottom;
     width: 5%;
@@ -508,6 +512,8 @@
 .section-profile .wrap-title {
     border-bottom: 1px solid #a95b2b;
 }
+
+/*====== Purchase =========*/
 .section-profile .purchase .list-order .heading {
     background: #F7941D;
     text-align: center;
@@ -515,6 +521,35 @@
 .section-profile .purchase .list-order a {
     color: #cb3f2d;
     text-decoration: underline;
+}
+.flag {
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #fff;
+}
+.paid {
+    background: #4fb724;
+}
+.unpaid {
+    background: #9c9c9c;
+}
+.flag.status_0 {
+    background: #9c9c9c;
+}
+.flag.status_1 {
+    background: #2e9de4;
+}
+.flag.status_2 {
+    background: #fad42e;
+}
+.flag.status_3 {
+    background: #00ff00;
+}
+.flag.status_4 {
+    background: #4fb724;
+}
+.flag.status_5 {
+    background: #ff2c18;
 }
 
 /*====== Order detail =========*/
@@ -590,4 +625,19 @@
 /*====== Register =========*/
 span.required {
     color: red;
+}
+
+/*====== Contact =========*/
+.contact-page p {
+    margin-top: 0.25rem;
+}
+.contact-page ul li {
+    list-style: unset;
+}
+.contact-page ul {
+    padding-left: 50px;
+    list-style-type: square;
+}
+.contact-page .example {
+    text-align: center;
 }

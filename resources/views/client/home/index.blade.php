@@ -1,5 +1,9 @@
 @extends('layouts.client.master')
 
+@section('title')
+    Trang chủ
+@endsection
+
 @section('style')
 @endsection
 
@@ -20,7 +24,7 @@
             </div>
             <div class="mid-col col-6 p-2">
                 <a href="">
-                    <img src="{{ asset('client/images/banner/Malt_banner1.png') }}" alt="Malt">
+                    <img src="{{ asset('client/images/banner/main-banner.png') }}" alt="Malt">
                 </a>
             </div>
             <div class="right-col col-3 d-flex flex-column justify-content-between p-2">
@@ -58,7 +62,7 @@
 {{--                                        <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">--}}
                                             <div class="stock">
                                                 <span class="out-of-stock">Hot</span>
-                                                <span class="new">Best seller</span>
+{{--                                                <span class="new">Best seller</span>--}}
                                             </div>
                                     </a>
                                     <div class="button-head">

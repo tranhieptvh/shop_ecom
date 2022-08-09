@@ -21,8 +21,22 @@ class ProductRepository extends AbstractRepository
         return $this->getBuilder()->orderBy('id', 'DESC')->limit(8)->get();
     }
 
-    public function getAllProductsAdmin($cond, $paginate) {
-        return $this->getBuilder()->orderByDesc('id')->paginate($paginate);
+    public function getProductsAdmin($paginate) {
+        $products = $this->getBuilder();
+
+        if (!empty($_GET['category_ids'])) {
+            $products->whereIn('category_id', $_GET['category_ids']);
+        }
+
+        if (!empty($_GET['brand_id'])) {
+            $products->orWhere('brand_id', $_GET['brand_id']);
+        }
+
+        if (!empty($_GET['name'])) {
+            $products->orWhere('name', 'LIKE', '%' . $_GET['name'] . '%');
+        }
+
+        return $products->orderByDesc('id')->paginate($paginate);
     }
 
     public function getProductsClient($paginate) {

@@ -1,5 +1,9 @@
 @extends('layouts.client.master')
 
+@section('title')
+    Đăng nhập
+@endsection
+
 @section('content')
     <section class="form-login">
         <div class="container py-5 h-100">
@@ -8,22 +12,28 @@
                     <div>
                         <div class="row align-items-center g-0">
                             <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img src="https://ruoungoai.net/uploads/chivas-regal-18-den.jpg"
+                                <img src="{{ asset('logo/login.jpg') }}"
                                      alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
-                                    @if (session('success'))
-                                        <div class="alert alert-success dark alert-dismissible fade show" role="alert">
-                                            {{ session('success') }}
-                                            <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
-                                        </div>
-                                    @endif
-
                                     <form action="{{ route('client.auth.login') }}" method="POST">
                                         @csrf
 
                                         <h1 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Đăng nhập</h1>
+
+                                        @if (session('success'))
+                                            <div class="alert alert-success dark alert-dismissible fade show" role="alert">
+                                                {!! session('success') !!}
+                                                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                                            </div>
+                                        @endif
+                                        @if (session('error'))
+                                            <div class="alert alert-danger dark alert-dismissible fade show" role="alert">
+                                                {!! session('error') !!}
+                                                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                                            </div>
+                                        @endif
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="email">Email</label>

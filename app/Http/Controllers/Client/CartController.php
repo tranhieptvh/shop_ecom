@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutRequest;
 use App\Repositories\CartRepository;
+use App\Repositories\InfoRepository;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
@@ -12,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use stdClass;
 
 class CartController extends Controller
 {
@@ -19,29 +22,40 @@ class CartController extends Controller
     protected $cartRepository;
     protected $orderRepository;
     protected $orderDetailRepository;
+    protected $infoRepository;
 
     public function __construct(
         CartRepository $cartRepository,
         ProductRepository $productRepository,
         OrderRepository $orderRepository,
-        OrderDetailRepository $orderDetailRepository
+        OrderDetailRepository $orderDetailRepository,
+        InfoRepository $infoRepository
     ) {
         $this->cartRepository = $cartRepository;
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
         $this->orderDetailRepository = $orderDetailRepository;
+        $this->infoRepository = $infoRepository;
     }
 
     public function index() {
         if (Auth::check()) {
             $carts = $this->cartRepository->getBuilder()->where('user_id', Auth::user()->id)->get()->toArray();
             session(['cart' => $carts]);
+
+            $user = Auth::user();
         } else {
             if (session('cart')) {
                 $carts = session('cart');
             } else {
                 $carts = null;
             }
+
+            $user = new StdClass();
+            $user->name = '';
+            $user->phone = '';
+            $user->email = '';
+            $user->address = '';
         }
 
         if ($carts) {
@@ -53,10 +67,13 @@ class CartController extends Controller
                 $carts[$key] = $cart;
             }
 
+            $info = $this->infoRepository->getInfoShop();
+
             return view('client.cart.index')->with([
                 'carts' => $carts,
                 'total_price' => $total_price,
-
+                'user' => $user,
+                'info' => $info,
             ]);
         } else {
             return view('client.cart.index');
@@ -66,6 +83,9 @@ class CartController extends Controller
     public function checkout(CheckoutRequest $request) {
         $data_cart = session('cart');
         $data_info = $request->input();
+        $data_info['code'] = $this->orderRepository->generateUniqueCode();
+        $info = $this->infoRepository->getInfoShop();
+        $data_info['total'] = $this->_calculateTotalOrder($data_cart, $info->vat);
 
         if (Auth::check()) {
             $data_info['user_id'] = Auth::user()->id;
@@ -87,6 +107,16 @@ class CartController extends Controller
                 }
             }
 
+            $order->total_amount = $this->orderDetailRepository->getTotalAmount($order->id);
+            $view = 'emails.order';
+            $data = [];
+            $data['info'] = $info;
+            $data['order'] = $order;
+            $data['order_details'] = $order->orderDetails;
+            $subject = 'Đặt hàng thành công!';
+            $to = $order->email;
+            sendmail($view, $data, $subject, $to);
+
             session(['cart' => null]);
             session(['total_quantity' => 0]);
             session(['total_price' => 0]);
@@ -102,5 +132,14 @@ class CartController extends Controller
 
     public function thank() {
         return view('client.cart.thank');
+    }
+
+    public function _calculateTotalOrder($carts, $vat) {
+        $price = 0;
+        foreach ($carts as $item) {
+            $price += $item['price'] * $item['quantity'];
+        }
+
+        return $price + $price * $vat / 100;
     }
 }

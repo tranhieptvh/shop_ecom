@@ -1,5 +1,9 @@
 @extends('layouts.client.profile')
 
+@section('title')
+    Chi tiết đơn hàng
+@endsection
+
 @section('style')
 @endsection
 
@@ -40,7 +44,7 @@
             <div class="overview">
                 <div class="row col-12 mt-1">
                     <span class="col-3"><b>Mã đơn hàng: </b></span>
-                    <span class="col-9">#{{ $order->id }}</span>
+                    <span class="col-9">#{{ $order->code }}</span>
                 </div>
                 <div class="row col-12 mt-1">
                     <span class="col-3"><b>Thời gian đặt hàng: </b></span>
@@ -49,10 +53,12 @@
                 <div class="row col-12 mt-1">
                     <span class="col-3"><b>Trạng thái đơn hàng: </b></span>
                     <span class="col-9">
-                    @foreach(\App\Order::STATUS as $status)
-                            {{ $order->status == $status['value'] ? $status['key'] : '' }}
-                        @endforeach
-                </span>
+                        <span class="flag {{ 'status_' . $order->status }}">
+                            @foreach(\App\Order::STATUS as $status)
+                                {{ $order->status == $status['value'] ? $status['key'] : '' }}
+                            @endforeach
+                        </span>
+                    </span>
                 </div>
             </div>
 
@@ -93,7 +99,9 @@
                 </div>
                 <p class="title mb-3">
                     Thông tin thanh toán
-                    {{--                <span class="check-pass"><i class="ti-check"></i></span>--}}
+                    @if ($order->paid_flg == \App\Order::PAYMENT['PAID']['value'])
+                        <span class="check-pass"><i class="ti-check"></i></span>
+                    @endif
                 </p>
 
                 <div class="row col-12 mt-1">
@@ -169,13 +177,17 @@
                             <td colspan="3">Hóa đơn</td>
                             <td colspan="3">{{ number_format($order->total_amount) }} (VNĐ)</td>
                         </tr>
+{{--                        <tr>--}}
+{{--                            <td colspan="3">Ship</td>--}}
+{{--                            <td colspan="3">Free</td>--}}
+{{--                        </tr>--}}
                         <tr>
-                            <td colspan="3">Ship</td>
-                            <td colspan="3">Free</td>
+                            <td colspan="3">VAT ({{ $info->vat }}%)</td>
+                            <td colspan="3">{{ number_format($order->total_amount * $info->vat / 100) }} (VNĐ)</td>
                         </tr>
                         <tr>
                             <td colspan="3">Tổng</td>
-                            <td colspan="3">{{ number_format($order->total_amount) }} (VNĐ)</td>
+                            <td colspan="3">{{ number_format($order->total) }} (VNĐ)</td>
                         </tr>
                     </tfoot>
                 </table>

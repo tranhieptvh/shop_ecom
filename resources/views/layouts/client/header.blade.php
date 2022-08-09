@@ -122,7 +122,7 @@
                                                     @endif
                                                 </li>
                                             @endforeach
-                                            <li><a href="contact.html">Liên hệ</a></li>
+                                            <li><a href="{{ route('client.contact') }}">Liên hệ</a></li>
                                         </ul>
                                     </div>
                                 </div>

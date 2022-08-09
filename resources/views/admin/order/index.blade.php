@@ -16,12 +16,59 @@
 
 @section('content')
     <div class="container-fluid">
-        @if (session('success'))
-            <div class="alert alert-success dark alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+        <div class="col-sm-12 mb-2 d-flex justify-content-center align-items-baseline">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9">
+                <form action="">
+                    <div>
+                        <label>
+                            Trạng thái thanh toán
+                            <select class="form-select" name="paid_flg" id="">
+                                <option value="">--- Chọn</option>
+                                @foreach(\App\Order::PAYMENT as $payment)
+                                    <option value="{{ $payment['value'] }}" {{ (isset($_GET['paid_flg']) && $payment['value'] === $_GET['paid_flg']) ? 'selected' : ''}}>
+                                        {{ $payment['key'] }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </label>
+                        <label>
+                            Trạng thái đơn hàng
+                            <select class="form-select" name="status" id="">
+                                <option value="">--- Chọn</option>
+                                @foreach(\App\Order::STATUS as $status)
+                                    <option value="{{ $status['value'] }}" {{ (isset($_GET['status']) && $status['value'] === $_GET['status']) ? 'selected' : ''}}>
+                                        {{ $status['key'] }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </label>
+                    </div>
+
+                    <div>
+                        <label>
+                            Mã đơn hàng
+                            <input type="text" name="code" class="form-control" value="{{ !empty($_GET['code']) ? $_GET['code'] : '' }}">
+                        </label>
+                        <label>
+                            Số điện thoại
+                            <input type="text" name="phone" class="form-control" value="{{ !empty($_GET['phone']) ? $_GET['phone'] : '' }}">
+                        </label>
+
+                        <label>
+                            Email
+                            <input type="text" name="email" class="form-control" value="{{ !empty($_GET['email']) ? $_GET['email'] : '' }}">
+                        </label>
+
+                        <label>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </label>
+                    </div>
+                </form>
             </div>
-        @endif
+        </div>
         <div class="col-sm-12">
             <div class="card">
                 <div class="table-responsive">
@@ -29,6 +76,7 @@
                         <thead>
                         <tr class="table-primary">
                             <th scope="col">STT</th>
+                            <th scope="col">Mã đơn hàng</th>
                             <th scope="col">Tên khách hàng</th>
                             <th scope="col">Tổng tiền (VNĐ)</th>
                             <th scope="col">Phương thức thanh toán</th>
@@ -41,18 +89,27 @@
                         @foreach ($orders as $key => $order)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
+                                <td>#{{ $order->code }}</td>
                                 <td>{{ $order->name }}</td>
-                                <td>{{ number_format($order->total_amount) }}</td>
-                                <td>{{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}</td>
-                                <td>{{ $order->paid_flg == \App\Order::PAYMENT['UNPAID']['value'] ? \App\Order::PAYMENT['UNPAID']['key'] : \App\Order::PAYMENT['PAID']['key'] }}</td>
+                                <td>{{ number_format($order->total) }}</td>
                                 <td>
-                                    @foreach(\App\Order::STATUS as $status)
-                                        {{ $order->status == $status['value'] ? $status['key'] : '' }}
-                                    @endforeach
+                                    {{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}
+                                </td>
+                                <td>
+                                    <span class="flag {{ $order->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? 'paid' : 'unpaid'}}">
+                                        {{ $order->paid_flg == \App\Order::PAYMENT['UNPAID']['value'] ? \App\Order::PAYMENT['UNPAID']['key'] : \App\Order::PAYMENT['PAID']['key'] }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="flag {{ 'status_' . $order->status }}">
+                                        @foreach(\App\Order::STATUS as $status)
+                                            {{ $order->status == $status['value'] ? $status['key'] : '' }}
+                                        @endforeach
+                                    </span>
                                 </td>
                                 <td>
                                     <div style="display: flex;">
-                                        <a href="{{ route('admin.order.view', $order->id) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('admin.order.view', $order->code) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-eye"></i></a>
                                     </div>
                                 </td>
                             </tr>

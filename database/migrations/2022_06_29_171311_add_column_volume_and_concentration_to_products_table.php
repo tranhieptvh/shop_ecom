@@ -14,8 +14,8 @@ class AddColumnVolumeAndConcentrationToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('volume')->after('price')->nullable();
-            $table->string('concentration')->after('volume')->nullable();
+            $table->integer('volume')->after('price')->nullable();
+            $table->float('concentration')->after('volume')->nullable();
         });
     }
 

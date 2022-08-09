@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Repositories\UserRepository;
 use App\Repositories\ImageRepository;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -53,6 +54,8 @@ class UserController extends Controller
     {
         $user_data = $request->input();
         $user_data['password'] = Hash::make($user_data['password']);
+        $user_data['verify_token'] = Str::random();
+        $user_data['email_verified_at'] = new \DateTime();
 
         if ($request->hasFile('avatar')) {
             $file = $request->avatar;
