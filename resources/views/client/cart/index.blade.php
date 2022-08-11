@@ -161,8 +161,10 @@
                                                         <p><b>Lưu ý</b>: Quý khách vui lòng liên hệ <b>Rubia Shop</b> theo thông tin dưới đây trước khi thực hiện đặt hàng hoặc chuyển khoản:</p>
                                                         <p>Số điện thoại: {{ $info->phone }}</p>
                                                         <p>Địa chỉ: {{ $info->address }}</p>
-                                                        <p><b>Hoặc Zalo:</b></p>
-                                                        <img src="{{ asset($info->zalo_qr) }}" alt="ZALO QR CODE" class="zalo-qr-code">
+                                                        @if ($info->zalo_qr)
+                                                            <p><b>Hoặc Zalo:</b></p>
+                                                            <img src="{{ asset($info->zalo_qr) }}" alt="ZALO QR CODE" class="zalo-qr-code">
+                                                        @endif
                                                     </div>
                                                     <div class="form-group payment-method">
                                                         <label class="method-item active">
@@ -178,8 +180,10 @@
                                                     <div class="info-banking">
                                                         <p><b>Thông tin chuyển khoản:</b></p>
                                                         <p>{{ $info->bank }}</p>
-                                                        <p><b>Hoặc quét mã QR:</b></p>
-                                                        <img src="{{ asset($info->bank_qr) }}" alt="QR CODE" class="qr-code">
+                                                        @if ($info->bank_qr)
+                                                            <p><b>Hoặc quét mã QR:</b></p>
+                                                            <img src="{{ asset($info->bank_qr) }}" alt="QR CODE" class="qr-code">
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

@@ -42,6 +42,14 @@ class InfoController extends Controller
                 $info_data['bank_qr'] = handleImage($file_bank, 'info');
             }
 
+            // delete img QR code
+            if ($info_data['delete_zalo_qr'] == 1) {
+                $info_data['zalo_qr'] = '';
+            }
+            if ($info_data['delete_bank_qr'] == 1) {
+                $info_data['bank_qr'] = '';
+            }
+
             $result = $this->infoRepository->update($info, $info_data);
 
             DB::commit();

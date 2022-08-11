@@ -66,7 +66,14 @@ function preview() {
 
 function previewQrCode(idFrame) {
     idFrame.src=URL.createObjectURL(event.target.files[0]);
-    if ($('#frame').hasClass('hidden')) {
-        $('#frame').removeClass('hidden');
+    if ($('#'+idFrame.id).hasClass('hidden')) {
+        $('#'+idFrame.id).removeClass('hidden');
     }
+}
+
+function deleteQrCode(idFrame, targetInput) {
+    targetInput.value = 1;
+    console.log(idFrame);
+    console.log(targetInput);
+    idFrame.remove();
 }

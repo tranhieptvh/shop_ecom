@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\CartHelper;
 use App\Http\Controllers\Controller;
 use App\Repositories\CartRepository;
 use App\Repositories\InfoRepository;
@@ -29,11 +28,11 @@ class CartController extends Controller
         $this->infoRepository = $infoRepository;
     }
 
-    public function add(CartHelper $cart) {
+    public function add() {
         $user_id = $_REQUEST['user_id'];
         $product_id = $_REQUEST['product_id'];
 
-        $items = $cart->add($user_id, $product_id);
+        $items = $this->handleAddCart($user_id, $product_id);
 
         $total_quantity = $this->getTotalQuantity($items);
         $total_price = $this->getTotalPrice($items);
@@ -43,7 +42,6 @@ class CartController extends Controller
         session(['total_price' => $total_price]);
 
         return response()->json([
-            'cart' => $cart,
             'total_quantity' => $total_quantity,
             'total_price' => $total_price,
         ]);
@@ -134,5 +132,41 @@ class CartController extends Controller
         }
 
         return $price;
+    }
+
+    public function handleAddCart($user_id, $product_id) {
+        $items = [];
+        $product = $this->productRepository->getBuilder()->where('id', $product_id)->first();
+        $item = [
+            'product_id' => $product_id,
+            'price' => $product->price,
+            'quantity' => 1,
+        ];
+
+        if (!empty($user_id)) {
+            $item['user_id'] = $user_id;
+            $cart = $this->cartRepository->getBuilder()->where('user_id', $user_id)->where('product_id', $product_id)->first();
+            if ($cart) {
+                $this->cartRepository->update($cart, ['quantity' => $cart->quantity + 1]);
+            } else {
+                $cart = $this->cartRepository->create($item);
+            }
+
+            $carts = $this->cartRepository->getBuilder()->where('user_id', $user_id)->get();
+            foreach ($carts as $cart) {
+                $items[$cart->product_id] = $cart;
+            }
+        } else {
+            if (session('cart')) {
+                $items = session('cart');
+            }
+            if (!empty($this->items[$product_id])) {
+                $items[$product_id]['quantity'] = $this->items['product_id']['quantity'] + 1;
+            } else {
+                $items[] = $item;
+            }
+        }
+
+        return $items;
     }
 }

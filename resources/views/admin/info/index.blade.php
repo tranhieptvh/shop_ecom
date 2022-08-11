@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Số điện thoại <span class="required">*</span></label>
+                                <label class="col-sm-3 col-form-label">Số điện thoại</label>
                                 <div class="col-sm-9">
                                     <input class="form-control" type="text" name="phone" value="{{ old('phone', $info->phone) }}">
                                     @if ($errors->has('phone'))
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Địa chỉ <span class="required">*</span></label>
+                                <label class="col-sm-3 col-form-label">Địa chỉ</label>
                                 <div class="col-sm-9">
                                     <input class="form-control" type="text" name="address" value="{{ old('address', $info->address) }}">
                                     @if ($errors->has('address'))
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Email <span class="required">*</span></label>
+                                <label class="col-sm-3 col-form-label">Email</label>
                                 <div class="col-sm-9">
                                     <input class="form-control" type="text" name="email" value="{{ old('email', $info->email) }}">
                                     @if ($errors->has('email'))
@@ -57,10 +57,14 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Zalo QR code <span class="required">*</span></label>
+                                <label class="col-sm-3 col-form-label">Zalo QR code</label>
                                 <div class="col-sm-9">
                                     <input class="d-none" type="file" name="zalo_qr" id="zalo_qr" value="{{ old('zalo_qr') }}" onchange="previewQrCode(frame_zalo)">
+                                    <input type="text" name="delete_zalo_qr" hidden>
                                     <button class="btn btn-primary m-b-5" type="button" onclick=" document.getElementById('zalo_qr').click()">Chọn ảnh</button>
+                                    @if ($info->zalo_qr)
+                                        <button class="btn btn-danger m-b-5 m-l-5" type="button" onclick="deleteQrCode(frame_zalo, delete_zalo_qr)">Xóa ảnh</button>
+                                    @endif
                                     @if ($errors->has('zalo_qr'))
                                         <div class="invalid-feedback validated">{{ $errors->first('zalo_qr') }}</div>
                                     @endif
@@ -71,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Ngân hàng <span class="required">*</span></label>
+                                <label class="col-sm-3 col-form-label">Ngân hàng</label>
                                 <div class="col-sm-9">
                                     <input class="form-control" type="text" name="bank" value="{{ old('bank', $info->bank) }}">
                                     @if ($errors->has('bank'))
@@ -80,10 +84,14 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Banking QR code <span class="required">*</span></label>
+                                <label class="col-sm-3 col-form-label">Banking QR code</label>
                                 <div class="col-sm-9">
                                     <input class="d-none" type="file" name="bank_qr" id="bank_qr" value="{{ old('bank_qr') }}" onchange="previewQrCode(frame_bank)">
+                                    <input type="text" name="delete_bank_qr" value hidden>
                                     <button class="btn btn-primary m-b-5" type="button" onclick=" document.getElementById('bank_qr').click()">Chọn ảnh</button>
+                                    @if ($info->bank_qr)
+                                        <button class="btn btn-danger m-b-5 m-l-5" type="button" onclick="deleteQrCode(frame_bank, delete_bank_qr)">Xóa ảnh</button>
+                                    @endif
                                     @if ($errors->has('bank_qr'))
                                         <div class="invalid-feedback validated">{{ $errors->first('bank_qr') }}</div>
                                     @endif
@@ -104,6 +112,17 @@
                                     @endif
                                 </div>
                             </div>
+                            <hr>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Phí ship <span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="ship_fee" value="{{ old('ship_fee', $info->ship_fee) }}">
+                                    @if ($errors->has('ship_fee'))
+                                        <div class="invalid-feedback validated">{{ $errors->first('ship_fee') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

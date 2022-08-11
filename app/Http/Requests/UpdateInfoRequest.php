@@ -24,11 +24,10 @@ class UpdateInfoRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => 'bail|required|numeric',
-            'address' => 'bail|required',
-            'email' => 'bail|required|email',
-            'bank' => 'bail|required',
+            'phone' => 'bail|numeric|nullable',
+            'email' => 'bail|email|nullable',
             'vat' => 'bail|required|numeric',
+            'ship_fee' => 'bail|required|numeric',
         ];
     }
 
@@ -40,6 +39,7 @@ class UpdateInfoRequest extends FormRequest
             'email' => 'Email ',
             'bank' => 'Ngân hàng',
             'vat' => 'VAT',
+            'ship_fee' => ' Phí ship',
         ];
     }
 }

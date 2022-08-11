@@ -9,6 +9,6 @@ class Info extends Model
     protected $table = 'infos';
 
     protected $fillable = [
-        'phone', 'address', 'email', 'zalo_qr', 'bank', 'bank_qr', 'vat',
+        'phone', 'address', 'email', 'zalo_qr', 'bank', 'bank_qr', 'vat', 'ship_fee'
     ];
 }
