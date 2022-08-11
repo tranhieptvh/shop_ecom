@@ -34,7 +34,14 @@ $('input#name').keyup(function () {
 });
 
 // convert format price
-$("input[name='price']").keyup(function (e) {
+// $("input[name='price']").keyup(function (e) {
+//     formatMoney($(this), e);
+// });
+// $("input[name='ship_fee']").keyup(function (e) {
+//     formatMoney($(this), e);
+// });
+
+function formatMoney(target, e) {
     // When user select text in the document, also abort.
     var selection = window.getSelection().toString();
     if ( selection !== '' ) {
@@ -47,15 +54,15 @@ $("input[name='price']").keyup(function (e) {
     }
 
     // Get the value.
-    var input = $(this).val();
+    var input = target.val();
 
     var input = input.replace(/[\D\s\._\-]+/g, "");
     input = input ? parseInt( input, 10 ) : 0;
 
-    $(this).val( function() {
+    target.val( function() {
         return ( input === 0 ) ? "" : input.toLocaleString( "en-US" );
     } );
-});
+}
 
 function preview() {
     frame.src=URL.createObjectURL(event.target.files[0]);
@@ -77,3 +84,12 @@ function deleteQrCode(idFrame, targetInput) {
     console.log(targetInput);
     idFrame.remove();
 }
+
+$('#form_update_order').on('submit', function() {
+    let ship_fee = $("input[name='ship_fee']");
+    ship_fee.val(ship_fee.val().replace(',', ''));
+});
+$('#form_update_info').on('submit', function() {
+    let ship_fee = $("input[name='ship_fee']");
+    ship_fee.val(ship_fee.val().replace(',', ''));
+});

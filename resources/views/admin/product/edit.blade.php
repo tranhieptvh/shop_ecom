@@ -51,7 +51,7 @@
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Giá (VNĐ) <span class="required">*</span></label>
                             <div class="col-sm-9">
-                                <input class="form-control" type="text" name="price" value="{{ old('price', $product->price) }}">
+                                <input class="form-control" type="text" name="price" value="{{ old('price', number_format($product->price)) }}">
                                 @if ($errors->has('price'))
                                     <div class="invalid-feedback validated">{{ $errors->first('price') }}</div>
                                 @endif

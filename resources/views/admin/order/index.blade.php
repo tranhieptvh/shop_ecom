@@ -72,13 +72,13 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                         <tr class="table-primary">
                             <th scope="col">STT</th>
                             <th scope="col">Mã đơn hàng</th>
                             <th scope="col">Tên khách hàng</th>
-                            <th scope="col">Tổng tiền (VNĐ)</th>
+                            <th scope="col">Tổng tiền (VAT + Ship) (VNĐ)</th>
                             <th scope="col">Phương thức thanh toán</th>
                             <th scope="col">Trạng thái thanh toán</th>
                             <th scope="col">Trạng thái đơn hàng</th>
@@ -91,7 +91,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>#{{ $order->code }}</td>
                                 <td>{{ $order->name }}</td>
-                                <td>{{ number_format($order->total) }}</td>
+                                <td>{{ number_format($order->total + $order->ship_fee) }}</td>
                                 <td>
                                     {{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}
                                 </td>
@@ -108,7 +108,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <div style="display: flex;">
+                                    <div>
                                         <a href="{{ route('admin.order.view', $order->code) }}" class="btn btn-primary btn-sm m-r-5"><i class="fa fa-eye"></i></a>
                                     </div>
                                 </td>

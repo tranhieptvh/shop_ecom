@@ -23,7 +23,7 @@
             </div>
         @endif
         <div class="card">
-            <form class="form theme-form" method="POST" action="{{ route('admin.info.update') }}" enctype="multipart/form-data">
+            <form class="form theme-form" id="form_update_info" method="POST" action="{{ route('admin.info.update') }}" enctype="multipart/form-data">
                 @csrf
 
                 <div class="card-body">
@@ -116,7 +116,7 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Phí ship <span class="required">*</span></label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" type="text" name="ship_fee" value="{{ old('ship_fee', $info->ship_fee) }}">
+                                    <input class="form-control" type="text" name="ship_fee" value="{{ old('ship_fee', number_format($info->ship_fee)) }}">
                                     @if ($errors->has('ship_fee'))
                                         <div class="invalid-feedback validated">{{ $errors->first('ship_fee') }}</div>
                                     @endif

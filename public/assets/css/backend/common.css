@@ -91,3 +91,7 @@ form .required {
 .table {
     vertical-align: middle;
 }
+
+.width100 {
+    width: 100%;
+}

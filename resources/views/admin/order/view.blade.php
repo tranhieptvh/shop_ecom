@@ -23,9 +23,15 @@
                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
             </div>
         @endif
+            @if (session('error'))
+                <div class="alert alert-danger dark alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                </div>
+            @endif
         <div class="d-flex">
             <div class="card col-sm-6">
-                <form class="form theme-form" method="POST" action="{{ route('admin.order.update', $order->id) }}" enctype="multipart/form-data">
+                <form class="form theme-form" id="form_update_order" method="POST" action="{{ route('admin.order.update', $order->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -58,7 +64,7 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Ghi chú đơn hàng</label>
                                 <div class="col-sm-9">
-                                    <textarea name="note" cols="30" rows="5" disabled class="disable">{{ $order->note }}</textarea>
+                                    <textarea name="note" cols="30" rows="5" disabled class="disable width100">{{ $order->note }}</textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -68,9 +74,24 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">Tổng tiền (+VAT) (VNĐ)</label>
+                                <label class="col-sm-3 col-form-label">Tổng tiền (+VAT, -ship) (VNĐ)</label>
                                 <div class="col-sm-9">
                                     <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total) }}" disabled>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Phí ship (VNĐ)</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="text" name="ship_fee" value=" {{number_format($order->ship_fee) }}">
+                                    @if ($errors->has('ship_fee'))
+                                        <div class="invalid-feedback validated">{{ $errors->first('ship_fee') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">Tổng tiền (+VAT, +ship) (VNĐ)</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total + $order->ship_fee) }}" disabled>
                                 </div>
                             </div>
                             <hr>
