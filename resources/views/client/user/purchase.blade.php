@@ -35,7 +35,7 @@
                 <tr class="heading">
                     <th>STT</th>
                     <th>Mã đơn hàng</th>
-                    <th>Tổng (VNĐ)</th>
+                    <th>Tổng (+VAT, +ship) (VNĐ)</th>
                     <th>Thời gian đặt hàng</th>
                     <th>Trạng thái thanh toán</th>
                     <th>Trạng thái đơn hàng</th>
@@ -53,7 +53,7 @@
                         <td> &nbsp;&nbsp;
                             <a href="{{ route('client.user.order-detail', $order->code) }}" target="_blank">#{{ $order->code }}</a>
                         </td>
-                        <td>{{ number_format($order->total) }}</td>
+                        <td>{{ number_format($order->total + $order->ship_fee) }}</td>
                         <td>{{ date_format($order->created_at, 'd-m-Y H:i:s') }}</td>
                         <td>
                             <span class="flag {{ $order->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? 'paid' : 'unpaid'}}">
