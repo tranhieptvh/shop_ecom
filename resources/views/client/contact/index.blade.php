@@ -45,8 +45,10 @@
                 <p><b>Số điện thoại</b>: {{ $info->phone }}</p>
                 <p><b>Email</b>: {{ $info->email }}</p>
                 <p><b>Địa chỉ</b>: {{ $info->address }}</p>
-                <p><b>Hoặc zalo</b>:</p>
-                <img src="{{ asset($info->zalo_qr) }}" alt="Zalo QR Code" style="width: 40%;">
+                @if ($info->zalo_qr)
+                    <p><b>Hoặc zalo</b>:</p>
+                    <img src="{{ asset($info->zalo_qr) }}" alt="Zalo QR Code" style="width: 40%;">
+                @endif
             </div>
         </div>
     </div>

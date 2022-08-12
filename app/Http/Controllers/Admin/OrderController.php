@@ -41,10 +41,12 @@ class OrderController extends Controller
 
     public function view($code) {
         $order = $this->orderRepository->getOrderByCode($code);
+        $info = $this->infoRepository->getInfoShop();
 //        $order->total_amount = $this->orderDetailRepository->getTotalAmount($id);
 
         return view('admin.order.view')->with([
             'order' => $order,
+            'info' => $info,
         ]);
     }
 
@@ -70,7 +72,7 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Message: ' . $e->getMessage() . ' Line: ' . $e->getLine());
-            return back();
+            return back()->with('error', 'Cập nhật không thành công!');
         }
     }
 

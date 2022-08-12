@@ -71,27 +71,37 @@
                         <td style="border: 1px solid;"><b>{{ number_format($data['order']->total_amount) }}</b></td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="border: 1px solid;"><b>Ship (VNĐ)</b></td>
-                        <td style="border: 1px solid;"><b>0</b></td>
-                    </tr>
-                    <tr>
                         <td colspan="4" style="border: 1px solid;"><b>VAT ({{ $data['info']->vat }}%) (VNĐ)</b></td>
                         <td style="border: 1px solid;"><b>{{ number_format($data['order']->total_amount * $data['info']->vat / 100) }}</b></td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="border: 1px solid;"><b>Đã thanh toán (VNĐ)</b></td>
-                        <td style="border: 1px solid;">
-                            <b>
-                                {{ $data['order']->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? number_format($data['order']->total) : 0 }}
-                            </b>
-                        </td>
+                        <td colspan="4" style="border: 1px solid;"><b>Ship (VNĐ)</b></td>
+                        <td style="border: 1px solid;"><b>{{ number_format($data['order']->ship_fee) }}</b></td>
                     </tr>
                     <tr>
                         <td colspan="4" style="border: 1px solid;"><span style="color: red;"><b>Tổng (VNĐ)</b></span></td>
                         <td style="border: 1px solid;">
                             <span style="color: red;">
                                 <b>
-                                    {{ $data['order']->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? 0 : number_format($data['order']->total) }}
+                                    {{ number_format($data['order']->total + $data['order']->ship_fee) }}
+                                </b>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="border: 1px solid;"><b>Trạng thái thanh toán</b></td>
+                        <td style="border: 1px solid;">
+                            <b>
+                                {{ $data['order']->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? \App\Order::PAYMENT['PAID']['key'] : \App\Order::PAYMENT['UNPAID']['key'] }}
+                            </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="border: 1px solid;"><span style="color: red;"><b>Thu (VNĐ)</b></span></td>
+                        <td style="border: 1px solid;">
+                            <span style="color: red;">
+                                <b>
+                                    {{ $data['order']->paid_flg == \App\Order::PAYMENT['PAID']['value'] ? 0 : number_format($data['order']->total + $data['order']->ship_fee) }}
                                 </b>
                             </span>
                         </td>

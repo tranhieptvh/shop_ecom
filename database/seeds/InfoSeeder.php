@@ -14,13 +14,14 @@ class InfoSeeder extends Seeder
     {
         DB::table('infos')->insert([
             [
-                'phone' => '0985250657',
-                'address' => '28 Đại Linh, Trung Văn, Nam Từ Liêm, Hà Nội',
-                'email' => 'tranhieptvh@gmail.com',
-                'zalo_qr' => 'uploads/images/info/zalo_qr.png',
-                'bank' => 'Vietcombank chi nhánh Tây Hồ - 1016081089 - TRAN VAN HIEP',
-                'bank_qr' => 'uploads/images/info/bank_qr.png',
+                'phone' => '',
+                'address' => '',
+                'email' => '',
+                'zalo_qr' => '',
+                'bank' => '',
+                'bank_qr' => '',
                 'vat' => 10,
+                'ship_fee' => 0,
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime(),
             ],

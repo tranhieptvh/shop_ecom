@@ -186,8 +186,12 @@
                             <td colspan="3">{{ number_format($order->total_amount * $info->vat / 100) }} (VNĐ)</td>
                         </tr>
                         <tr>
+                            <td colspan="3">Ship</td>
+                            <td colspan="3">{{ number_format($order->ship_fee) }} (VNĐ)</td>
+                        </tr>
+                        <tr>
                             <td colspan="3">Tổng</td>
-                            <td colspan="3">{{ number_format($order->total) }} (VNĐ)</td>
+                            <td colspan="3">{{ number_format($order->total + $order->ship_fee) }} (VNĐ)</td>
                         </tr>
                     </tfoot>
                 </table>

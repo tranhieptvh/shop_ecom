@@ -86,6 +86,7 @@ class CartController extends Controller
         $data_info['code'] = $this->orderRepository->generateUniqueCode();
         $info = $this->infoRepository->getInfoShop();
         $data_info['total'] = $this->_calculateTotalOrder($data_cart, $info->vat);
+        $data_info['ship_fee'] = $info->ship_fee;
 
         if (Auth::check()) {
             $data_info['user_id'] = Auth::user()->id;

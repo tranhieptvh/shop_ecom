@@ -15,13 +15,14 @@ class CreateInfosTable extends Migration
     {
         Schema::create('infos', function (Blueprint $table) {
             $table->id();
-            $table->string('phone');
-            $table->string('address');
-            $table->string('email');
-            $table->string('zalo_qr');
-            $table->string('bank');
-            $table->string('bank_qr');
-            $table->integer('vat');
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('email')->nullable();
+            $table->string('zalo_qr')->nullable();
+            $table->string('bank')->nullable();
+            $table->string('bank_qr')->nullable();
+            $table->integer('vat')->default(0);
+            $table->integer('ship_fee')->default(0);
             $table->timestamps();
         });
     }
