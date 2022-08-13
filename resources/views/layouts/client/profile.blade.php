@@ -23,128 +23,97 @@
 </head>
 <body class="js">
 
-<div class="preloader">
-    <div class="preloader-inner">
-        <div class="preloader-icon">
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-</div>
-
-@include('layouts.client.header')
-
-@yield('breadcrumbs')
-
-<div class="section-profile">
-    <div class="container">
-        <div class="row col-12 pt-5 pb-5">
-            <div class="col-3 menu-col">
-
-                <div class="wrap-menu">
-                    <div class="menu-item {{ request()->route()->getName() == 'client.user.profile' ? 'active' : '' }}">
-                        <a href="{{ route('client.user.profile') }}">
-                            <i class="ti-user"></i> &nbsp;
-                            <span>Thông tin cá nhân</span>
-                        </a>
-                    </div>
-                    <div class="menu-item {{ request()->route()->getName() == 'client.user.purchase' ? 'active' : '' }}">
-                        <a href="{{ route('client.user.purchase') }}">
-                            <i class="ti-receipt"></i> &nbsp;
-                            <span>Danh sách đơn hàng</span>
-                        </a>
-                    </div>
-                    <div class="menu-item {{ request()->route()->getName() == 'client.user.change-password' ? 'active' : '' }}">
-                        <a href="{{ route('client.user.change-password') }}">
-                            <i class="ti-key"></i> &nbsp;
-                            <span>Đổi mật khẩu</span>
-                        </a>
-                    </div>
-                    <div class="menu-item">
-                        <a href="{{ route('client.auth.logout') }}">
-                            <i class="ti-arrow-right"></i> &nbsp;
-                            <span>Đăng xuất</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-9 main-col">
-                @yield('content')
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
             </div>
         </div>
     </div>
-</div>
 
-<section class="shop-services section home">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="single-service">
-                    <i class="ti-rocket"></i>
-                    <h4>Miễn phí giao hàng</h4>
-                    <p>Nội thành Hà Nội</p>
+    @include('client.element.backdrop')
+
+    @include('layouts.client.header')
+
+    @yield('breadcrumbs')
+
+    <div class="section-profile">
+        <div class="container">
+            <div class="row col-12 pt-5 pb-5">
+                <div class="col-3 menu-col">
+
+                    <div class="wrap-menu">
+                        <div class="menu-item {{ request()->route()->getName() == 'client.user.profile' ? 'active' : '' }}">
+                            <a href="{{ route('client.user.profile') }}">
+                                <i class="ti-user"></i> &nbsp;
+                                <span>Thông tin cá nhân</span>
+                            </a>
+                        </div>
+                        <div class="menu-item {{ request()->route()->getName() == 'client.user.purchase' ? 'active' : '' }}">
+                            <a href="{{ route('client.user.purchase') }}">
+                                <i class="ti-receipt"></i> &nbsp;
+                                <span>Danh sách đơn hàng</span>
+                            </a>
+                        </div>
+                        <div class="menu-item {{ request()->route()->getName() == 'client.user.change-password' ? 'active' : '' }}">
+                            <a href="{{ route('client.user.change-password') }}">
+                                <i class="ti-key"></i> &nbsp;
+                                <span>Đổi mật khẩu</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a href="{{ route('client.auth.logout') }}">
+                                <i class="ti-arrow-right"></i> &nbsp;
+                                <span>Đăng xuất</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="single-service">
-                    <i class="ti-reload"></i>
-                    <h4>Miễn phí đổi hàng</h4>
-                    <p>Trong vòng 7 ngày</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="single-service">
-                    <i class="ti-lock"></i>
-                    <h4>Giao dịch an toàn</h4>
-                    <p>Đảm bảo 100%</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-12">
-                <div class="single-service">
-                    <i class="ti-tag"></i>
-                    <h4>Lựa chọn xứng đáng</h4>
-                    <p>Giá cả tốt nhất</p>
+                <div class="col-9 main-col">
+                    @yield('content')
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-@include('layouts.client.footer')
+    @include('client.element.services')
 
-@include('layouts/client/script')
-@yield('script')
+    @include('layouts.client.footer')
 
-<!-- Messenger Plugin chat Code -->
-<div id="fb-root"></div>
+    @include('layouts/client/script')
+    @yield('script')
 
-<!-- Your Plugin chat code -->
-<div id="fb-customer-chat" class="fb-customerchat">
-</div>
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
 
-<script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "110558835076275");
-    chatbox.setAttribute("attribution", "biz_inbox");
-</script>
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
 
-<!-- Your SDK code -->
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            xfbml            : true,
-            version          : 'v14.0'
-        });
-    };
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "110558835076275");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
 
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml            : true,
+                version          : 'v14.0'
+            });
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
 </body>
 </html>

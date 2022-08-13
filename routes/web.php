@@ -14,6 +14,7 @@ Route::get('logout', 'Client\AuthController@logout')->name('client.auth.logout')
 Route::get('register', 'Client\AuthController@register')->name('client.auth.register');
 Route::post('post-register', 'Client\AuthController@postRegister')->name('client.auth.post-register');
 Route::get('email-verify', 'Client\AuthController@emailVerify');
+Route::get('could-not-access', 'Client\AuthController@couldNotAccess')->name('client.could-not-access');
 
 Route::get('/category/{slug}', 'Client\ProductController@category')->name('client.product.category');
 Route::prefix('product')->group(function () {
