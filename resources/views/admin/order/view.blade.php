@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/backend/order.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/admin/order.css')}}">
 @endsection
 
 @section('breadcrumb-title')

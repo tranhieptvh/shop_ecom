@@ -62,4 +62,12 @@ class OrderRepository extends AbstractRepository
     public function getOrderByCode($code) {
         return $this->getBuilder()->where('code', $code)->first();
     }
+
+    public function getCountOrder() {
+        return $this->all()->count();
+    }
+
+    public function getNewOrder() {
+        return $this->getBuilder()->orderBy('id', 'DESC')->limit(5)->get();
+    }
 }

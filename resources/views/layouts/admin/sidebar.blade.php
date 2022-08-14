@@ -36,14 +36,14 @@
                     </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/brand' ? 'active' : '' }}" href="{{ route('admin.brand.index') }}">
-                            <i data-feather="list"></i>
+                            <i data-feather="tag"></i>
                             <span class="lan-3">Nhãn hàng</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/product' ? 'active' : '' }}" href="{{ route('admin.product.index') }}">
-                            <i data-feather="list"></i>
+                            <i data-feather="shopping-bag"></i>
                             <span class="lan-3">Sản phẩm</span>
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>

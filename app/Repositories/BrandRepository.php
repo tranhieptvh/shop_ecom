@@ -13,4 +13,8 @@ class BrandRepository extends AbstractRepository
      */
     protected $model = \App\Brand::class;
 
+    public function getCountBrand() {
+        return $this->all()->count();
+    }
+
 }
