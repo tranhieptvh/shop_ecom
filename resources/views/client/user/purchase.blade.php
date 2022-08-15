@@ -35,7 +35,7 @@
                 <tr class="heading">
                     <th>STT</th>
                     <th>Mã đơn hàng</th>
-                    <th>Tổng (+VAT, +ship) (VNĐ)</th>
+                    <th>Tổng (VNĐ)</th>
                     <th>Thời gian đặt hàng</th>
                     <th>Trạng thái thanh toán</th>
                     <th>Trạng thái đơn hàng</th>
