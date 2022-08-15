@@ -78,7 +78,7 @@
                             <th scope="col">STT</th>
                             <th scope="col">Mã đơn hàng</th>
                             <th scope="col">Tên khách hàng</th>
-                            <th scope="col">Tổng tiền (VAT + Ship) (VNĐ)</th>
+                            <th scope="col">Tổng tiền (VNĐ)</th>
                             <th scope="col">Phương thức thanh toán</th>
                             <th scope="col">Trạng thái thanh toán</th>
                             <th scope="col">Trạng thái đơn hàng</th>

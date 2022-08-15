@@ -641,3 +641,57 @@ span.required {
 .contact-page .example {
     text-align: center;
 }
+
+/*====== Backdrop 18+ =========*/
+.backdrop-18 {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.5);
+}
+.popup-confirm {
+    position: fixed;
+    height: 50vh;
+    width: 90%;
+    max-width: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 5px;
+    z-index: 99999;
+    padding: 10px;
+}
+.wrap-confirm {
+    width: 100%;
+    height: 100%;
+    border: 3px solid #cb3f2d;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+}
+.wrap-confirm img {
+    width: 30%;
+}
+.wrap-confirm p {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.wrap-confirm .content-confirm {
+    margin-bottom: 15px;
+}
+.wrap-confirm .cf-btn {
+    font-size: 1rem;
+    font-weight: bold;
+    color: unset;
+    border-width: 3px;
+}
+.wrap-confirm .cf-btn:focus {
+    box-shadow: none;
+}
+.wrap-confirm a {
+    margin-right: 10px;
+}

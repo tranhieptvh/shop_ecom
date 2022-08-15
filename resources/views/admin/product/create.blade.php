@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/backend/product.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/admin/product.css')}}">
 @endsection
 
 @section('breadcrumb-title')
@@ -23,6 +23,12 @@
                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
             </div>
         @endif
+            @if (session('error'))
+                <div class="alert alert-danger dark alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                </div>
+            @endif
         <div class="card">
             <form class="form theme-form" method="POST" action="{{ route('admin.product.store') }}" enctype="multipart/form-data" id="form">
                 @csrf
@@ -168,7 +174,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/js/backend/product.js') }}"></script>
+    <script src="{{ asset('assets/js/admin/product.js') }}"></script>
 
     <script>
         CKEDITOR.replace( 'content', {

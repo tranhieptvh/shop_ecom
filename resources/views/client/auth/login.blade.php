@@ -59,7 +59,7 @@
                                             <button type="submit" class="btn btn-lg btn-block" style="background: #0e1d42; color: #fff;">Đăng nhập</button>
                                         </div>
 
-                                        <a class="small text-muted" href="#!">Quên mật khẩu</a> <br>
+{{--                                        <a class="small text-muted" href="#!">Quên mật khẩu</a> <br>--}}
                                         <a class="small text-muted" href="{{ route('client.auth.register') }}">Đăng ký</a>
                                     </form>
 

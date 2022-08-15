@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use function Ramsey\Uuid\v1;
 
 class AuthController extends Controller
 {
@@ -101,5 +102,9 @@ class AuthController extends Controller
         } else {
             return redirect()->route('client.auth.index');
         }
+    }
+
+    public function couldNotAccess() {
+        return view('client.auth.could-not-access');
     }
 }

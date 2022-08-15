@@ -29,4 +29,4 @@
 <script src="{{asset('assets/js/editor/ckeditor/styles.js')}}"></script>
 <script src="{{asset('assets/js/editor/ckeditor/ckeditor.custom.js')}}"></script>
 
-<script src="{{ asset('assets/js/backend/common.js') }}"></script>
+<script src="{{ asset('assets/js/admin/custom.js') }}"></script>

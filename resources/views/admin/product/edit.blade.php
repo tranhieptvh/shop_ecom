@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/backend/product.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/admin/product.css')}}">
 @endsection
 
 @section('breadcrumb-title')
@@ -184,7 +184,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/js/backend/product.js') }}"></script>
+    <script src="{{ asset('assets/js/admin/product.js') }}"></script>
 
     <script>
         CKEDITOR.replace( 'content', {

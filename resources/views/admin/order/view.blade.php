@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 @section('style')
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/backend/order.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/admin/order.css')}}">
 @endsection
 
 @section('breadcrumb-title')
@@ -40,43 +40,49 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Tên khách hàng</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="name" value="{{ $order->name }}" disabled>
+                                    <input class="form-control" type="text" name="name" value="{{ $order->name }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Email</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="email" value="{{ $order->email }}" disabled>
+                                    <input class="form-control" type="text" name="email" value="{{ $order->email }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">SĐT</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="email" value="{{ $order->phone }}" disabled>
+                                    <input class="form-control" type="text" name="phone" value="{{ $order->phone }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Địa chỉ</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="address" value="{{ $order->address }}" disabled>
+                                    <input class="form-control" type="text" name="address" value="{{ $order->address }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Ghi chú đơn hàng</label>
                                 <div class="col-sm-9">
-                                    <textarea name="note" cols="30" rows="5" disabled class="disable width100">{{ $order->note }}</textarea>
+                                    <textarea name="note" cols="30" rows="5" class="width100">{{ $order->note }}</textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Phương thức thanh toán</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="address" value="{{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}" disabled>
+                                    <select class="form-select" name="method">
+                                        @foreach(\App\Order::METHOD as $method)
+                                            <option value="{{ $method['value'] }}" {{ $order->method == $method['value'] ? 'selected' : ''}}>
+                                                {{ $method['key'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Tổng tiền (+VAT, -ship) (VNĐ)</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total) }}" disabled>
+                                    <input class="form-control" type="text" name="total" value="{{ number_format($order->total) }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -91,7 +97,7 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Tổng tiền (+VAT, +ship) (VNĐ)</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total + $order->ship_fee) }}" disabled>
+                                    <input class="form-control" type="text" name="total_amount" value="{{ number_format($order->total + $order->ship_fee) }}" disabled>
                                 </div>
                             </div>
                             <hr>
@@ -126,9 +132,14 @@
                                 <div class="col-sm-9">
                                     <select class="form-select" name="status">
                                         @foreach(\App\Order::STATUS as $status)
-                                            <option value="{{ $status['value'] }}" {{ $order->status == $status['value'] ? 'selected' : ''}}>
-                                                {{ $status['key'] }}
-                                            </option>
+                                            @if ($order->status == $status['value'])
+                                                <option value="{{ $status['value'] }}" selected>{{ $status['key'] }}</option>
+                                                @foreach ($status['allow'] as $allow_status)
+                                                    <option value="{{ $allow_status['value'] }}" >
+                                                        {{ $allow_status['key'] }}
+                                                    </option>
+                                                @endforeach
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>

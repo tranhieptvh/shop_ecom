@@ -14,7 +14,7 @@ class ProductRepository extends AbstractRepository
     protected $model = \App\Product::class;
 
     public function getFeaturedProducts() {
-        return $this->getBuilder()->where(['is_feature' => 1])->limit(4)->get();
+        return $this->getBuilder()->where(['is_feature' => 1])->orderBy('feature_time', 'DESC')->limit(4)->get();
     }
 
     public function getNewProducts() {
@@ -100,5 +100,19 @@ class ProductRepository extends AbstractRepository
 
     public function getProductBySlug($slug) {
         return $this->getBuilder()->where('slug', $slug)->first();
+    }
+
+    public function getCountProduct() {
+        return $this->all()->count();
+    }
+
+    public function getBestSellProducts() {
+        return $this->getBuilder()
+            ->join('order_details', 'order_details.product_id', '=', 'products.id')
+            ->selectRaw('products.*, SUM(order_details.quantity) AS quantity_sold')
+            ->groupBy(['products.id'])
+            ->orderByDesc('quantity_sold')
+            ->take(5)
+            ->get();
     }
 }

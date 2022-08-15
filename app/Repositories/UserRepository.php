@@ -12,4 +12,8 @@ class UserRepository extends AbstractRepository
      * @return string
      */
     protected $model = \App\User::class;
+
+    public function getCountUser() {
+        return $this->all()->count();
+    }
 }

@@ -87,9 +87,12 @@ function deleteQrCode(idFrame, targetInput) {
 
 $('#form_update_order').on('submit', function() {
     let ship_fee = $("input[name='ship_fee']");
-    ship_fee.val(ship_fee.val().replace(',', ''));
+    ship_fee.val(ship_fee.val().replace(/,/g, ''));
+
+    let total = $("input[name='total']");
+    total.val(total.val().replace(/,/g, ''));
 });
 $('#form_update_info').on('submit', function() {
     let ship_fee = $("input[name='ship_fee']");
-    ship_fee.val(ship_fee.val().replace(',', ''));
+    ship_fee.val(ship_fee.val().replace(/,/g, ''));
 });

@@ -26,27 +26,65 @@ class Order extends Model
     const STATUS = [
         'CONFIRMING' => [
             'key' => 'Đang xác nhận',
-            'value' => 0
+            'value' => 0,
+            'allow' => [
+                'CONFIRMED' => [
+                    'key' => 'Đã xác nhận',
+                    'value' => 1
+                ],
+                'REJECT' => [
+                    'key' => 'Hủy đơn',
+                    'value' => 5
+                ],
+            ],
         ],
         'CONFIRMED' => [
             'key' => 'Đã xác nhận',
-            'value' => 1
+            'value' => 1,
+            'allow' => [
+                'SHIPPING' => [
+                    'key' => 'Đang giao hàng',
+                    'value' => 2
+                ],
+                'REJECT' => [
+                    'key' => 'Hủy đơn',
+                    'value' => 5
+                ],
+            ],
         ],
         'SHIPPING' => [
             'key' => 'Đang giao hàng',
-            'value' => 2
+            'value' => 2,
+            'allow' => [
+                'RECEIVED' => [
+                    'key' => 'Đã nhận hàng',
+                    'value' => 3
+                ],
+                'REJECT' => [
+                    'key' => 'Hủy đơn',
+                    'value' => 5
+                ],
+            ],
         ],
         'RECEIVED' => [
             'key' => 'Đã nhận hàng',
-            'value' => 3
+            'value' => 3,
+            'allow' => [
+                'DONE' => [
+                    'key' => 'Hoàn thành',
+                    'value' => 4
+                ],
+            ],
         ],
         'DONE' => [
             'key' => 'Hoàn thành',
-            'value' => 4
+            'value' => 4,
+            'allow' => [],
         ],
         'REJECT' => [
             'key' => 'Hủy đơn',
-            'value' => 5
+            'value' => 5,
+            'allow' => [],
         ],
     ];
 
