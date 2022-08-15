@@ -14,7 +14,7 @@ class ProductRepository extends AbstractRepository
     protected $model = \App\Product::class;
 
     public function getFeaturedProducts() {
-        return $this->getBuilder()->where(['is_feature' => 1])->limit(4)->get();
+        return $this->getBuilder()->where(['is_feature' => 1])->orderBy('feature_time', 'DESC')->limit(4)->get();
     }
 
     public function getNewProducts() {

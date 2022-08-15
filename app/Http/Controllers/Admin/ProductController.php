@@ -60,6 +60,7 @@ class ProductController extends Controller
         $product_data = $request->input();
         if (isset($product_data['is_feature'])) {
             $product_data['is_feature'] = 1;
+            $product_data['feature_time'] = new \DateTime();
         } else {
             $product_data['is_feature'] = 0;
         }
@@ -111,8 +112,10 @@ class ProductController extends Controller
         $product_data = $request->input();
         if (isset($product_data['is_feature'])) {
             $product_data['is_feature'] = 1;
+            $product_data['feature_time'] = new \DateTime();
         } else {
             $product_data['is_feature'] = 0;
+            $product_data['feature_time'] = null;
         }
 
         DB::beginTransaction();

@@ -20,6 +20,7 @@ class Product extends Model
         'category_id',
         'brand_id',
         'is_feature',
+        'feature_time',
         'volume',
         'concentration',
     ];
