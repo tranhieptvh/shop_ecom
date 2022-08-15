@@ -1,13 +1,14 @@
 $(document).ready(function() {
     // check and display backdrop 18+
-    if (!sessionStorage.getItem('check18')) {
+    if (!localStorage.getItem('check18')) {
         $('.popup-confirm').removeClass('d-none');
         $('.backdrop-18').removeClass('d-none');
     }
     $('#btn-over-18').click(function () {
         $('.popup-confirm').addClass('d-none');
         $('.backdrop-18').addClass('d-none');
-        sessionStorage.setItem('check18', true);
+        // sessionStorage.setItem('check18', true);
+        localStorage.setItem('check18', true);
     });
 
     $('#select-sort').change(function() {
