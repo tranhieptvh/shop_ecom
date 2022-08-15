@@ -132,9 +132,14 @@
                                 <div class="col-sm-9">
                                     <select class="form-select" name="status">
                                         @foreach(\App\Order::STATUS as $status)
-                                            <option value="{{ $status['value'] }}" {{ $order->status == $status['value'] ? 'selected' : ''}}>
-                                                {{ $status['key'] }}
-                                            </option>
+                                            @if ($order->status == $status['value'])
+                                                <option value="{{ $status['value'] }}" selected>{{ $status['key'] }}</option>
+                                                @foreach ($status['allow'] as $allow_status)
+                                                    <option value="{{ $allow_status['value'] }}" >
+                                                        {{ $allow_status['key'] }}
+                                                    </option>
+                                                @endforeach
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>

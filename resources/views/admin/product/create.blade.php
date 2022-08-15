@@ -23,6 +23,12 @@
                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
             </div>
         @endif
+            @if (session('error'))
+                <div class="alert alert-danger dark alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close" data-bs-original-title="" title=""></button>
+                </div>
+            @endif
         <div class="card">
             <form class="form theme-form" method="POST" action="{{ route('admin.product.store') }}" enctype="multipart/form-data" id="form">
                 @csrf
