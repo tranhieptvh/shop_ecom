@@ -40,43 +40,49 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Tên khách hàng</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="name" value="{{ $order->name }}" disabled>
+                                    <input class="form-control" type="text" name="name" value="{{ $order->name }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Email</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="email" value="{{ $order->email }}" disabled>
+                                    <input class="form-control" type="text" name="email" value="{{ $order->email }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">SĐT</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="email" value="{{ $order->phone }}" disabled>
+                                    <input class="form-control" type="text" name="phone" value="{{ $order->phone }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Địa chỉ</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="address" value="{{ $order->address }}" disabled>
+                                    <input class="form-control" type="text" name="address" value="{{ $order->address }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Ghi chú đơn hàng</label>
                                 <div class="col-sm-9">
-                                    <textarea name="note" cols="30" rows="5" disabled class="disable width100">{{ $order->note }}</textarea>
+                                    <textarea name="note" cols="30" rows="5" class="width100">{{ $order->note }}</textarea>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Phương thức thanh toán</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="address" value="{{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}" disabled>
+                                    <select class="form-select" name="method">
+                                        @foreach(\App\Order::METHOD as $method)
+                                            <option value="{{ $method['value'] }}" {{ $order->method == $method['value'] ? 'selected' : ''}}>
+                                                {{ $method['key'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Tổng tiền (+VAT, -ship) (VNĐ)</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total) }}" disabled>
+                                    <input class="form-control" type="text" name="total" value="{{ number_format($order->total) }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
@@ -91,7 +97,7 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-3 col-form-label">Tổng tiền (+VAT, +ship) (VNĐ)</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control disable" type="text" name="total_amount" value="{{ number_format($order->total + $order->ship_fee) }}" disabled>
+                                    <input class="form-control" type="text" name="total_amount" value="{{ number_format($order->total + $order->ship_fee) }}" disabled>
                                 </div>
                             </div>
                             <hr>
