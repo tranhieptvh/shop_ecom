@@ -37,6 +37,10 @@ class OrderRepository extends AbstractRepository
             $orders->where('email', 'LIKE', '%' . $_GET['email'] . '%');
         }
 
+        if (!empty($_GET['date_from']) && !empty($_GET['date_to'])) {
+            $orders->whereBetween('created_at', [date_format($_GET['date_from'], 'Y-m-d') . '00:00:00', date_format($_GET['date_to'], 'Y-m-d') . '23:59:59']);
+        }
+
         return $orders->orderBy('id', 'DESC')->paginate($paginate);
     }
 

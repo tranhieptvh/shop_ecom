@@ -23,7 +23,7 @@
                     <div>
                         <label>
                             Trạng thái thanh toán
-                            <select class="form-select" name="paid_flg" id="">
+                            <select class="form-select" name="paid_flg">
                                 <option value="">--- Chọn</option>
                                 @foreach(\App\Order::PAYMENT as $payment)
                                     <option value="{{ $payment['value'] }}" {{ (isset($_GET['paid_flg']) && $payment['value'] === $_GET['paid_flg']) ? 'selected' : ''}}>
@@ -34,7 +34,7 @@
                         </label>
                         <label>
                             Trạng thái đơn hàng
-                            <select class="form-select" name="status" id="">
+                            <select class="form-select" name="status">
                                 <option value="">--- Chọn</option>
                                 @foreach(\App\Order::STATUS as $status)
                                     <option value="{{ $status['value'] }}" {{ (isset($_GET['status']) && $status['value'] === $_GET['status']) ? 'selected' : ''}}>
@@ -42,6 +42,24 @@
                                     </option>
                                 @endforeach
                             </select>
+                        </label>
+                        <label>
+                            Từ
+                            <div class="date-range-picker">
+                                <div class="input-group date" id="dt-date" data-target-input="nearest">
+                                    <input class="form-control" type="text" name="date_from">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </label>
+                        <label>
+                            Đến
+                            <div class="date-range-picker">
+                                <div class="input-group date" id="dt-date" data-target-input="nearest">
+                                    <input class="form-control" type="text" name="date_to">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
                         </label>
                     </div>
 
@@ -79,6 +97,7 @@
                             <th scope="col">Mã đơn hàng</th>
                             <th scope="col">Tên khách hàng</th>
                             <th scope="col">Tổng tiền (VNĐ)</th>
+                            <th scope="col">Thời gian</th>
                             <th scope="col">Phương thức thanh toán</th>
                             <th scope="col">Trạng thái thanh toán</th>
                             <th scope="col">Trạng thái đơn hàng</th>
@@ -92,6 +111,7 @@
                                 <td>#{{ $order->code }}</td>
                                 <td>{{ $order->name }}</td>
                                 <td>{{ number_format($order->total + $order->ship_fee) }}</td>
+                                <td>{{ date_format($order->created_at, 'd-m-Y H:i:s') }}</td>
                                 <td>
                                     {{ $order->method == \App\Order::METHOD['COD']['value'] ? \App\Order::METHOD['COD']['key'] : \App\Order::METHOD['BANKING']['key'] }}
                                 </td>
@@ -127,4 +147,34 @@
 @endsection
 
 @section('script')
+    <script>
+        $(function() {
+            let date_form = $('input[name="date_from"]');
+            let date_to = $('input[name="date_to"]');
+
+            date_form.daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                autoUpdateInput: false,
+                locale: {
+                    format: 'DD-MM-YYYY'
+                }
+            });
+            date_form.on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY'));
+            });
+
+            date_to.daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                autoUpdateInput: false,
+                locale: {
+                    format: 'DD-MM-YYYY'
+                }
+            });
+            date_to.on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY'));
+            });
+        });
+    </script>
 @endsection

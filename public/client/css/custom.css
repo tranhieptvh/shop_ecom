@@ -654,7 +654,7 @@ span.required {
 }
 .popup-confirm {
     position: fixed;
-    height: 50vh;
+    height: 360px;
     width: 90%;
     max-width: 500px;
     top: 50%;
