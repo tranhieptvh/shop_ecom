@@ -96,4 +96,8 @@ form .required {
     width: 100%;
 }
 
+.search-date {
+    width: 140px !important;
+}
+
 /*====== Dashboard ======*/
