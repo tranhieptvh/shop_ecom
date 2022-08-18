@@ -105,8 +105,8 @@
                         <th scope="col">Mã đơn hàng</th>
                         <th scope="col">Tên khách hàng</th>
                         <th scope="col">Tổng tiền (VNĐ)	</th>
-                        <th scope="col">Trạng thái đơn hàng</th>
                         <th scope="col">Thời gian</th>
+                        <th scope="col">Trạng thái đơn hàng</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -117,6 +117,7 @@
                             </td>
                             <td>{{ $order->name }}</td>
                             <td>{{ number_format($order->total) }}</td>
+                            <td>{{ date_format($order->created_at, 'd-m-Y H:i:s') }}</td>
                             <td>
                                 <span class="flag {{ 'status_' . $order->status }}">
                                     @foreach(\App\Order::STATUS as $status)
@@ -124,7 +125,6 @@
                                     @endforeach
                                 </span>
                             </td>
-                            <td>{{ date_format($order->created_at, 'd-m-Y H:i:s') }}</td>
                         </tr>
                     @endforeach
                     </tbody>
