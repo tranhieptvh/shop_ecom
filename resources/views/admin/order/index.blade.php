@@ -47,7 +47,7 @@
                             Từ
                             <div class="date-range-picker">
                                 <div class="input-group date" id="dt-date" data-target-input="nearest">
-                                    <input class="form-control" type="text" name="date_from" value="{{ !empty($_GET['date_from']) ? $_GET['date_from'] : '' }}">
+                                    <input class="form-control search-date" type="text" name="date_from" value="{{ !empty($_GET['date_from']) ? $_GET['date_from'] : '' }}">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                             Đến
                             <div class="date-range-picker">
                                 <div class="input-group date" id="dt-date" data-target-input="nearest">
-                                    <input class="form-control" type="text" name="date_to" value="{{ !empty($_GET['date_to']) ? $_GET['date_to'] : '' }}">
+                                    <input class="form-control search-date" type="text" name="date_to" value="{{ !empty($_GET['date_to']) ? $_GET['date_to'] : '' }}">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
                             </div>
