@@ -27,64 +27,26 @@ class Order extends Model
         'CONFIRMING' => [
             'key' => 'Đang xác nhận',
             'value' => 0,
-            'allow' => [
-                'CONFIRMED' => [
-                    'key' => 'Đã xác nhận',
-                    'value' => 1
-                ],
-                'REJECT' => [
-                    'key' => 'Hủy đơn',
-                    'value' => 5
-                ],
-            ],
         ],
         'CONFIRMED' => [
             'key' => 'Đã xác nhận',
             'value' => 1,
-            'allow' => [
-                'SHIPPING' => [
-                    'key' => 'Đang giao hàng',
-                    'value' => 2
-                ],
-                'REJECT' => [
-                    'key' => 'Hủy đơn',
-                    'value' => 5
-                ],
-            ],
         ],
         'SHIPPING' => [
             'key' => 'Đang giao hàng',
             'value' => 2,
-            'allow' => [
-                'RECEIVED' => [
-                    'key' => 'Đã nhận hàng',
-                    'value' => 3
-                ],
-                'REJECT' => [
-                    'key' => 'Hủy đơn',
-                    'value' => 5
-                ],
-            ],
         ],
         'RECEIVED' => [
             'key' => 'Đã nhận hàng',
             'value' => 3,
-            'allow' => [
-                'DONE' => [
-                    'key' => 'Hoàn thành',
-                    'value' => 4
-                ],
-            ],
         ],
         'DONE' => [
             'key' => 'Hoàn thành',
             'value' => 4,
-            'allow' => [],
         ],
         'REJECT' => [
             'key' => 'Hủy đơn',
             'value' => 5,
-            'allow' => [],
         ],
     ];
 
