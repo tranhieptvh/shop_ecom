@@ -74,4 +74,8 @@ class OrderRepository extends AbstractRepository
     public function getNewOrder() {
         return $this->getBuilder()->orderBy('id', 'DESC')->limit(5)->get();
     }
+
+    public function getTotalSales() {
+        
+    }
 }
