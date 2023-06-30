@@ -6,45 +6,48 @@ Route::group(['domain' => env('APP_URL')], function() {
 
 });
 
-Route::get('/', 'Client\HomeController@index')->name('/');
-
-Route::get('login', 'Client\AuthController@index')->name('client.auth.index');
-Route::post('login', 'Client\AuthController@login')->name('client.auth.login');
-Route::get('logout', 'Client\AuthController@logout')->name('client.auth.logout');
-Route::get('register', 'Client\AuthController@register')->name('client.auth.register');
-Route::post('post-register', 'Client\AuthController@postRegister')->name('client.auth.post-register');
-Route::get('email-verify', 'Client\AuthController@emailVerify');
-Route::get('could-not-access', 'Client\AuthController@couldNotAccess')->name('client.could-not-access');
-
-Route::get('/category/{slug}', 'Client\ProductController@category')->name('client.product.category');
-Route::prefix('product')->group(function () {
-    Route::get('/', 'Client\ProductController@index')->name('client.product.index');
-    Route::get('/{slug}', 'Client\ProductController@detail')->name('client.product.detail');
+Route::get('/', function () {
+    return redirect()->route('admin');
 });
-
-Route::prefix('user')->group(function () {
-    Route::get('/profile', 'Client\UserController@profile')->name('client.user.profile');
-    Route::put('/update/{id}', 'Client\UserController@update')->name('client.user.update');
-    Route::get('/purchase', 'Client\UserController@purchase')->name('client.user.purchase');
-    Route::get('/order-detail/{code}', 'Client\UserController@orderDetail')->name('client.user.order-detail');
-    Route::put('/update-evidence/{code}', 'Client\UserController@updateEvidence')->name('client.user.update-evidence');
-    Route::get('/change-password', 'Client\UserController@changePassword')->name('client.user.change-password');
-    Route::post('/post-change-password', 'Client\UserController@postChangePassword')->name('client.user.post-change-password');
-});
-
-Route::get('/cart', 'Client\CartController@index')->name('client.cart');
-Route::post('/checkout', 'Client\CartController@checkout')->name('client.checkout');
-Route::get('/thank', 'Client\CartController@thank')->name('client.thank');
-
-Route::get('/contact', 'Client\ContactController@index')->name('client.contact');
-Route::get('/deposit', 'Client\ContactController@deposit')->name('client.deposit');
-Route::get('/transport', 'Client\PolicyController@transport')->name('client.transport');
-Route::get('/refund', 'Client\PolicyController@refund')->name('client.refund');
+//Route::get('/', 'Client\HomeController@index')->name('/');
+//
+//Route::get('login', 'Client\AuthController@index')->name('client.auth.index');
+//Route::post('login', 'Client\AuthController@login')->name('client.auth.login');
+//Route::get('logout', 'Client\AuthController@logout')->name('client.auth.logout');
+//Route::get('register', 'Client\AuthController@register')->name('client.auth.register');
+//Route::post('post-register', 'Client\AuthController@postRegister')->name('client.auth.post-register');
+//Route::get('email-verify', 'Client\AuthController@emailVerify');
+//Route::get('could-not-access', 'Client\AuthController@couldNotAccess')->name('client.could-not-access');
+//
+//Route::get('/category/{slug}', 'Client\ProductController@category')->name('client.product.category');
+//Route::prefix('product')->group(function () {
+//    Route::get('/', 'Client\ProductController@index')->name('client.product.index');
+//    Route::get('/{slug}', 'Client\ProductController@detail')->name('client.product.detail');
+//});
+//
+//Route::prefix('user')->group(function () {
+//    Route::get('/profile', 'Client\UserController@profile')->name('client.user.profile');
+//    Route::put('/update/{id}', 'Client\UserController@update')->name('client.user.update');
+//    Route::get('/purchase', 'Client\UserController@purchase')->name('client.user.purchase');
+//    Route::get('/order-detail/{code}', 'Client\UserController@orderDetail')->name('client.user.order-detail');
+//    Route::put('/update-evidence/{code}', 'Client\UserController@updateEvidence')->name('client.user.update-evidence');
+//    Route::get('/change-password', 'Client\UserController@changePassword')->name('client.user.change-password');
+//    Route::post('/post-change-password', 'Client\UserController@postChangePassword')->name('client.user.post-change-password');
+//});
+//
+//Route::get('/cart', 'Client\CartController@index')->name('client.cart');
+//Route::post('/checkout', 'Client\CartController@checkout')->name('client.checkout');
+//Route::get('/thank', 'Client\CartController@thank')->name('client.thank');
+//
+//Route::get('/contact', 'Client\ContactController@index')->name('client.contact');
+//Route::get('/deposit', 'Client\ContactController@deposit')->name('client.deposit');
+//Route::get('/transport', 'Client\PolicyController@transport')->name('client.transport');
+//Route::get('/refund', 'Client\PolicyController@refund')->name('client.refund');
 
 // ADMIN
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
-        return redirect()->route('admin.dashboard.index');
+        return redirect()->route('admin.user.index');
     })->name('admin');
 
     Route::get('login', 'Admin\AuthController@index');

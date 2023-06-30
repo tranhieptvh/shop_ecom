@@ -13,13 +13,13 @@
                 <ul class="sidebar-links" id="simple-bar">
                     <li class="back-btn">
                     </li>
-                    <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard.index') }}">
-                            <i data-feather="home"></i>
-                            <span class="lan-3">Dashboards</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                    </li>
+{{--                    <li class="sidebar-list">--}}
+{{--                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard.index') }}">--}}
+{{--                            <i data-feather="home"></i>--}}
+{{--                            <span class="lan-3">Dashboards</span>--}}
+{{--                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title {{request()->route()->getPrefix() == 'admin/user' ? 'active' : '' }}" href="{{ route('admin.user.index') }}">
                             <i data-feather="users"></i>
@@ -48,20 +48,20 @@
                             <div class="according-menu"><i class="fa fa-angle-right"></i></div>
                         </a>
                     </li>
-                    <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/order' ? 'active' : '' }}" href="{{ route('admin.order.index') }}">
-                            <i data-feather="file-text"></i>
-                            <span class="lan-3">Đơn hàng</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                    </li>
-                    <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/info' ? 'active' : '' }}" href="{{ route('admin.info.index') }}">
-                            <i data-feather="info"></i>
-                            <span class="lan-3">Thông tin shop</span>
-                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
-                        </a>
-                    </li>
+{{--                    <li class="sidebar-list">--}}
+{{--                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/order' ? 'active' : '' }}" href="{{ route('admin.order.index') }}">--}}
+{{--                            <i data-feather="file-text"></i>--}}
+{{--                            <span class="lan-3">Đơn hàng</span>--}}
+{{--                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li class="sidebar-list">--}}
+{{--                        <a class="sidebar-link sidebar-title {{ request()->route()->getPrefix() == 'admin/info' ? 'active' : '' }}" href="{{ route('admin.info.index') }}">--}}
+{{--                            <i data-feather="info"></i>--}}
+{{--                            <span class="lan-3">Thông tin shop</span>--}}
+{{--                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
