@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class UserSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@rubia.com',
                 'password' => Hash::make(123456),
+                'verify_token' => Str::random(),
                 'date_of_birth' => '30-07-1997',
                 'phone' => '0985250657',
                 'address' => 'Hà Nội',
@@ -29,6 +31,7 @@ class UserSeeder extends Seeder
                 'name' => 'Trần Văn Hiệp',
                 'email' => 'tranhieptvh@gmail.com',
                 'password' => Hash::make(123456),
+                'verify_token' => Str::random(),
                 'date_of_birth' => '30-07-1997',
                 'phone' => '0985250657',
                 'address' => 'Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',
@@ -40,6 +43,7 @@ class UserSeeder extends Seeder
                 'name' => 'Trần Hiệp',
                 'email' => 'hieptv@kaopiz.com',
                 'password' => Hash::make(123456),
+                'verify_token' => Str::random(),
                 'date_of_birth' => '30-07-1997',
                 'phone' => '0985250657',
                 'address' => 'Vĩnh Thịnh, Vĩnh Tường, Vĩnh Phúc',
